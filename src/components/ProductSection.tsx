@@ -91,67 +91,114 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
           {products.map((item, index) => {
             const isSelected = activeProduct === index;
             return (
-              <div
-                key={index}
-                onClick={() => handleProductClick(index)}
-                // 카드 내의 여백 제거 (p-0), 백그라운드 컬러 삭제, border 삭제, shadow 삭제
-                className="flex flex-col cursor-pointer bg-transparent p-0 border-0 shadow-none transition-all duration-300 relative select-none w-full xl:w-[442px]"
-                id={`product-card-${index}`}
-              >
-                {/* 이미지 크기 442*442 */}
-                <div 
-                  className="w-full aspect-square xl:w-[442px] xl:h-[442px] overflow-hidden rounded-sm bg-black/5 relative"
-                  id={`product-image-container-${index}`}
+              <div key={index} className="flex flex-col w-full xl:w-[442px]" id={`product-card-wrapper-${index}`}>
+                <div
+                  onClick={() => handleProductClick(index)}
+                  // 카드 내의 여백 제거 (p-0), 백그라운드 컬러 삭제, border 삭제, shadow 삭제
+                  className="flex flex-col cursor-pointer bg-transparent p-0 border-0 shadow-none transition-all duration-300 relative select-none w-full"
+                  id={`product-card-${index}`}
                 >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-102"
-                    loading="lazy"
-                    id={`product-img-${index}`}
-                  />
+                  {/* 이미지 크기 442*442 */}
+                  <div 
+                    className="w-full aspect-square xl:w-[442px] xl:h-[442px] overflow-hidden rounded-sm bg-black/5 relative"
+                    id={`product-image-container-${index}`}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-102"
+                      loading="lazy"
+                      id={`product-img-${index}`}
+                    />
+                  </div>
+
+                  {/* 텍스트 영역 */}
+                  <div className="mt-4 md:mt-6 xl:mt-[30px] flex flex-col space-y-1 md:space-y-2" id={`product-info-text-${index}`}>
+                    {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}
+                    <h3
+                      className="font-normal text-[#1A1A1A] text-xl sm:text-2xl xl:text-[30px] xl:leading-[40px] uppercase font-sans"
+                      style={{ letterSpacing: "-0.04em" }}
+                      id={`product-title-${index}`}
+                    >
+                      {item.name}
+                    </h3>
+                    {/* 설명글 텍스트: 사이즈 25, regular, 자간 -40 */}
+                    <p
+                      className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg xl:text-[25px] xl:leading-[35px] font-sans"
+                      style={{ letterSpacing: "-0.04em" }}
+                      id={`product-desc-${index}`}
+                    >
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  {/* 보기 편한 인터랙션 표시 */}
+                  <div className="mt-2 flex justify-start pb-2" id={`product-badge-row-${index}`}>
+                    <span
+                      className={`text-xs font-semibold uppercase tracking-wider transition-colors ${
+                        isSelected ? "text-[#4A90D9]" : "text-[#E8610A] hover:text-[#E8610A]/80"
+                      }`}
+                      id={`product-indicator-${index}`}
+                    >
+                      {isSelected ? "CLOSE ▲" : "DETAIL ▼"}
+                    </span>
+                  </div>
                 </div>
 
-                {/* 텍스트 영역 */}
-                <div className="mt-4 md:mt-6 xl:mt-[30px] flex flex-col space-y-1 md:space-y-2" id={`product-info-text-${index}`}>
-                  {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}
-                  <h3
-                    className="font-normal text-[#1A1A1A] text-xl sm:text-2xl xl:text-[30px] xl:leading-[40px] uppercase font-sans"
-                    style={{ letterSpacing: "-0.04em" }}
-                    id={`product-title-${index}`}
-                  >
-                    {item.name}
-                  </h3>
-                  {/* 설명글 텍스트: 사이즈 25, regular, 자간 -40 */}
-                  <p
-                    className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg xl:text-[25px] xl:leading-[35px] font-sans"
-                    style={{ letterSpacing: "-0.04em" }}
-                    id={`product-desc-${index}`}
-                  >
-                    {item.desc}
-                  </p>
-                </div>
-
-                {/* 보기 편한 인터랙션 표시 */}
-                <div className="mt-2 flex justify-start" id={`product-badge-row-${index}`}>
-                  <span
-                    className={`text-xs font-semibold uppercase tracking-wider transition-colors ${
-                      isSelected ? "text-[#4A90D9]" : "text-[#E8610A] hover:text-[#E8610A]/80"
-                    }`}
-                    id={`product-indicator-${index}`}
-                  >
-                    {isSelected ? "CLOSE ▲" : "DETAIL ▼"}
-                  </span>
+                {/* 모바일 뷰 전용 아코디언 (Mobile View 전용: md 미만에서만 표출) */}
+                <div
+                  className={`md:hidden overflow-hidden transition-all duration-700 ease-in-out ${
+                    isSelected
+                      ? "max-h-[1500px] opacity-100 mt-4 mb-8"
+                      : "max-h-0 opacity-0 mt-0 mb-0"
+                  }`}
+                  id={`product-mobile-accordion-${index}`}
+                >
+                  <div className="flex flex-col space-y-8 w-full" id={`mobile-accordion-items-${index}`}>
+                    {item.accordionDetails.map((feat, fIdx) => (
+                      <div 
+                        key={fIdx}
+                        className="flex flex-col items-start w-full gap-4"
+                        id={`mobile-accordion-row-${index}-${fIdx}`}
+                      >
+                        {/* 이미지 크기 400x400 최적화 */}
+                        <div className="w-full max-w-[400px] aspect-square overflow-hidden rounded-sm bg-black/5">
+                          <img
+                            src={feat.image}
+                            alt={feat.title}
+                            className="w-full h-full object-cover transition-transform duration-500 hover:scale-102"
+                            loading="lazy"
+                          />
+                        </div>
+                        
+                        {/* 우측 위의 상품명 텍스트와 설명글 텍스트가 동일하게 표시 (자간 -40) */}
+                        <div className="w-full flex flex-col justify-start">
+                          <h4 
+                            className="text-[#1A1A1A] font-normal text-xl sm:text-2xl uppercase font-sans"
+                            style={{ letterSpacing: "-0.04em" }}
+                          >
+                            {feat.title}
+                          </h4>
+                          <p 
+                            className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg mt-2 font-sans"
+                            style={{ letterSpacing: "-0.04em" }}
+                          >
+                            {feat.desc}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* 제품설명 아코디언 */}
+        {/* 제품설명 아코디언 (Desktop View 전용) */}
         {/* 백그라운드 컬러 삭제, border 삭제, xl:mt-[100px] 간격 유지 */}
         <div
-          className={`overflow-hidden transition-all duration-700 ease-in-out ${
+          className={`hidden md:block overflow-hidden transition-all duration-700 ease-in-out ${
             activeProduct !== null
               ? "max-h-[3000px] opacity-100 mt-10 md:mt-16 xl:mt-[100px]"
               : "max-h-0 opacity-0 mt-0"

@@ -169,12 +169,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.25 }}
-                    className="font-bold text-white text-right font-sans uppercase text-2xl sm:text-3xl md:text-4xl w-full"
-                    style={{
-                      fontSize: isMobile ? undefined : "70px",
-                      lineHeight: isMobile ? undefined : "80px",
-                      letterSpacing: isMobile ? undefined : "-3.5px"
-                    }}
+                    className="font-bold text-white text-right font-sans uppercase text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[70px] xl:leading-[80px] xl:tracking-[-3.5px] w-full"
                     id={`caption-text-${activeSlide}`}
                   >
                     {/* 줄바꿈을 포함하여 텍스트 분기 출력 */}
