@@ -1,0 +1,6 @@
+{
+  "name": "Newed",
+  "description": "Newed Brand Portfolio Showcase - Coffee brand premium display",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
