@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 // Props 인터페이스 정의
@@ -9,31 +9,6 @@ interface HeroSliderProps {
 export default function HeroSlider({ heroRef }: HeroSliderProps) {
   // 현재 활성화된 슬라이드 인덱스를 관리하는 state (0, 1, 2)
   const [activeSlide, setActiveSlide] = useState(0);
-
-  // 모바일과 웹 브라우저 창 너비 규격을 감지하고 그에 맞는 이미지를 스왑하기 위한 state
-  const [isMobile, setIsMobile] = useState(false);
-
-  // 브라우저 뷰포트 크기가 768px 이상인지 실시간 감지하여 상태를 갱신하는 훅
-  useEffect(() => {
-    // 768px 미만인지 감지하는 미디어 쿼리 객체 생성
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
-    
-    // 초기값 세팅
-    setIsMobile(mediaQuery.matches);
-
-    // 이벤트 리스너 함수 선언
-    const handleMediaQueryChange = (e: MediaQueryListEvent) => {
-      setIsMobile(e.matches);
-    };
-
-    // 리스너 등록
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // 컴포넌트 언마운트 시 리스너 소멸
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
-  }, []);
 
   // activeSlide에 따른 메인 슬라이드 이미지 매핑
   const mainImages = [
@@ -59,27 +34,27 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
   return (
     <div
       ref={heroRef}
-      className="w-full bg-[#E8610A] pt-[72px] md:pt-[104px] xl:pt-[180px]" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
+      className="w-full bg-[#E8610A] pt-[72px] md:pt-[104px] lg:pt-[140px] xl:pt-[180px]" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
       id="hero-slider-section"
     >
       {/* 반응형 여백을 담당하며 가운데 정렬되는 감싸는 프레임. 상하 안쪽 여백 100, 좌우 안쪽 여백 100 */}
       <div 
-        className="px-4 sm:px-8 md:px-16 xl:px-[100px] py-10 md:py-16 xl:py-[100px] w-full max-w-[1980px] mx-auto" 
+        className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] py-10 md:py-16 lg:py-24 xl:py-[100px] w-full max-w-[1980px] mx-auto"
         id="hero-slider-inner-container"
       >
         {/* 안쪽 컨텐츠 프레임: 좌측 이미지와 우측 슬라이더 사이 간격 50 (xl:gap-[50px]) */}
         <div
-          className="flex flex-col md:grid md:grid-cols-10 md:gap-6 xl:flex xl:flex-row xl:gap-[50px] xl:items-start w-full"
+          className="flex flex-col xl:flex-row xl:items-stretch xl:gap-[50px] w-full"
           id="hero-slider-layout"
         >
-          {/* 왼쪽 영역: 단독 세로 포트레이트 이미지 배정, 800 * 800 */}
+          {/* 왼쪽 영역: 단독 세로 포트레이트 이미지 배정, 최대 800 * 800 */}
           <div
-            className="md:col-span-4 w-full aspect-square xl:w-[800px] xl:h-[800px] xl:flex-shrink-0 relative overflow-hidden rounded-sm"
+            className="w-full aspect-square xl:w-[45%] xl:max-w-[800px] xl:flex-shrink-0 relative overflow-hidden rounded-sm"
             id="hero-left-col"
           >
-            {/* 가변 중단점에 따라 서로 다른 크기의 이미지를 지연 로딩(lazy)하여 적용 */}
+            {/* 세로 포트레이트 이미지를 지연 로딩(lazy)하여 적용 */}
             <img
-              src={isMobile ? "https://placehold.co/400x400?text=Popsicle+Feeling" : "https://placehold.co/400x400?text=Popsicle+Feeling"}
+              src="https://placehold.co/400x400?text=Popsicle+Feeling"
               alt="Newed Feeling"
               className="w-full h-full object-cover transition-all duration-500 ease-in-out hover:scale-102"
               loading="lazy"
@@ -90,12 +65,12 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
           {/* 오른쪽 영역: 메인 슬라이드 + 썸네일 바 + 텍스트 */}
           {/* 전체 높이를 좌측 800px와 동일하게 맞춰 하단 정렬을 실현 */}
           <div
-            className="md:col-span-6 w-full flex flex-col justify-between mt-6 md:mt-0 xl:mt-0 xl:w-[930px] xl:h-[800px] xl:flex-shrink-0"
+            className="w-full flex flex-col justify-between mt-6 xl:mt-0 xl:flex-grow xl:flex-1 xl:max-w-[930px] xl:flex-shrink-0"
             id="hero-right-col"
           >
             {/* 메인 슬라이드 이미지 - 930 * 580 */}
             <div
-              className="w-full aspect-[930/580] xl:w-[930px] xl:h-[580px] bg-black/5 relative overflow-hidden rounded-sm cursor-pointer lg:flex-shrink-0"
+              className="w-full aspect-[930/580] xl:max-w-[930px] bg-black/5 relative overflow-hidden rounded-sm cursor-pointer xl:flex-shrink-0"
               id="hero-right-main-image-container"
             >
               <AnimatePresence mode="wait">
@@ -116,11 +91,11 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
 
             {/* 슬라이더 이미지와 슬라이더 바 사이 간격을 조절하는 하단 파트 */}
             <div 
-              className="flex flex-col flex-1 justify-between mt-4 md:mt-6 xl:mt-0" 
+              className="flex flex-col flex-1 justify-between mt-4 md:mt-6 lg:mt-6 xl:mt-[30px]" 
               id="hero-right-bottom-part"
             >
-              {/* Spacer 1 (xl에서 전폭 50/50 비중으로 공간을 정가운데 분할) */}
-              <div className="hidden xl:block flex-1" id="hero-spacer-1" />
+              {/* Spacer 1 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
+              <div className="hidden xl:block flex-1 min-h-[16px] xl:min-h-[25px]" id="hero-spacer-1" />
 
               {/* 썸네일 슬라이더 바 (한 줄에 표시, 세로 20, 간격 나누기용 30*20 바 사이사이 추가) */}
               <div className="flex items-center w-full" id="hero-slider-thumbnails-container">
@@ -156,12 +131,12 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                 </div>
               </div>
 
-              {/* Spacer 2 (xl에서 전폭 50/50 비중으로 공간을 정가운데 분할) */}
-              <div className="hidden xl:block flex-1" id="hero-spacer-2" />
+              {/* Spacer 2 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
+              <div className="hidden xl:block flex-1 min-h-[16px] xl:min-h-[25px]" id="hero-spacer-2" />
 
               {/* 우측 정렬 텍스트 슬레이트 - 설명 텍스트 하단 라인이 좌측 이미지 하단과 완벽 일치 */}
               {/* 크기 70px, 자간 -3.5px(또는 -0.05em), 행간 80px, Bold 적용 */}
-              <div className="text-right py-2 md:py-4 xl:py-0 self-end w-full" id="hero-slider-caption-block">
+              <div className="text-right py-2 md:py-4 xl:py-0 self-end w-full mt-4 lg:mt-6 xl:mt-0" id="hero-slider-caption-block">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeSlide}

@@ -77,30 +77,30 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     <section
       ref={productRef}
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#F5E6A3] py-10 md:py-16 xl:py-[100px] w-full"
+      className="bg-[#F5E6A3] py-10 md:py-16 lg:py-24 xl:py-[100px] w-full"
       id="product-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}
-      <div className="px-4 sm:px-8 md:px-16 xl:px-[100px] w-full max-w-[1980px] mx-auto" id="product-inner-container">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] w-full max-w-[1980px] mx-auto" id="product-inner-container">
         
         {/* 제품(3개 - 동일간격 배치) */}
         <div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-[127px]"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-[6%]"
           id="product-cards-grid"
         >
           {products.map((item, index) => {
             const isSelected = activeProduct === index;
             return (
-              <div key={index} className="flex flex-col w-full xl:w-[442px]" id={`product-card-wrapper-${index}`}>
+              <div key={index} className="flex flex-col w-full xl:max-w-[442px] mx-auto" id={`product-card-wrapper-${index}`}>
                 <div
                   onClick={() => handleProductClick(index)}
                   // 카드 내의 여백 제거 (p-0), 백그라운드 컬러 삭제, border 삭제, shadow 삭제
                   className="flex flex-col cursor-pointer bg-transparent p-0 border-0 shadow-none transition-all duration-300 relative select-none w-full"
                   id={`product-card-${index}`}
                 >
-                  {/* 이미지 크기 442*442 */}
+                  {/* 이미지 크기: 가변적 비율 유지하며 최대 442*442 */}
                   <div 
-                    className="w-full aspect-square xl:w-[442px] xl:h-[442px] overflow-hidden rounded-sm bg-black/5 relative"
+                    className="w-full aspect-square overflow-hidden rounded-sm bg-black/5 relative"
                     id={`product-image-container-${index}`}
                   >
                     <img
@@ -116,7 +116,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   <div className="mt-4 md:mt-6 xl:mt-[30px] flex flex-col space-y-1 md:space-y-2" id={`product-info-text-${index}`}>
                     {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}
                     <h3
-                      className="font-normal text-[#1A1A1A] text-xl sm:text-2xl xl:text-[30px] xl:leading-[40px] uppercase font-sans"
+                      className="font-normal text-[#1A1A1A] text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] uppercase font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`product-title-${index}`}
                     >
@@ -124,7 +124,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                     </h3>
                     {/* 설명글 텍스트: 사이즈 25, regular, 자간 -40 */}
                     <p
-                      className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg xl:text-[25px] xl:leading-[35px] font-sans"
+                      className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`product-desc-${index}`}
                     >
@@ -210,17 +210,17 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
               {products[activeProduct].accordionDetails.map((feat, fIdx) => (
                 <div 
                   key={fIdx}
-                  // 좌 445 + 사이 100 + 우측 나머지 구조
-                  className="flex flex-col xl:flex-row xl:gap-[100px] items-start w-full"
+                  // 좌측 가변적 비율 + 사이 8% 간격 + 우측 나머지 구조
+                  className="flex flex-col xl:flex-row xl:gap-[8%] items-start w-full"
                   id={`accordion-row-${fIdx}`}
                 >
-                  {/* 좌 400 * 400 이미지 */}
+                  {/* 좌측 이미지 블록 */}
                   <div 
-                    className="w-full xl:w-[445px] xl:flex-shrink-0 flex justify-start items-start"
+                    className="w-full xl:w-[25%] xl:max-w-[445px] xl:flex-shrink-0 flex justify-start items-start"
                     id={`accordion-left-${fIdx}`}
                   >
                     <div 
-                      className="w-full max-w-[400px] aspect-square xl:w-[400px] xl:h-[400px] overflow-hidden rounded-sm bg-black/5"
+                      className="w-full max-w-[400px] aspect-square overflow-hidden rounded-sm bg-black/5"
                       id={`accordion-img-box-${fIdx}`}
                     >
                       <img
@@ -239,7 +239,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   >
                     {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}
                     <h4 
-                      className="text-[#1A1A1A] font-normal text-xl sm:text-2xl xl:text-[30px] xl:leading-[40px] uppercase font-sans"
+                      className="text-[#1A1A1A] font-normal text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] uppercase font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`accordion-feat-title-${fIdx}`}
                     >
@@ -247,7 +247,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                     </h4>
                     {/* 설명글 텍스트: 사이즈 25, regular, 자간 -40 */}
                     <p 
-                      className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg xl:text-[25px] xl:leading-[35px] mt-2 xl:mt-4 font-sans"
+                      className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] mt-2 xl:mt-4 font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`accordion-feat-desc-${fIdx}`}
                     >

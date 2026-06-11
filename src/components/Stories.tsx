@@ -13,26 +13,26 @@ export default function Stories({ storiesRef }: StoriesProps) {
     <section
       ref={storiesRef} // 네비바 메뉴에서 스무스 스크롤 대상(storiesRef)으로 타겟팅을 잡기 위해 지정합니다.
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#F5F0E8] py-10 md:py-16 xl:py-[100px] border-b border-[#ebd787]/35 w-full"
+      className="bg-[#F5F0E8] py-10 md:py-16 lg:py-24 xl:py-[100px] border-b border-[#ebd787]/35 w-full"
       id="stories-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}
-      <div 
-        className="px-4 sm:px-8 md:px-16 xl:px-[100px] w-full max-w-[1980px] mx-auto animate-fade-in" 
+      <div
+        className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] w-full max-w-[1980px] mx-auto animate-fade-in"
         id="stories-inner-container"
       >
-        {/* 좌측 445 + 사이 간격 100 + 나머지 우측 레이아웃 */}
+        {/* 좌측 약 25% + 사이 약 8% 간격 + 나머지 우측 레이아웃 */}
         <div 
-          className="flex flex-col xl:flex-row xl:gap-[100px] xl:items-start w-full"
+          className="flex flex-col xl:flex-row xl:gap-[8%] xl:items-start w-full"
           id="stories-layout-container"
         >
-          {/* 좌측 텍스트: 사이즈 100, 행간 120, 자간 -40 (-0.04em), semi bold */}
+          {/* 좌측 텍스트: 모바일에선 전체 너비, 데스크탑에선 약 25% 가변 너비 부여하되 최대 445px 확보 */}
           <div 
-            className="w-full xl:w-[445px] xl:flex-shrink-0 select-none pb-4 xl:pb-0" 
+            className="w-full xl:w-[25%] xl:max-w-[445px] xl:flex-shrink-0 select-none pb-4 xl:pb-0" 
             id="stories-title-col"
           >
             <h2
-              className="font-semibold text-[#1A1A1A] uppercase text-4xl sm:text-5xl md:text-6xl xl:text-[100px] xl:leading-[120px] font-sans"
+              className="font-semibold text-[#1A1A1A] uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[100px] xl:leading-[120px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="stories-heading"
             >
@@ -47,7 +47,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
           >
             {/* 우측 설명 글: 사이즈 55, 행간 80, 자간 -40 (-0.04em), regular */}
             <p
-              className="text-[#1A1A1A] font-normal text-lg sm:text-xl md:text-2xl xl:text-[55px] xl:leading-[80px] font-sans"
+              className="text-[#1A1A1A] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="stories-description-text"
             >
@@ -59,12 +59,12 @@ export default function Stories({ storiesRef }: StoriesProps) {
             <div className="flex justify-end mt-4 md:mt-6 xl:mt-[40px]" id="stories-button-row">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="group text-[#E8610A] hover:text-[#c95308] font-normal text-lg sm:text-xl md:text-2xl xl:text-[55px] xl:leading-[80px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
+                className="group text-[#E8610A] hover:text-[#c95308] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
                 style={{ letterSpacing: "-0.04em" }}
                 id="stories-toggle-button"
               >
                 <span>MORE</span>
-                <span className="text-xl md:text-2xl xl:text-[40px] transition-transform duration-300">
+                <span className="text-xl md:text-2xl lg:text-3xl xl:text-[40px] transition-transform duration-300">
                   {isOpen ? "▲" : "▼"}
                 </span>
               </button>
@@ -79,7 +79,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
             >
               {/* MORE 내의 텍스트 스타일: 위의 "우측 설명 글" 스타일과 동일 */}
               <div 
-                className="text-[#1a1a1a] font-normal text-lg sm:text-xl md:text-2xl xl:text-[55px] xl:leading-[80px] space-y-6 md:space-y-8 xl:space-y-[40px] font-sans" 
+                className="text-[#1a1a1a] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] space-y-6 md:space-y-8 xl:space-y-[40px] font-sans" 
                 style={{ letterSpacing: "-0.04em" }}
                 id="stories-accordion-inner"
               >

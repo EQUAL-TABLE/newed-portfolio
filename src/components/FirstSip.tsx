@@ -1,18 +1,4 @@
-import { useState, useEffect } from "react";
-
 export default function FirstSip() {
-  // 모바일과 웹 해상도를 구분하기 위한 반응형 수치 감지 state
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1280); // xl 기준 (1280px)
-    };
-    handleResize(); // 컴포넌트 마운트 즉시 판정 수행
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <section
       className="w-full bg-[#4A90D9] overflow-hidden"
@@ -24,18 +10,18 @@ export default function FirstSip() {
         id="first-sip-inner-container"
       >
         <div
-          // xl 해상도에서 445px(좌측) + 사이 100px 간격 + 나머지 구역(우측) 으로 정렬
-          className="flex flex-col xl:flex-row xl:gap-[100px] w-full items-stretch bg-[#4A90D9] xl:h-[800px]"
+          // xl 해상도에서 약 25% 가량(좌측) + 사이 약 8% 간격 + 나머지 구역(우측) 으로 정렬하여 유연성을 도모합니다.
+          className="flex flex-col xl:flex-row xl:gap-[8%] w-full items-stretch bg-[#4A90D9] xl:min-h-[800px]"
           id="first-sip-layout"
         >
-          {/* 좌측 영역: 445px 폭 고정, 상단 내부 여백 100px, 텍스트 상단 고정. 모바일 정렬용 px-4 sm:px-8 md:px-16 추가 */}
+          {/* 좌측 영역: 모바일 및 태블릿에서는 전폭, 데스크탑에서는 가변적이되 최대 445px 제한 */}
           <div
-            className="w-full xl:w-[445px] xl:flex-shrink-0 flex flex-col justify-start px-4 sm:px-8 md:px-16 xl:px-0 pt-10 pb-6 md:pt-16 md:pb-10 xl:pt-[100px] xl:pb-0 font-sans select-none"
+            className="w-full xl:w-[25%] xl:max-w-[445px] xl:flex-shrink-0 flex flex-col justify-start px-4 sm:px-6 md:px-8 lg:px-12 xl:px-0 pt-10 pb-6 md:pt-16 md:pb-10 lg:pt-24 lg:pb-12 xl:pt-[100px] xl:pb-0 font-sans select-none"
             id="first-sip-text-block"
           >
             {/* 텍스트 사이즈 100, 행간 120, 자간 -40 (즉 -4% or -0.04em), semi bold */}
             <h2
-              className="font-semibold text-white uppercase text-4xl sm:text-5xl md:text-6xl xl:text-[100px] xl:leading-[120px] tracking-tight"
+              className="font-semibold text-white uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[100px] xl:leading-[120px] tracking-tight"
               style={{ letterSpacing: "-0.04em" }}
               id="first-sip-heading"
             >
@@ -50,13 +36,20 @@ export default function FirstSip() {
             className="flex-1 w-full overflow-hidden relative aspect-[4/3] md:aspect-[16/10] xl:aspect-auto xl:min-h-0"
             id="first-sip-image-block"
           >
-            <img
-              src={isMobile ? "https://placehold.co/800x600/D9D9D9/ffffff?text=Blue+Swirl+Feeling" : "https://placehold.co/1335x800/D9D9D9/ffffff?text=Blue+Swirl+Feeling"}
-              alt="First sip feeling - blue creamy swirl"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-102"
-              loading="lazy"
-              id="first-sip-dynamic-image"
-            />
+            {/* 이미지 아트디렉션: xl(1280px) 이상에서 고해상 데스크탑 이미지, 미만에서는 모바일 이미지로 CSS-only 스왑 */}
+            <picture>
+              <source
+                media="(min-width: 1280px)"
+                srcSet="https://placehold.co/1335x800/D9D9D9/ffffff?text=Blue+Swirl+Feeling"
+              />
+              <img
+                src="https://placehold.co/800x600/D9D9D9/ffffff?text=Blue+Swirl+Feeling"
+                alt="First sip feeling - blue creamy swirl"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-102"
+                loading="lazy"
+                id="first-sip-dynamic-image"
+              />
+            </picture>
           </div>
         </div>
       </div>

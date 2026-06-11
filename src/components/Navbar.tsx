@@ -36,68 +36,74 @@ export default function Navbar({ heroRef, storiesRef, productRef }: NavbarProps)
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 bg-[#F5E6A3] border-b border-[#ebd787]/50 px-6 md:px-12 xl:px-[100px] pt-6 md:pt-12 xl:pt-[100px] pb-4 md:pb-6 xl:pb-[30px]"
+      className="fixed top-0 left-0 w-full z-50 bg-[#F5E6A3] border-b border-[#ebd787]/50 pt-4 sm:pt-6 md:pt-8 lg:pt-12 xl:pt-[100px] pb-3 sm:pb-4 md:pb-5 lg:pb-6 xl:pb-[30px]"
       style={{ marginLeft: "0px", height: "auto" }}
       id="main-navbar"
     >
-      <div className="w-full md:grid md:grid-cols-4 md:items-center flex items-center justify-between" id="navbar-inner-grid">
-        {/* 왼쪽: NEWED 타원형 로고 배지 (4분할 중 좌측 1칸) */}
-        <div 
-          className="md:col-span-1 flex justify-start items-center cursor-pointer select-none"
-          onClick={() => scrollToSection(heroRef)}
-          id="navbar-logo-container"
-        >
+      <div className="w-full max-w-[1980px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px]" id="navbar-container">
+        <div className="w-full md:grid md:grid-cols-4 md:items-center flex items-center justify-between" id="navbar-inner-grid">
+          {/* 왼쪽: NEWED 타원형 로고 배지 (4분할 중 좌측 1칸) */}
           <div 
-            className="bg-[#4A90D9] text-white font-bold px-6 py-2 text-base md:text-lg lg:text-xl rounded-full tracking-wider border border-[#4A90D9] hover:bg-opacity-90 transition-all duration-300 shadow-sm"
-            style={{ borderRadius: "50% / 50%" }} // 대칭 타원형 실현
-            id="navbar-logo-badge"
-          >
-            NEWED
-          </div>
-        </div>
-
-        {/* 오른쪽: 웹 크기의 가로 메뉴 목록 (4분할 중 우측 3칸 영역을 묶어 4개 메뉴를 균등 배치) */}
-        <div className="hidden md:flex md:col-span-3 items-center justify-between w-full" id="navbar-web-menu">
-          <button
+            className="md:col-span-1 flex justify-start items-center cursor-pointer select-none"
             onClick={() => scrollToSection(heroRef)}
-            className="font-bold text-[#1A1A1A] text-lg md:text-2xl lg:text-3xl xl:text-[50px] tracking-[-0.05em] leading-none uppercase hover:text-[#E8610A] transition-colors cursor-pointer"
-            id="web-menu-homepage"
+            id="navbar-logo-container"
           >
-            HOMEPAGE
-          </button>
-          <button
-            onClick={() => scrollToSection(storiesRef)}
-            className="font-bold text-[#1A1A1A] text-lg md:text-2xl lg:text-3xl xl:text-[50px] tracking-[-0.05em] leading-none uppercase hover:text-[#E8610A] transition-colors cursor-pointer"
-            id="web-menu-stories"
-          >
-            STORIES
-          </button>
-          <button
-            onClick={() => scrollToSection(productRef)}
-            className="font-bold text-[#1A1A1A] text-lg md:text-2xl lg:text-3xl xl:text-[50px] tracking-[-0.05em] leading-none uppercase hover:text-[#E8610A] transition-colors cursor-pointer"
-            id="web-menu-product"
-          >
-            PRODUCT
-          </button>
-          <button
-            onClick={openInstagram}
-            className="font-bold text-[#1A1A1A] text-lg md:text-2xl lg:text-3xl xl:text-[50px] tracking-[-0.05em] leading-none uppercase hover:text-[#E8610A] transition-colors cursor-pointer"
-            id="web-menu-instagram"
-          >
-            INSTAGRAM
-          </button>
-        </div>
+            <div 
+              className="bg-[#4A90D9] text-white font-bold px-6 py-2 text-base md:text-lg lg:text-xl rounded-full tracking-wider border border-[#4A90D9] hover:bg-opacity-90 transition-all duration-300 shadow-sm"
+              style={{ borderRadius: "50% / 50%" }} // 대칭 타원형 실현
+              id="navbar-logo-badge"
+            >
+              NEWED
+            </div>
+          </div>
 
-        {/* 오른쪽: 모바일 햄버거 토글 버튼 (768px 미만) */}
-        <div className="md:hidden flex items-center" id="navbar-mobile-toggle-container">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-[#1A1A1A] hover:text-[#E8610A] transition-colors p-1 cursor-pointer focus:outline-none"
-            aria-label="Toggle menu"
-            id="navbar-mobile-hamburger"
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          {/* 오른쪽: 웹 크기의 가로 메뉴 목록 (4분할 중 우측 3칸 영역을 묶어 4개 메뉴를 양쪽끝에서부터 균등 배치) */}
+          <div className="hidden md:flex md:col-span-3 items-center justify-between w-full" id="navbar-web-menu">
+            <button
+              onClick={() => scrollToSection(heroRef)}
+              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              style={{ fontSize: "clamp(13px, 2.5vw, 50px)", letterSpacing: "-0.05em", lineHeight: "1" }}
+              id="web-menu-homepage"
+            >
+              HOMEPAGE
+            </button>
+            <button
+              onClick={() => scrollToSection(storiesRef)}
+              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              style={{ fontSize: "clamp(13px, 2.5vw, 50px)", letterSpacing: "-0.05em", lineHeight: "1" }}
+              id="web-menu-stories"
+            >
+              STORIES
+            </button>
+            <button
+              onClick={() => scrollToSection(productRef)}
+              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              style={{ fontSize: "clamp(13px, 2.5vw, 50px)", letterSpacing: "-0.05em", lineHeight: "1" }}
+              id="web-menu-product"
+            >
+              PRODUCT
+            </button>
+            <button
+              onClick={openInstagram}
+              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              style={{ fontSize: "clamp(13px, 2.5vw, 50px)", letterSpacing: "-0.05em", lineHeight: "1" }}
+              id="web-menu-instagram"
+            >
+              INSTAGRAM
+            </button>
+          </div>
+
+          {/* 오른쪽: 모바일 햄버거 토글 버튼 (768px 미만) */}
+          <div className="md:hidden flex items-center" id="navbar-mobile-toggle-container">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-[#1A1A1A] hover:text-[#E8610A] transition-colors p-1 cursor-pointer focus:outline-none"
+              aria-label="Toggle menu"
+              id="navbar-mobile-hamburger"
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
       </div>
 

@@ -6,11 +6,11 @@ export default function BrandStatement() {
       // 깔끔하고 신뢰감을 주는 순백색(#FFFFFF) 배경을 채택하고 상하 여백(패딩)을 두었으며,
       // 내부 컨텐츠는 반응형 정렬 컨테이너를 사용해 화면 해상도별로 좌우 100px 가량의 일체감 있는 마진을 유지합니다.
       // 상하 내부 여백 150 (xl:py-[150px])
-      className="bg-[#FFFFFF] py-10 md:py-16 xl:py-[150px] flex items-center w-full"
+      className="bg-[#FFFFFF] py-10 md:py-16 lg:py-28 xl:py-[150px] flex items-center w-full"
       id="brand-statement-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}
-      <div className="px-4 sm:px-8 md:px-16 xl:px-[100px] w-full max-w-[1980px] mx-auto" id="brand-statement-text-container">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] w-full max-w-[1980px] mx-auto" id="brand-statement-text-container">
         {/* 아주 크고 시선을 끄는 Mohave 볼드/세미볼드 폰트 타이포그래피 활용 */}
         {/* 크기 130, 행간 140, 자간 -40 (-0.04em), semi bold 적용 */}
         <p
