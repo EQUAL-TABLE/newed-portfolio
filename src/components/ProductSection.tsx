@@ -18,15 +18,15 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       accordionDetails: [
         {
           image: "https://placehold.co/400x400/D9D9D9/1a1a1a?text=DEEP+FEAT+1",
-          title: "DEEP ORANGE CHOCOLAT",
-          desc: "오렌지 쇼콜라의 싱그러우면서도 달콤쌉싸름한 산미가 온 세상을 상쾌하게 물들입니다. 커피 한 잔에 깃든 생생한 플레저를 경험해보세요."
+          title: "검증된 조합의 현대적 재해석, 오랑주 쇼콜라",
+          desc: "오래 사랑받는 조합엔 다 이유가 있지, 첫 입에 알 수 있어. 짙은 다크초콜릿이 만든 무드 위로 번지는 오렌지의 산뜻한 킥. 모두가 고개를 끄덕이는 클래식한 위트, 빠지는 건 한순간이야.",
         },
         {
           image: "https://placehold.co/400x400/BFBFBF/1a1a1a?text=DEEP+FEAT+2",
-          title: "CREAMY NUT BALANCE",
-          desc: "크리미 넛츠의 묵직하고 고소한 바디감이 입안 전체를 벨벳처럼 부드럽게 감싸 안으며, 잊지 못할 여운과 맛의 깊이를 선사합니다."
-        }
-      ]
+          title: "아는 맛이 무서운, 크리미넛",
+          desc: "갓 구운 쿠키 향처럼 그냥 지나치기 힘든 중독성. 마카다미아 뒤에 숨어 있는 크리미한 부드러움이 입안에서 사르르. 한 번 먹으면 헤어 나올 수 없어. 자꾸 생각나는 꽉 찬 행복.",
+        },
+      ],
     },
     {
       name: "BRIGHT EDITION",
@@ -34,16 +34,18 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       image: "https://placehold.co/442x442/BFBFBF/1a1a1a?text=BRIGHT+EDITION",
       accordionDetails: [
         {
-          image: "https://placehold.co/400x400/BFBFBF/1a1a1a?text=BRIGHT+FEAT+1",
+          image:
+            "https://placehold.co/400x400/BFBFBF/1a1a1a?text=BRIGHT+FEAT+1",
           title: "LYCHEE SORBET BREEZE",
-          desc: "리치 소르베의 싱그럽고 톡톡 튀는 청량감이 가득 스며들어, 피로를 단번에 날려주는 지고의 자유로움을 선물합니다."
+          desc: "리치 소르베의 싱그럽고 톡톡 튀는 청량감이 가득 스며들어, 피로를 단번에 날려주는 지고의 자유로움을 선물합니다.",
         },
         {
-          image: "https://placehold.co/400x400/A6A6A6/1a1a1a?text=BRIGHT+FEAT+2",
+          image:
+            "https://placehold.co/400x400/A6A6A6/1a1a1a?text=BRIGHT+FEAT+2",
           title: "PEACH MELBA FRUITY",
-          desc: "달콤하고 부드러운 피치 멜바 향이 입안을 프랑스 마르세유 테라스처럼 고급스럽고 아름다운 아로마로 장식합니다."
-        }
-      ]
+          desc: "달콤하고 부드러운 피치 멜바 향이 입안을 프랑스 마르세유 테라스처럼 고급스럽고 아름다운 아로마로 장식합니다.",
+        },
+      ],
     },
     {
       name: "DECAF EDITION",
@@ -53,15 +55,15 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
         {
           image: "https://placehold.co/400x400/A6A6A6/1a1a1a?text=DECAF+FEAT+1",
           title: "PISTACHIO GANACHE",
-          desc: "피스타치오 가나슈의 벨벳같이 감미로운 터치와 고소함이 돋보이며, 지친 일상에 풍요로운 쉼표가 되어 줍니다."
+          desc: "피스타치오 가나슈의 벨벳같이 감미로운 터치와 고소함이 돋보이며, 지친 일상에 풍요로운 쉼표가 되어 줍니다.",
         },
         {
           image: "https://placehold.co/400x400/D9D9D9/1a1a1a?text=DECAF+FEAT+2",
           title: "APRICOT ATELIER",
-          desc: "향긋하고 섬세한 살구 아틀리에의 조화로운 무드가 은은하게 이어지며 깊은 밤, 완벽하게 디카페인으로 안심하고 취하는 특별한 여유를 제공합니다."
-        }
-      ]
-    }
+          desc: "향긋하고 섬세한 살구 아틀리에의 조화로운 무드가 은은하게 이어지며 깊은 밤, 완벽하게 디카페인으로 안심하고 취하는 특별한 여유를 제공합니다.",
+        },
+      ],
+    },
   ];
 
   // 카드 클릭 시 토글 핸들러
@@ -81,17 +83,23 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       id="product-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}
-      <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] w-full max-w-[1980px] mx-auto" id="product-inner-container">
-        
+      <div
+        className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] w-full max-w-[1980px] mx-auto"
+        id="product-inner-container"
+      >
         {/* 제품(3개 - 동일간격 배치) */}
-        <div 
+        <div
           className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-[6%]"
           id="product-cards-grid"
         >
           {products.map((item, index) => {
             const isSelected = activeProduct === index;
             return (
-              <div key={index} className="flex flex-col w-full xl:max-w-[442px] mx-auto" id={`product-card-wrapper-${index}`}>
+              <div
+                key={index}
+                className="flex flex-col w-full xl:max-w-[442px] mx-auto"
+                id={`product-card-wrapper-${index}`}
+              >
                 <div
                   onClick={() => handleProductClick(index)}
                   // 카드 내의 여백 제거 (p-0), 백그라운드 컬러 삭제, border 삭제, shadow 삭제
@@ -99,7 +107,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   id={`product-card-${index}`}
                 >
                   {/* 이미지 크기: 가변적 비율 유지하며 최대 442*442 */}
-                  <div 
+                  <div
                     className="w-full aspect-square overflow-hidden rounded-sm bg-black/5 relative"
                     id={`product-image-container-${index}`}
                   >
@@ -113,7 +121,10 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   </div>
 
                   {/* 텍스트 영역 */}
-                  <div className="mt-4 md:mt-6 xl:mt-[30px] flex flex-col space-y-1 md:space-y-2" id={`product-info-text-${index}`}>
+                  <div
+                    className="mt-4 md:mt-6 xl:mt-[30px] flex flex-col space-y-1 md:space-y-2"
+                    id={`product-info-text-${index}`}
+                  >
                     {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}
                     <h3
                       className="font-normal text-[#1A1A1A] text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] uppercase font-sans"
@@ -133,10 +144,15 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   </div>
 
                   {/* 보기 편한 인터랙션 표시 */}
-                  <div className="mt-2 flex justify-start pb-2" id={`product-badge-row-${index}`}>
+                  <div
+                    className="mt-2 flex justify-start pb-2"
+                    id={`product-badge-row-${index}`}
+                  >
                     <span
                       className={`text-xs font-semibold uppercase tracking-wider transition-colors ${
-                        isSelected ? "text-[#4A90D9]" : "text-[#E8610A] hover:text-[#E8610A]/80"
+                        isSelected
+                          ? "text-[#4A90D9]"
+                          : "text-[#E8610A] hover:text-[#E8610A]/80"
                       }`}
                       id={`product-indicator-${index}`}
                     >
@@ -154,13 +170,17 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   }`}
                   id={`product-mobile-accordion-${index}`}
                 >
-                  <div className="flex flex-col space-y-8 w-full" id={`mobile-accordion-items-${index}`}>
+                  <div
+                    className="flex flex-col space-y-8 w-full"
+                    id={`mobile-accordion-items-${index}`}
+                  >
                     {item.accordionDetails.map((feat, fIdx) => (
-                      <div 
+                      <div
                         key={fIdx}
                         className="flex flex-col items-start w-full gap-4"
                         id={`mobile-accordion-row-${index}-${fIdx}`}
                       >
+                        
                         {/* 이미지 크기 400x400 최적화 */}
                         <div className="w-full max-w-[400px] aspect-square overflow-hidden rounded-sm bg-black/5">
                           <img
@@ -170,18 +190,18 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                             loading="lazy"
                           />
                         </div>
-                        
+
                         {/* 우측 위의 상품명 텍스트와 설명글 텍스트가 동일하게 표시 (자간 -40) */}
                         <div className="w-full flex flex-col justify-start">
-                          <h4 
+                          <h4
                             className="text-[#1A1A1A] font-normal text-xl sm:text-2xl uppercase font-sans"
                             style={{ letterSpacing: "-0.04em" }}
                           >
                             {feat.title}
                           </h4>
-                          <p 
-                            className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg mt-2 font-sans"
-                            style={{ letterSpacing: "-0.04em" }}
+                          <p
+                            className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] mt-2 font-sans"
+                            style={{ letterSpacing: "-0.025em" }}
                           >
                             {feat.desc}
                           </p>
@@ -206,9 +226,12 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
           id="product-detail-accordion"
         >
           {activeProduct !== null && (
-            <div className="flex flex-col space-y-10 md:space-y-16 xl:space-y-[100px] w-full" id="accordion-items-container">
+            <div
+              className="flex flex-col space-y-10 md:space-y-16 xl:space-y-[100px] w-full"
+              id="accordion-items-container"
+            >
               {products[activeProduct].accordionDetails.map((feat, fIdx) => (
-                <div 
+                <div
                   key={fIdx}
                   // 좌측 가변적 비율 + 사이 8% 간격 + 우측 나머지 구조
                   className="flex flex-col lg:flex-row lg:gap-[8%] items-start w-full"
@@ -218,8 +241,17 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   <div
                     className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 flex justify-start items-start"
                     id={`accordion-left-${fIdx}`}
+                  ></div>
+
+                  {/* 우측 위의 상품명 텍스트와 설명글 텍스트가 동일하게 표시 (사이즈 30 / 25, regular, 자간 -40) */}
+                  <div
+                    className="flex-1 w-full flex flex-col justify-start pt-4 lg:pt-0"
+                    id={`accordion-right-${fIdx}`}
                   >
-                    <div 
+                    <div>
+                      
+                    </div>
+                    <div
                       className="w-full max-w-[400px] aspect-square overflow-hidden rounded-sm bg-black/5"
                       id={`accordion-img-box-${fIdx}`}
                     >
@@ -230,15 +262,8 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                         loading="lazy"
                       />
                     </div>
-                  </div>
-
-                  {/* 우측 위의 상품명 텍스트와 설명글 텍스트가 동일하게 표시 (사이즈 30 / 25, regular, 자간 -40) */}
-                  <div 
-                    className="flex-1 w-full flex flex-col justify-start pt-4 lg:pt-0"
-                    id={`accordion-right-${fIdx}`}
-                  >
                     {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}
-                    <h4 
+                    <h4
                       className="text-[#1A1A1A] font-normal text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] uppercase font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`accordion-feat-title-${fIdx}`}
@@ -246,9 +271,9 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                       {feat.title}
                     </h4>
                     {/* 설명글 텍스트: 사이즈 25, regular, 자간 -40 */}
-                    <p 
-                      className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] mt-2 xl:mt-4 font-sans"
-                      style={{ letterSpacing: "-0.04em" }}
+                    <p
+                      className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] mt-2 xl:mt-4 font-sans"
+                      style={{ letterSpacing: "-0.025em" }}
                       id={`accordion-feat-desc-${fIdx}`}
                     >
                       {feat.desc}

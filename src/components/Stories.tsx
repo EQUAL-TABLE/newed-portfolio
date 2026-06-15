@@ -78,27 +78,16 @@ export default function Stories({ storiesRef }: StoriesProps) {
               id="stories-accordion"
             >
               {/* MORE 내의 텍스트 스타일: 위의 "우측 설명 글" 스타일과 동일 */}
-              <div 
-                className="text-[#1a1a1a] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] space-y-6 md:space-y-8 xl:space-y-[40px] font-sans" 
-                style={{ letterSpacing: "-0.04em" }}
+              <div
+                className="text-[#1a1a1a] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] space-y-6 md:space-y-8 font-sans"
+                style={{ letterSpacing: "-0.025em" }}
                 id="stories-accordion-inner"
               >
-                <p className="font-semibold">
-                  마르세유에서 시작된 자유, NEWED 브랜드의 비하인드 스토리
+                <p>
+                  프랑스에 커피가 처음 닿은 도시, 마르세유
                 </p>
                 <p>
-                  1671년, 프랑스 마르세유에서 프랑스 최초의 카페가 문을 열었습니다. 
-                  전 세계에서 파도를 타고 흘러들어온 원두와 사람 그리고 생각들이 한 공간에 뒤섞이며 
-                  새롭고 감각적인 활기와 유희가 창조되었습니다. 복잡한 맛의 분석이나 이론적이고 고리타분한 학설에 지치셨나요?
-                </p>
-                <p>
-                  뉴에드는 마르세유의 카페를 채웠던 자유분방함과 기쁨의 본질로 돌아갑니다. 
-                  단 한 모금만으로도 머리가 가벼워지고 깊고 청명한 풍미가 입안 전체를 감쌉니다.
-                  맛을 감별하려고 복잡하게 생각하는 대신, 이 순간 마주한 순수한 일상의 즐거움과 일탈을 느껴보세요. 
-                  생생하게 번지는 커피의 활기찬 매력, 그것이 바로 당신과 나를 깨우는 NEWED입니다.
-                </p>
-                <p className="font-bold text-[#E8610A] uppercase tracking-wider text-xs xl:text-sm pt-2">
-                  @@ NEWED Marseille Heritage Journey
+                  우리는 마르세유 커피하우스가 처음 깨운 선명한 감각과 그 새로움을 있는 그대로 즐기던 마르세유 사람들의 자유로운 직관에서 영감을 받았습니다. 우리는 그 시적의 낭만을 현대적으로재해석해 고객들에게 선명한 즐거움을 선사합니다.
                 </p>
               </div>
             </div>
