@@ -16,7 +16,10 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
     "https://placehold.co/800x400/D9D9D9/ffffff?text=Slide+1",
     "https://placehold.co/800x400/BFBFBF/ffffff?text=Slide+2",
     "https://placehold.co/800x400/A6A6A6/ffffff?text=Slide+3",
-    "https://placehold.co/800x400/A6A6A6/ffffff?text=Slide+4"
+    "https://placehold.co/800x400/A6A6A6/ffffff?text=Slide+4",
+    "https://placehold.co/800x400/A6A6A6/ffffff?text=Slide+5",
+    "https://placehold.co/800x400/A6A6A6/ffffff?text=Slide+6"
+
   ];
 
   // activeSlide에 따른 우측 하단 노출 캡션 텍스트 매핑
@@ -24,7 +27,9 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
     "ONE CUP, SUDDENLY LIGHTER / THAT'S NEWED",
     "SAMPLE2 HEADLINE / THAT'S NEWED",
     "SAMPLE3 HEADLINE / THAT'S NEWED",
-    "SAMPLE4 HEADLINE / THAT'S NEWED"
+    "SAMPLE4 HEADLINE / THAT'S NEWED",
+    "SAMPLE5 HEADLINE / THAT'S NEWED",
+    "SAMPLE6 HEADLINE / THAT'S NEWED"
   ];
 
   // 슬라이드 변경을 트리거하는 핸들러 함수
@@ -101,7 +106,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
               {/* 썸네일 슬라이더 바 (한 줄에 표시, 세로 20, 간격 나누기용 30*20 바 사이사이 추가) */}
               <div className="flex items-center w-full" id="hero-slider-thumbnails-container">
                 <div className="flex items-center w-full" id="thumbnail-buttons-row">
-                  {[0, 1, 2, 3].map((idx) => {
+                  {[0, 1, 2, 3, 4, 5].map((idx) => {
                     const isSelected = activeSlide === idx;
                     const sliderBar = (
                       <button
@@ -115,7 +120,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                       />
                     );
 
-                    if (idx < 3) {
+                    if (idx < 5) {
                       return (
                         <React.Fragment key={`group-${idx}`}>
                           {sliderBar}
