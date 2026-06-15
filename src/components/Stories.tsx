@@ -13,7 +13,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
     <section
       ref={storiesRef} // 네비바 메뉴에서 스무스 스크롤 대상(storiesRef)으로 타겟팅을 잡기 위해 지정합니다.
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#F5F0E8] py-10 md:py-16 lg:py-24 xl:py-[100px] border-b border-[#ebd787]/35 w-full"
+      className="bg-[#fafaf8] py-10 md:py-16 lg:py-24 xl:py-[100px] border-b border-[#ebd787]/35 w-full"
       id="stories-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}

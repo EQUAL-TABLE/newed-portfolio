@@ -1,3 +1,5 @@
+import skyblueIcecream from "../assets/images/skyblue_icecream.png";
+
 export default function FirstSip() {
   return (
     <section
@@ -40,11 +42,11 @@ export default function FirstSip() {
             <picture>
               <source
                 media="(min-width: 1280px)"
-                srcSet="https://placehold.co/1335x800/D9D9D9/ffffff?text=Blue+Swirl+Feeling"
+                srcSet={skyblueIcecream}
               />
               <img
-                src="https://placehold.co/800x600/D9D9D9/ffffff?text=Blue+Swirl+Feeling"
-                alt="First sip feeling - blue creamy swirl"
+                src={skyblueIcecream}
+                alt="First sip feeling - sky blue ice cream"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-102"
                 loading="lazy"
                 id="first-sip-dynamic-image"

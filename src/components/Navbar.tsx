@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo_bright from "../assets/images/logo_bright.png";
 
 // Props 타입 정의
 interface NavbarProps {
@@ -36,7 +37,7 @@ export default function Navbar({ heroRef, storiesRef, productRef }: NavbarProps)
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 bg-[#F5E6A3] border-b border-[#ebd787]/50 pt-4 sm:pt-6 md:pt-8 lg:pt-12 xl:pt-[100px] pb-3 sm:pb-4 md:pb-5 lg:pb-6 xl:pb-[30px]"
+      className="fixed top-0 left-0 w-full z-50 bg-[#fae6aa] border-b border-[#ebd787]/50 pt-4 sm:pt-6 md:pt-8 lg:pt-12 xl:pt-[100px] pb-3 sm:pb-4 md:pb-5 lg:pb-6 xl:pb-[30px]"
       style={{ marginLeft: "0px", height: "auto" }}
       id="main-navbar"
     >
@@ -48,12 +49,8 @@ export default function Navbar({ heroRef, storiesRef, productRef }: NavbarProps)
             onClick={() => scrollToSection(heroRef)}
             id="navbar-logo-container"
           >
-            <div 
-              className="bg-[#4A90D9] text-white font-bold px-6 py-2 text-base md:text-lg lg:text-xl rounded-full tracking-wider border border-[#4A90D9] hover:bg-opacity-90 transition-all duration-300 shadow-sm"
-              style={{ borderRadius: "50% / 50%" }} // 대칭 타원형 실현
-              id="navbar-logo-badge"
-            >
-              NEWED
+            <div>
+              <img src={logo_bright} alt="NEWED Logo" className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16" id="navbar-logo-image" />
             </div>
           </div>
 

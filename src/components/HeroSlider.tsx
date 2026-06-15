@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import bite from "../assets/images/bite.png";
 
 // Props 인터페이스 정의
 interface HeroSliderProps {
@@ -34,7 +35,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
   return (
     <div
       ref={heroRef}
-      className="w-full bg-[#E8610A] pt-[72px] md:pt-[104px] lg:pt-[140px] xl:pt-[180px]" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
+      className="w-full bg-[#ec7123] md:pt-[104px] lg:pt-[140px] xl:pt-[180px]" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
       id="hero-slider-section"
     >
       {/* 반응형 여백을 담당하며 가운데 정렬되는 감싸는 프레임. 상하 안쪽 여백 100, 좌우 안쪽 여백 100 */}
@@ -54,7 +55,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
           >
             {/* 세로 포트레이트 이미지를 지연 로딩(lazy)하여 적용 */}
             <img
-              src="https://placehold.co/400x400?text=Popsicle+Feeling"
+              src={bite}
               alt="Newed Feeling"
               className="w-full h-full object-cover transition-all duration-500 ease-in-out hover:scale-102"
               loading="lazy"
@@ -107,7 +108,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                         key={`bar-${idx}`}
                         onClick={() => handleThumbClick(idx)}
                         className={`h-[20px] flex-1 transition-all duration-300 relative rounded-sm cursor-pointer focus:outline-none ${
-                          isSelected ? "bg-[#4A90D9]" : "bg-[#F5E6A3] hover:bg-[#F5E6A3]/80"
+                          isSelected ? "bg-[#468fcd]" : "bg-[#fae6aa] hover:bg-[#fae6aa]/80"
                         }`}
                         aria-label={`Go to slide ${idx + 1}`}
                         id={`thumbnail-btn-${idx}`}

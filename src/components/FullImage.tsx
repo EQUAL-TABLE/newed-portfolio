@@ -1,3 +1,5 @@
+import beach from "../assets/images/beach.jpg";
+
 export default function FullImage() {
   return (
     <section
@@ -18,10 +20,10 @@ export default function FullImage() {
         <picture>
           <source
             media="(min-width: 1280px)"
-            srcSet="https://placehold.co/1200x800/BFBFBF/ffffff?text=Beach+Friends+Summer+Escape"
+            srcSet={beach}
           />
           <img
-            src="https://placehold.co/400x600/BFBFBF/ffffff?text=Beach+Friends+Summer+Escape"
+            src={beach}
             alt="Friends at the beach under umbrella enjoying Newed coffee"
             className="w-full h-full object-cover select-none transition-all duration-700 hover:scale-[1.01]"
             loading="lazy"
