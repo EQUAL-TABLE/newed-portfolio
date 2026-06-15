@@ -44,10 +44,11 @@ export default function FirstSip() {
                 media="(min-width: 1024px)"
                 srcSet={skyblueIcecream}
               />
+              {/* object-[center_ %]: 화면에 표시할 y 위치 조정  */}
               <img
                 src={skyblueIcecream}
                 alt="First sip feeling - sky blue ice cream"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-102"
+                className="absolute inset-0 w-full h-full object-cover object-[center_82%] transition-transform duration-700 hover:scale-102"
                 loading="lazy"
                 id="first-sip-dynamic-image"
               />
