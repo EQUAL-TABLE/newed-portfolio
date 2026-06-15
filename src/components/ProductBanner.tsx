@@ -9,11 +9,11 @@ export default function ProductBanner() {
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] w-full max-w-[1980px] mx-auto" id="product-banner-inner-container">
         {/* 좌측 약 25% + 사이 약 8% 간격 + 나머지 우측 구조 */}
         <div 
-          className="flex flex-col xl:flex-row xl:gap-[8%] items-start w-full"
+          className="flex flex-col lg:flex-row lg:gap-[8%] items-start w-full"
           id="product-banner-layout"
         >
-          {/* 좌측 텍스트: 모바일에선 전체 너비, 데스크탑에선 약 25% 가변 너비 부여하되 최대 445px 확보 */}
-          <div className="w-full xl:w-[25%] xl:max-w-[445px] xl:flex-shrink-0 select-none pb-4 xl:pb-0" id="product-banner-title-col">
+          {/* 좌측 텍스트: 모바일에선 전체 너비, lg 이상 데스크탑에선 약 25% 가변 너비 부여하되 최대 445px 확보 */}
+          <div className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 select-none pb-4 lg:pb-0" id="product-banner-title-col">
             <h2
               className="font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[100px] xl:leading-[120px] uppercase font-sans"
               style={{ letterSpacing: "-0.04em" }}

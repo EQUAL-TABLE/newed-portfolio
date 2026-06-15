@@ -85,7 +85,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
         
         {/* 제품(3개 - 동일간격 배치) */}
         <div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-[6%]"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-[6%]"
           id="product-cards-grid"
         >
           {products.map((item, index) => {
@@ -145,9 +145,9 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   </div>
                 </div>
 
-                {/* 모바일 뷰 전용 아코디언 (Mobile View 전용: md 미만에서만 표출) */}
+                {/* 모바일 뷰 전용 아코디언 (Mobile View 전용: lg 미만에서만 표출) */}
                 <div
-                  className={`md:hidden overflow-hidden transition-all duration-700 ease-in-out ${
+                  className={`lg:hidden overflow-hidden transition-all duration-700 ease-in-out ${
                     isSelected
                       ? "max-h-[1500px] opacity-100 mt-4 mb-8"
                       : "max-h-0 opacity-0 mt-0 mb-0"
@@ -198,7 +198,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
         {/* 제품설명 아코디언 (Desktop View 전용) */}
         {/* 백그라운드 컬러 삭제, border 삭제, xl:mt-[100px] 간격 유지 */}
         <div
-          className={`hidden md:block overflow-hidden transition-all duration-700 ease-in-out ${
+          className={`hidden lg:block overflow-hidden transition-all duration-700 ease-in-out ${
             activeProduct !== null
               ? "max-h-[3000px] opacity-100 mt-10 md:mt-16 xl:mt-[100px]"
               : "max-h-0 opacity-0 mt-0"
@@ -211,12 +211,12 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                 <div 
                   key={fIdx}
                   // 좌측 가변적 비율 + 사이 8% 간격 + 우측 나머지 구조
-                  className="flex flex-col xl:flex-row xl:gap-[8%] items-start w-full"
+                  className="flex flex-col lg:flex-row lg:gap-[8%] items-start w-full"
                   id={`accordion-row-${fIdx}`}
                 >
                   {/* 좌측 이미지 블록 */}
-                  <div 
-                    className="w-full xl:w-[25%] xl:max-w-[445px] xl:flex-shrink-0 flex justify-start items-start"
+                  <div
+                    className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 flex justify-start items-start"
                     id={`accordion-left-${fIdx}`}
                   >
                     <div 
@@ -234,7 +234,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
 
                   {/* 우측 위의 상품명 텍스트와 설명글 텍스트가 동일하게 표시 (사이즈 30 / 25, regular, 자간 -40) */}
                   <div 
-                    className="flex-1 w-full flex flex-col justify-start pt-4 xl:pt-0"
+                    className="flex-1 w-full flex flex-col justify-start pt-4 lg:pt-0"
                     id={`accordion-right-${fIdx}`}
                   >
                     {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}

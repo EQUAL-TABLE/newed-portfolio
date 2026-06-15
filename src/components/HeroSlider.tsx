@@ -45,12 +45,12 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
       >
         {/* 안쪽 컨텐츠 프레임: 좌측 이미지와 우측 슬라이더 사이 간격 50 (xl:gap-[50px]) */}
         <div
-          className="flex flex-col xl:flex-row xl:items-stretch xl:gap-[50px] w-full"
+          className="flex flex-col lg:flex-row lg:items-stretch lg:gap-8 xl:gap-[50px] w-full"
           id="hero-slider-layout"
         >
           {/* 왼쪽 영역: 단독 세로 포트레이트 이미지 배정, 최대 800 * 800 */}
           <div
-            className="w-full aspect-square xl:w-[45%] xl:max-w-[800px] xl:flex-shrink-0 relative overflow-hidden rounded-sm"
+            className="w-full aspect-square lg:w-[45%] lg:max-w-[800px] lg:flex-shrink-0 relative overflow-hidden rounded-sm"
             id="hero-left-col"
           >
             {/* 세로 포트레이트 이미지를 지연 로딩(lazy)하여 적용 */}
@@ -66,12 +66,12 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
           {/* 오른쪽 영역: 메인 슬라이드 + 썸네일 바 + 텍스트 */}
           {/* 전체 높이를 좌측 800px와 동일하게 맞춰 하단 정렬을 실현 */}
           <div
-            className="w-full flex flex-col justify-between mt-6 xl:mt-0 xl:flex-grow xl:flex-1 xl:max-w-[930px] xl:flex-shrink-0"
+            className="w-full flex flex-col justify-between mt-6 lg:mt-0 lg:flex-grow lg:flex-1 lg:max-w-[930px] lg:flex-shrink-0"
             id="hero-right-col"
           >
             {/* 메인 슬라이드 이미지 - 930 * 580 */}
             <div
-              className="w-full aspect-[930/580] xl:max-w-[930px] bg-black/5 relative overflow-hidden rounded-sm cursor-pointer xl:flex-shrink-0"
+              className="w-full aspect-[930/580] lg:max-w-[930px] bg-black/5 relative overflow-hidden rounded-sm cursor-pointer lg:flex-shrink-0"
               id="hero-right-main-image-container"
             >
               <AnimatePresence mode="wait">
@@ -96,7 +96,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
               id="hero-right-bottom-part"
             >
               {/* Spacer 1 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
-              <div className="hidden xl:block flex-1 min-h-[16px] xl:min-h-[25px]" id="hero-spacer-1" />
+              <div className="hidden lg:block flex-1 min-h-[16px] xl:min-h-[25px]" id="hero-spacer-1" />
 
               {/* 썸네일 슬라이더 바 (한 줄에 표시, 세로 20, 간격 나누기용 30*20 바 사이사이 추가) */}
               <div className="flex items-center w-full" id="hero-slider-thumbnails-container">
@@ -133,7 +133,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
               </div>
 
               {/* Spacer 2 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
-              <div className="hidden xl:block flex-1 min-h-[16px] xl:min-h-[25px]" id="hero-spacer-2" />
+              <div className="hidden lg:block flex-1 min-h-[16px] xl:min-h-[25px]" id="hero-spacer-2" />
 
               {/* 우측 정렬 텍스트 슬레이트 - 설명 텍스트 하단 라인이 좌측 이미지 하단과 완벽 일치 */}
               {/* 크기 70px, 자간 -3.5px(또는 -0.05em), 행간 80px, Bold 적용 */}

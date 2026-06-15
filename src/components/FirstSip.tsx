@@ -7,18 +7,18 @@ export default function FirstSip() {
       id="first-sip-section"
     >
       {/* 1980px를 최대 너비로 상정하고 좌측 내부 여백 100 (xl:pl-[100px], pr-0). 모바일에서는 이미지가 화면 끝까지 차도록 좌측 여백을 자식 요소에 개별 할당 */}
-      <div 
-        className="xl:pl-[100px] pr-0 w-full max-w-[1980px] mx-auto" 
+      <div
+        className="lg:pl-12 xl:pl-[100px] pr-0 w-full max-w-[1980px] mx-auto"
         id="first-sip-inner-container"
       >
         <div
-          // xl 해상도에서 약 25% 가량(좌측) + 사이 약 8% 간격 + 나머지 구역(우측) 으로 정렬하여 유연성을 도모합니다.
-          className="flex flex-col xl:flex-row xl:gap-[8%] w-full items-stretch bg-[#4A90D9] xl:min-h-[800px]"
+          // lg(1024px) 이상에서 약 25% 가량(좌측) + 사이 약 8% 간격 + 나머지 구역(우측) 으로 정렬, 미만에서는 세로 쌓기
+          className="flex flex-col lg:flex-row lg:gap-[8%] w-full items-stretch bg-[#4A90D9] lg:min-h-[640px] xl:min-h-[800px]"
           id="first-sip-layout"
         >
-          {/* 좌측 영역: 모바일 및 태블릿에서는 전폭, 데스크탑에서는 가변적이되 최대 445px 제한 */}
+          {/* 좌측 영역: 모바일 및 태블릿에서는 전폭, lg 이상 데스크탑에서는 가변적이되 최대 445px 제한 */}
           <div
-            className="w-full xl:w-[25%] xl:max-w-[445px] xl:flex-shrink-0 flex flex-col justify-start px-4 sm:px-6 md:px-8 lg:px-12 xl:px-0 pt-10 pb-6 md:pt-16 md:pb-10 lg:pt-24 lg:pb-12 xl:pt-[100px] xl:pb-0 font-sans select-none"
+            className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 flex flex-col justify-start px-4 sm:px-6 md:px-8 lg:px-0 pt-10 pb-6 md:pt-16 md:pb-10 lg:pt-24 lg:pb-12 xl:pt-[100px] xl:pb-0 font-sans select-none"
             id="first-sip-text-block"
           >
             {/* 텍스트 사이즈 100, 행간 120, 자간 -40 (즉 -4% or -0.04em), semi bold */}
@@ -35,13 +35,13 @@ export default function FirstSip() {
 
           {/* 우측 영역: 나머지 공간 전체 이미지. 모바일 및 태블릿에서는 aspect ratio와 absolute를 활용해 여백 없이 완벽 피트시킴 */}
           <div
-            className="flex-1 w-full overflow-hidden relative aspect-[4/3] md:aspect-[16/10] xl:aspect-auto xl:min-h-0"
+            className="flex-1 w-full overflow-hidden relative aspect-[4/3] md:aspect-[16/10] lg:aspect-auto lg:min-h-0"
             id="first-sip-image-block"
           >
-            {/* 이미지 아트디렉션: xl(1280px) 이상에서 고해상 데스크탑 이미지, 미만에서는 모바일 이미지로 CSS-only 스왑 */}
+            {/* 이미지 아트디렉션: lg(1024px) 이상에서 고해상 데스크탑 이미지, 미만에서는 모바일 이미지로 CSS-only 스왑 */}
             <picture>
               <source
-                media="(min-width: 1280px)"
+                media="(min-width: 1024px)"
                 srcSet={skyblueIcecream}
               />
               <img

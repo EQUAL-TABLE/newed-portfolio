@@ -23,12 +23,12 @@ export default function Stories({ storiesRef }: StoriesProps) {
       >
         {/* 좌측 약 25% + 사이 약 8% 간격 + 나머지 우측 레이아웃 */}
         <div 
-          className="flex flex-col xl:flex-row xl:gap-[8%] xl:items-start w-full"
+          className="flex flex-col lg:flex-row lg:gap-[8%] lg:items-start w-full"
           id="stories-layout-container"
         >
-          {/* 좌측 텍스트: 모바일에선 전체 너비, 데스크탑에선 약 25% 가변 너비 부여하되 최대 445px 확보 */}
-          <div 
-            className="w-full xl:w-[25%] xl:max-w-[445px] xl:flex-shrink-0 select-none pb-4 xl:pb-0" 
+          {/* 좌측 텍스트: 모바일에선 전체 너비, lg 이상 데스크탑에선 약 25% 가변 너비 부여하되 최대 445px 확보 */}
+          <div
+            className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 select-none pb-4 lg:pb-0"
             id="stories-title-col"
           >
             <h2
