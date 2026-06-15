@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import sufferboard from "../assets/images/sufferboard.png";
 
 // Props 인터페이스 정의
 interface StoriesProps {
@@ -51,7 +52,8 @@ export default function Stories({ storiesRef }: StoriesProps) {
               style={{ letterSpacing: "-0.04em" }}
               id="stories-description-text"
             >
-              Marseille–where France's first coffeehouse opened. New things came in like waves. 
+              Marseille–where France's first coffeehouse opened.<br/>
+              New things came in like waves. 
               People simply enjoyed the thrill. NEWED brings that freedom here.
             </p>
 
@@ -77,6 +79,14 @@ export default function Stories({ storiesRef }: StoriesProps) {
               }`}
               id="stories-accordion"
             >
+              <div>
+                <img
+                  src={sufferboard}
+                  alt="Sufferboard"
+                  className="w-full max-h-[550px] object-cover object-[center_65%]"
+                  loading="lazy"
+                />
+              </div>
               {/* MORE 내의 텍스트 스타일: 위의 "우측 설명 글" 스타일과 동일 */}
               <div
                 className="text-[#1a1a1a] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] space-y-6 md:space-y-8 font-sans"
@@ -84,9 +94,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
                 id="stories-accordion-inner"
               >
                 <p>
-                  프랑스에 커피가 처음 닿은 도시, 마르세유
-                </p>
-                <p>
+                  프랑스에 커피가 처음 닿은 도시, 마르세유 <br/>
                   우리는 마르세유 커피하우스가 처음 깨운 선명한 감각과 그 새로움을 있는 그대로 즐기던 마르세유 사람들의 자유로운 직관에서 영감을 받았습니다. 우리는 그 시적의 낭만을 현대적으로재해석해 고객들에게 선명한 즐거움을 선사합니다.
                 </p>
               </div>
