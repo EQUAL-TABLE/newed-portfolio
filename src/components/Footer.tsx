@@ -14,7 +14,7 @@ export default function Footer() {
           style={{ letterSpacing: "-0.04em" }}
           id="footer-text-line"
         >
-          ©NEWED. ALL RIGHTS RESERVED | Contact. info.newed@gmail.com | 070-7954-3783
+          EQUALTABLE INC. BUSINESS NUMBER : 564-87-02196 | ADDRESS : B1209, 40-36, Sinnaeyeok-ro 3-gil, Jungnang-gu, Seoul | info.equaltable@gmail.com | ©NEWED.ALL RICHTSRESERVED
         </p>
       </div>
     </footer>
