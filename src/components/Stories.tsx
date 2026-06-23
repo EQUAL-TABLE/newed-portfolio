@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import sufferboard from "../assets/images/sufferboard.png";
+import stories_more from "../assets/images/stories_more.png";
 
 // Props 인터페이스 정의
 interface StoriesProps {
@@ -85,9 +86,9 @@ export default function Stories({ storiesRef }: StoriesProps) {
             >
               <div>
                 <img
-                  src={sufferboard}
-                  alt="Sufferboard"
-                  className="w-full max-h-[550px] object-cover object-[center_65%]"
+                  src={stories_more}
+                  alt="stories_more"
+                  className="w-full max-h-[550px] object-cover object-[center_20%]"
                   loading="lazy"
                 />
               </div>

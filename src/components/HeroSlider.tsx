@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import bite from "../assets/images/bite.png";
+import slideImg1 from "../assets/images/slideImg1.jpg";
+import slideImg2 from "../assets/images/slideImg2.jpg";
+import slideImg3 from "../assets/images/slideImg3.jpg";
+import slideImg4 from "../assets/images/slideImg4.jpg";
+import slideImg5 from "../assets/images/slideImg5.jpg";
+import slideImg6 from "../assets/images/slideImg6.jpg";
 
 // Props 인터페이스 정의
 interface HeroSliderProps {
@@ -13,23 +19,12 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
 
   // activeSlide에 따른 메인 슬라이드 이미지 매핑
   const mainImages = [
-    "https://placehold.co/800x400/D9D9D9/ffffff?text=Slide+1",
-    "https://placehold.co/800x400/BFBFBF/ffffff?text=Slide+2",
-    "https://placehold.co/800x400/A6A6A6/ffffff?text=Slide+3",
-    "https://placehold.co/800x400/A6A6A6/ffffff?text=Slide+4",
-    "https://placehold.co/800x400/A6A6A6/ffffff?text=Slide+5",
-    "https://placehold.co/800x400/A6A6A6/ffffff?text=Slide+6"
-
-  ];
-
-  // activeSlide에 따른 우측 하단 노출 캡션 텍스트 매핑
-  const captions = [
-    "ONE CUP, SUDDENLY LIGHTER / THAT'S NEWED",
-    "SAMPLE2 HEADLINE / THAT'S NEWED",
-    "SAMPLE3 HEADLINE / THAT'S NEWED",
-    "SAMPLE4 HEADLINE / THAT'S NEWED",
-    "SAMPLE5 HEADLINE / THAT'S NEWED",
-    "SAMPLE6 HEADLINE / THAT'S NEWED"
+    slideImg1,
+    slideImg2,
+    slideImg3,
+    slideImg4,
+    slideImg5,
+    slideImg6,
   ];
 
   // 슬라이드 변경을 트리거하는 핸들러 함수
@@ -44,7 +39,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
       id="hero-slider-section"
     >
       {/* 반응형 여백을 담당하며 가운데 정렬되는 감싸는 프레임. 상하 안쪽 여백 100, 좌우 안쪽 여백 100 */}
-      <div 
+      <div
         className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] py-10 md:py-16 lg:py-24 xl:py-[100px] w-full max-w-[1980px] mx-auto"
         id="hero-slider-inner-container"
       >
@@ -96,16 +91,25 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
             </div>
 
             {/* 슬라이더 이미지와 슬라이더 바 사이 간격을 조절하는 하단 파트 */}
-            <div 
-              className="flex flex-col flex-1 justify-between mt-4 md:mt-6 lg:mt-6 xl:mt-[30px]" 
+            <div
+              className="flex flex-col flex-1 justify-between mt-4 md:mt-6 lg:mt-6 xl:mt-[30px]"
               id="hero-right-bottom-part"
             >
               {/* Spacer 1 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
-              <div className="hidden lg:block flex-1 min-h-[16px] xl:min-h-[25px]" id="hero-spacer-1" />
+              <div
+                className="hidden lg:block flex-1 min-h-[16px] xl:min-h-[25px]"
+                id="hero-spacer-1"
+              />
 
               {/* 썸네일 슬라이더 바 (한 줄에 표시, 세로 20, 간격 나누기용 30*20 바 사이사이 추가) */}
-              <div className="flex items-center w-full" id="hero-slider-thumbnails-container">
-                <div className="flex items-center w-full" id="thumbnail-buttons-row">
+              <div
+                className="flex items-center w-full"
+                id="hero-slider-thumbnails-container"
+              >
+                <div
+                  className="flex items-center w-full"
+                  id="thumbnail-buttons-row"
+                >
                   {[0, 1, 2, 3, 4, 5].map((idx) => {
                     const isSelected = activeSlide === idx;
                     const sliderBar = (
@@ -113,7 +117,9 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                         key={`bar-${idx}`}
                         onClick={() => handleThumbClick(idx)}
                         className={`h-[20px] flex-1 transition-all duration-300 relative rounded-sm cursor-pointer focus:outline-none ${
-                          isSelected ? "bg-[#468fcd]" : "bg-[#fae6aa] hover:bg-[#fae6aa]/80"
+                          isSelected
+                            ? "bg-[#468fcd]"
+                            : "bg-[#fae6aa] hover:bg-[#fae6aa]/80"
                         }`}
                         aria-label={`Go to slide ${idx + 1}`}
                         id={`thumbnail-btn-${idx}`}
@@ -138,29 +144,20 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
               </div>
 
               {/* Spacer 2 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
-              <div className="hidden lg:block flex-1 min-h-[16px] xl:min-h-[25px]" id="hero-spacer-2" />
+              <div
+                className="hidden lg:block flex-1 min-h-[16px] xl:min-h-[25px]"
+                id="hero-spacer-2"
+              />
 
               {/* 우측 정렬 텍스트 슬레이트 - 설명 텍스트 하단 라인이 좌측 이미지 하단과 완벽 일치 */}
               {/* 크기 70px, 자간 -3.5px(또는 -0.05em), 행간 80px, Bold 적용 */}
-              <div className="text-right py-2 md:py-4 xl:py-0 self-end w-full mt-4 lg:mt-6 xl:mt-0" id="hero-slider-caption-block">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeSlide}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.25 }}
-                    className="font-bold text-white text-right font-sans uppercase text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[70px] xl:leading-[80px] xl:tracking-[-3.5px] w-full"
-                    id={`caption-text-${activeSlide}`}
-                  >
-                    {/* 줄바꿈을 포함하여 텍스트 분기 출력 */}
-                    {captions[activeSlide].split(" / ").map((line, lineIdx) => (
-                      <span key={lineIdx} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
+              <div
+                className="text-right py-2 md:py-4 xl:py-0 self-end w-full mt-4 lg:mt-6 xl:mt-0"
+                id="hero-slider-caption-block"
+              >
+                <div className="font-bold text-white text-right font-sans uppercase text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[70px] xl:leading-[80px] xl:tracking-[-3.5px] w-full">
+                  ONE CUP, SUDDENLY LIGHTER <br /> THAT'S NEWED
+                </div>
               </div>
             </div>
           </div>
