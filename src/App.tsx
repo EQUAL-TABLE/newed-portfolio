@@ -88,7 +88,7 @@ export default function App() {
         언제든 가장 편리한 지점(좌하단)에 굳건하게 오버레이 고정되어 있어야 하므로 
         레이아웃 외부 최하단에 fixed 포지션으로 단독 독립하여 렌더링을 처리했습니다.
       */}
-      <FloatingCart />
+       {/*<FloatingCart /> */}
     </div>
   );
 }

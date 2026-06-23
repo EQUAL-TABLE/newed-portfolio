@@ -18,7 +18,9 @@ export default function BrandStatement() {
           style={{ letterSpacing: "-0.04em" }}
           id="brand-statement-paragraph"
         >
-          Forget the theories and simply taste, following the moment instead of overthinking—vivid pleasure NEWED
+          Forget the theories and simply taste, <br />
+          following the moment as you meet <br />
+          the vivid pleasure of NEWED
         </p>
       </div>
     </section>

@@ -9,21 +9,26 @@ interface NavbarProps {
   productRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export default function Navbar({ heroRef, storiesRef, productRef }: NavbarProps) {
+export default function Navbar({
+  heroRef,
+  storiesRef,
+  productRef,
+}: NavbarProps) {
   // 모바일 메뉴 열림/닫힘 상태를 관리하는 state
   const [isOpen, setIsOpen] = useState(false);
 
   // 부드럽게 지정한 섹션으로 스크롤 이동시키는 함수 (네비게이션 바 높이에 따른 오프셋 계산 적용)
   const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
     if (ref.current) {
-      const elementPosition = ref.current.getBoundingClientRect().top + window.scrollY;
+      const elementPosition =
+        ref.current.getBoundingClientRect().top + window.scrollY;
       const navbarElement = document.getElementById("main-navbar");
       const navbarHeight = navbarElement ? navbarElement.offsetHeight : 90;
       const offsetPosition = elementPosition - navbarHeight;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
       setIsOpen(false); // 모바일 메뉴 클릭 시 메뉴창 닫기
     }
@@ -35,31 +40,57 @@ export default function Navbar({ heroRef, storiesRef, productRef }: NavbarProps)
     setIsOpen(false);
   };
 
+  const openStore = () => {
+    window.open(
+      "https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244",
+      "_blank",
+    );
+    setIsOpen(false);
+  };
+
   return (
     <nav
       className="fixed top-0 left-0 w-full z-50 bg-[#fae6aa] border-b border-[#ebd787]/50 pt-4 sm:pt-6 md:pt-8 lg:pt-12 xl:pt-[100px] pb-3 sm:pb-4 md:pb-5 lg:pb-6 xl:pb-[30px]"
       style={{ marginLeft: "0px", height: "auto" }}
       id="main-navbar"
     >
-      <div className="w-full max-w-[1980px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px]" id="navbar-container">
-        <div className="w-full md:grid md:grid-cols-4 md:items-center flex items-center justify-between" id="navbar-inner-grid">
+      <div
+        className="w-full max-w-[1980px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px]"
+        id="navbar-container"
+      >
+        <div
+          className="w-full md:grid md:grid-cols-4 md:items-center flex items-center justify-between"
+          id="navbar-inner-grid"
+        >
           {/* 왼쪽: NEWED 타원형 로고 배지 (4분할 중 좌측 1칸) */}
-          <div 
+          <div
             className="md:col-span-1 flex justify-start items-center cursor-pointer select-none"
             onClick={() => scrollToSection(heroRef)}
             id="navbar-logo-container"
           >
             <div>
-              <img src={logo_bright} alt="NEWED Logo" className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16" id="navbar-logo-image" />
+              <img
+                src={logo_bright}
+                alt="NEWED Logo"
+                className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16"
+                id="navbar-logo-image"
+              />
             </div>
           </div>
 
           {/* 오른쪽: 웹 크기의 가로 메뉴 목록 (4분할 중 우측 3칸 영역을 묶어 4개 메뉴를 양쪽끝에서부터 균등 배치) */}
-          <div className="hidden md:flex md:col-span-3 items-center justify-between w-full" id="navbar-web-menu">
+          <div
+            className="hidden md:flex md:col-span-3 items-center justify-between w-full"
+            id="navbar-web-menu"
+          >
             <button
               onClick={() => scrollToSection(heroRef)}
               className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
-              style={{ fontSize: "clamp(13px, 2.5vw, 50px)", letterSpacing: "-0.05em", lineHeight: "1" }}
+              style={{
+                fontSize: "clamp(13px, 2.5vw, 50px)",
+                letterSpacing: "-0.05em",
+                lineHeight: "1",
+              }}
               id="web-menu-homepage"
             >
               HOMEPAGE
@@ -67,7 +98,11 @@ export default function Navbar({ heroRef, storiesRef, productRef }: NavbarProps)
             <button
               onClick={() => scrollToSection(storiesRef)}
               className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
-              style={{ fontSize: "clamp(13px, 2.5vw, 50px)", letterSpacing: "-0.05em", lineHeight: "1" }}
+              style={{
+                fontSize: "clamp(13px, 2.5vw, 50px)",
+                letterSpacing: "-0.05em",
+                lineHeight: "1",
+              }}
               id="web-menu-stories"
             >
               STORIES
@@ -75,15 +110,35 @@ export default function Navbar({ heroRef, storiesRef, productRef }: NavbarProps)
             <button
               onClick={() => scrollToSection(productRef)}
               className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
-              style={{ fontSize: "clamp(13px, 2.5vw, 50px)", letterSpacing: "-0.05em", lineHeight: "1" }}
+              style={{
+                fontSize: "clamp(13px, 2.5vw, 50px)",
+                letterSpacing: "-0.05em",
+                lineHeight: "1",
+              }}
               id="web-menu-product"
             >
               PRODUCT
             </button>
             <button
+              onClick={openStore}
+              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              style={{
+                fontSize: "clamp(13px, 2.5vw, 50px)",
+                letterSpacing: "-0.05em",
+                lineHeight: "1",
+              }}
+              id="web-menu-instagram"
+            >
+              SHOP
+            </button>
+            <button
               onClick={openInstagram}
               className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
-              style={{ fontSize: "clamp(13px, 2.5vw, 50px)", letterSpacing: "-0.05em", lineHeight: "1" }}
+              style={{
+                fontSize: "clamp(13px, 2.5vw, 50px)",
+                letterSpacing: "-0.05em",
+                lineHeight: "1",
+              }}
               id="web-menu-instagram"
             >
               INSTAGRAM
@@ -91,7 +146,10 @@ export default function Navbar({ heroRef, storiesRef, productRef }: NavbarProps)
           </div>
 
           {/* 오른쪽: 모바일 햄버거 토글 버튼 (768px 미만) */}
-          <div className="md:hidden flex items-center" id="navbar-mobile-toggle-container">
+          <div
+            className="md:hidden flex items-center"
+            id="navbar-mobile-toggle-container"
+          >
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-[#1A1A1A] hover:text-[#E8610A] transition-colors p-1 cursor-pointer focus:outline-none"
@@ -130,6 +188,13 @@ export default function Navbar({ heroRef, storiesRef, productRef }: NavbarProps)
             id="mobile-menu-product"
           >
             PRODUCT
+          </button>
+                    <button
+            onClick={openStore}
+            className="w-full text-center py-2 font-bold text-[#1A1A1A] text-lg uppercase hover:bg-[#F0DE94] transition-colors cursor-pointer"
+            id="mobile-menu-shop"
+          >
+            SHOP
           </button>
           <button
             onClick={openInstagram}

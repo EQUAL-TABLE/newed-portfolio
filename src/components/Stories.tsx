@@ -23,7 +23,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
         id="stories-inner-container"
       >
         {/* 좌측 약 25% + 사이 약 8% 간격 + 나머지 우측 레이아웃 */}
-        <div 
+        <div
           className="flex flex-col lg:flex-row lg:gap-[8%] lg:items-start w-full"
           id="stories-layout-container"
         >
@@ -42,7 +42,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
           </div>
 
           {/* 우측 컴포넌트 전체 영역 */}
-          <div 
+          <div
             className="flex-1 w-full flex flex-col"
             id="stories-description-col"
           >
@@ -52,13 +52,17 @@ export default function Stories({ storiesRef }: StoriesProps) {
               style={{ letterSpacing: "-0.04em" }}
               id="stories-description-text"
             >
-              Marseille–where France's first coffeehouse opened.<br/>
-              New things came in like waves. 
-              People simply enjoyed the thrill. NEWED brings that freedom here.
+              Marseille—where France’s first coffeehouse opened. <br />
+              New things came in like waves. People simply enjoyed the thrill.
+              <br />
+              NEWED brings that freedom here.
             </p>
 
             {/* MORE 텍스트: 사이즈 55, 행간 80, 자간 -40 (-0.04em), regular */}
-            <div className="flex justify-end mt-4 md:mt-6 xl:mt-[40px]" id="stories-button-row">
+            <div
+              className="flex justify-end mt-4 md:mt-6 xl:mt-[40px]"
+              id="stories-button-row"
+            >
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="group text-[#E8610A] hover:text-[#c95308] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
@@ -89,13 +93,16 @@ export default function Stories({ storiesRef }: StoriesProps) {
               </div>
               {/* MORE 내의 텍스트 스타일: 위의 "우측 설명 글" 스타일과 동일 */}
               <div
-                className="text-[#1a1a1a] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] space-y-6 md:space-y-8 font-sans"
+                className="text-[#1a1a1a] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] space-y-6 md:space-y-8 font-sans mt-6 lg:mt-[100px]"
                 style={{ letterSpacing: "-0.025em" }}
                 id="stories-accordion-inner"
               >
                 <p>
-                  프랑스에 커피가 처음 닿은 도시, 마르세유 <br/>
-                  우리는 마르세유 커피하우스가 처음 깨운 선명한 감각과 그 새로움을 있는 그대로 즐기던 마르세유 사람들의 자유로운 직관에서 영감을 받았습니다. 우리는 그 시적의 낭만을 현대적으로재해석해 고객들에게 선명한 즐거움을 선사합니다.
+                  프랑스에 커피가 처음 닿은 도시, 마르세유 <br />
+                  우리는 마르세유 커피하우스가 처음 깨운 선명한 감각과 그 새로움을 <br />
+                  있는 그대로 즐기던 마르세유 사람들의 자유로운 직관에서 영감을 받았습니다. <br />
+                  우리는 그 시절의 낭만을 현대적으로 재해석해 고객들에게 <br />
+                  선명한 즐거움을 선사합니다.
                 </p>
               </div>
             </div>
