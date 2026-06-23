@@ -4,7 +4,7 @@ import cart from "../assets/images/cart.png";
 export default function FloatingCart() {
   // 장바구니 클릭 시 지정된 인스타그램 오피셜 계정 링크로 새 창 이동 처리하는 핸들러 함수
   const handleCartClick = () => {
-    window.open("https://www.instagram.com/newed_official/", "_blank");
+    window.open("https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244", "_blank");
   };
 
   return (
@@ -16,7 +16,7 @@ export default function FloatingCart() {
       id="floating-cart-button"
     >
       {/* 바스켓 아이콘 노출 */}
-      <img src={cart} alt="Cart" className="w-30 h-35 transition-transform duration-300 group-hover:rotate-6" />
+      <img src={cart} alt="Cart" className="w-30 h-40 transition-transform duration-300 group-hover:rotate-6" />
     </button>
   );
 }
