@@ -208,15 +208,15 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                     className="mt-4 md:mt-6 xl:mt-[30px] flex flex-col space-y-1 md:space-y-2"
                     id={`product-info-text-${index}`}
                   >
-                    {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}
+                    {/* 상품명 텍스트 */}
                     <h3
-                      className="font-normal text-[#000000] text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] uppercase font-sans"
+                      className="font-normal text-[#000000] text-xl sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] uppercase font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`product-title-${index}`}
                     >
                       {item.name}
                     </h3>
-                    {/* 설명글 텍스트: 사이즈 25, regular, 자간 -40 */}
+                    {/* 설명글 텍스트 */}
                     <p
                       className="text-[#000000]/85 font-normal text-base sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] font-sans"
                       style={{ letterSpacing: "-0.04em" }}
@@ -269,7 +269,17 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
           }`}
           id="product-detail-accordion"
         >
-          {activeProduct !== null && renderAccordionContent(products[activeProduct])}
+          {activeProduct !== null && (
+            // STORIES 섹션과 동일하게 좌측 약 25% 여백 + 우측(나머지 75%) 영역 안에서만 콘텐츠 표시
+            <div className="flex flex-row gap-[8%] w-full" id="product-detail-accordion-layout">
+              {/* 좌측 여백 컬럼 (콘텐츠 없음) */}
+              <div className="w-[25%] max-w-[445px] flex-shrink-0" aria-hidden="true" />
+              {/* 우측 콘텐츠 영역 */}
+              <div className="flex-1 w-full" id="product-detail-accordion-content">
+                {renderAccordionContent(products[activeProduct])}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
