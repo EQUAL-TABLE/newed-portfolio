@@ -50,7 +50,7 @@ export default function Navbar({
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 bg-[#fae6aa] border-b border-[#ebd787]/50 pt-4 sm:pt-6 md:pt-8 lg:pt-12 xl:pt-[100px] pb-3 sm:pb-4 md:pb-5 lg:pb-6 xl:pb-[30px]"
+      className="fixed top-0 left-0 w-full z-50 bg-[#fae6aa] border-b border-[#fae6aa]/50 pt-4 sm:pt-6 md:pt-8 lg:pt-12 xl:pt-[100px] pb-3 sm:pb-4 md:pb-5 lg:pb-6 xl:pb-[30px]"
       style={{ marginLeft: "0px", height: "auto" }}
       id="main-navbar"
     >
@@ -85,7 +85,7 @@ export default function Navbar({
           >
             <button
               onClick={() => scrollToSection(heroRef)}
-              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: "clamp(13px, 2.5vw, 50px)",
                 letterSpacing: "-0.05em",
@@ -97,7 +97,7 @@ export default function Navbar({
             </button>
             <button
               onClick={() => scrollToSection(storiesRef)}
-              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: "clamp(13px, 2.5vw, 50px)",
                 letterSpacing: "-0.05em",
@@ -109,7 +109,7 @@ export default function Navbar({
             </button>
             <button
               onClick={() => scrollToSection(productRef)}
-              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: "clamp(13px, 2.5vw, 50px)",
                 letterSpacing: "-0.05em",
@@ -121,7 +121,7 @@ export default function Navbar({
             </button>
             <button
               onClick={openStore}
-              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: "clamp(13px, 2.5vw, 50px)",
                 letterSpacing: "-0.05em",
@@ -133,7 +133,7 @@ export default function Navbar({
             </button>
             <button
               onClick={openInstagram}
-              className="font-bold text-[#1A1A1A] uppercase hover:text-[#E8610A] transition-colors cursor-pointer whitespace-nowrap"
+              className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: "clamp(13px, 2.5vw, 50px)",
                 letterSpacing: "-0.05em",
@@ -152,7 +152,7 @@ export default function Navbar({
           >
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#1A1A1A] hover:text-[#E8610A] transition-colors p-1 cursor-pointer focus:outline-none"
+              className="text-[#000000] hover:text-[#ec7123] transition-colors p-1 cursor-pointer focus:outline-none"
               aria-label="Toggle menu"
               id="navbar-mobile-hamburger"
             >
@@ -165,40 +165,40 @@ export default function Navbar({
       {/* 모바일 전체 화면 드롭다운 오버레이 슬라이드 메뉴 */}
       {isOpen && (
         <div
-          className="absolute top-full left-0 w-full bg-[#F5E6A3] border-b border-[#1a1a1a]/10 flex flex-col items-center py-6 space-y-5 shadow-lg md:hidden animate-fade-in"
+          className="absolute top-full left-0 w-full bg-[#fae6aa] border-b border-[#000000]/10 flex flex-col items-center py-6 space-y-5 shadow-lg md:hidden animate-fade-in"
           id="navbar-mobile-dropdown"
         >
           <button
             onClick={() => scrollToSection(heroRef)}
-            className="w-full text-center py-2 font-bold text-[#1A1A1A] text-lg uppercase hover:bg-[#F0DE94] transition-colors cursor-pointer"
+            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-homepage"
           >
             HOMEPAGE
           </button>
           <button
             onClick={() => scrollToSection(storiesRef)}
-            className="w-full text-center py-2 font-bold text-[#1A1A1A] text-lg uppercase hover:bg-[#F0DE94] transition-colors cursor-pointer"
+            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-stories"
           >
             STORIES
           </button>
           <button
             onClick={() => scrollToSection(productRef)}
-            className="w-full text-center py-2 font-bold text-[#1A1A1A] text-lg uppercase hover:bg-[#F0DE94] transition-colors cursor-pointer"
+            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-product"
           >
             PRODUCT
           </button>
                     <button
             onClick={openStore}
-            className="w-full text-center py-2 font-bold text-[#1A1A1A] text-lg uppercase hover:bg-[#F0DE94] transition-colors cursor-pointer"
+            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-shop"
           >
             SHOP
           </button>
           <button
             onClick={openInstagram}
-            className="w-full text-center py-2 font-bold text-[#1A1A1A] text-lg uppercase hover:bg-[#F0DE94] transition-colors cursor-pointer"
+            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-instagram"
           >
             INSTAGRAM

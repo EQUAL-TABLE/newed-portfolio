@@ -28,13 +28,13 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       accordionDetails: [
         {
           image: Deep_product1,
-          title: "검증된 조합의 현대적 재해석, 오랑주 쇼콜라",
-          desc: "오래 사랑받는 조합엔 다 이유가 있지, 첫 입에 알 수 있어. 짙은 다크초콜릿이 만든 무드 위로 번지는 오렌지의 산뜻한 킥. 모두가 고개를 끄덕이는 클래식한 위트, 빠지는 건 한순간이야.",
+          title: "검증된 조합의 현대적 재해석, 오랑주쇼콜라",
+          desc: "오래 사랑받는 조합엔 다 이유가 있지 <br /> 첫  입에 알 수 있어 짙은 다크초콜릿이 만든 무드 위로 번지는 오렌지의 산뜻한 킥 <br /> 모두가 고개를 끄덕이는 클래식한 위트, 빠지는 건 한순간이야",
         },
         {
           image: Deep_product2,
           title: "아는 맛이 무서운, 크리미넛",
-          desc: "갓 구운 쿠키 향처럼 그냥 지나치기 힘든 중독성. 마카다미아 뒤에 숨어 있는 크리미한 부드러움이 입안에서 사르르. 한 번 먹으면 헤어 나올 수 없어. 자꾸 생각나는 꽉 찬 행복.",
+          desc: "갓 구운 쿠키 향처럼 그냥 지나치기 힘든 중독성 <br /> 마카다미아 뒤에 숨어 있는 크리미한 부드러움이 입안에서 사르르 <br /> 한 번 먹으면 헤어 나올 수 없어. 자꾸 생각나는 꽉 찬 행복.",
         },
       ],
     },
@@ -45,13 +45,13 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       accordionDetails: [
         {
           image: Bright_product1,
-          title: "LYCHEE SORBET BREEZE",
-          desc: "리치 소르베의 싱그럽고 톡톡 튀는 청량감이 가득 스며들어, 피로를 단번에 날려주는 지고의 자유로움을 선물합니다.",
+          title: "직관적인 청량감, 리치소르베",
+          desc: "마시는 순간, 나른했던 오후를 단숨에 날려버리는 청량감. <br /> 리치와 샤인머스캣의 싱그러움이 입안에서 생기 있게 톡 <br /> 바로 느낄 수 있을걸?  온몸을 타고 흐르는 짜릿함.",
         },
         {
           image: Bright_product2,
-          title: "PEACH MELBA FRUITY",
-          desc: "달콤하고 부드러운 피치 멜바 향이 입안을 프랑스 마르세유 테라스처럼 고급스럽고 아름다운 아로마로 장식합니다.",
+          title: "역사적 서사를 담은 프리미엄 디저트, 피치멜바",
+          desc: "단 한 명의 소프라노를 위해 만든 런던의 로맨틱한 디저트, 피치 멜바 <br /> 낭만을 가득 채운 복숭아와 라즈베리가 물들인 핑크빛 이야기에 퐁당 <br /> 입안에서 펼쳐지는 새콤달콤한 멜로 드라마 한 편, 어때? ",
         },
       ],
     },
@@ -62,13 +62,13 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       accordionDetails: [
         {
           image: Decaf_product1,
-          title: "PISTACHIO GANACHE",
-          desc: "피스타치오 가나슈의 벨벳같이 감미로운 터치와 고소함이 돋보이며, 지친 일상에 풍요로운 쉼표가 되어 줍니다.",
+          title: "바쁜 하루 끝 가장 부드러운 한 잔, 피스타치오가나슈",
+          desc: "한 스푼 더 뜨고 싶어지는 조용하지만 강한 달콤함. <br /> 흘러내리는 가나슈 초콜릿의 풍미와 피스타치오의 고소함이 입안 가득 <br /> 말없이 마음을 녹이는 깊고 부드러운 순간. ",
         },
         {
           image: Decaf_product2,
-          title: "APRICOT ATELIER",
-          desc: "향긋하고 섬세한 살구 아틀리에의 조화로운 무드가 은은하게 이어지며 깊은 밤, 완벽하게 디카페인으로 안심하고 취하는 특별한 여유를 제공합니다.",
+          title: "산뜻함 그 이상의 특별함, 애프리콧 아뜰리에",
+          desc: "오후의 햇살처럼 하루의 기분을 밝히는 싱그러움. <br /> 홍차의 은은한 향기와 살구의 생기가 기분 좋게 살랑 <br /> 캔버스 위로 번지는 물감처럼, 오늘의 기분까지 선명하게 물들여봐. ",
         },
       ],
     },
@@ -98,7 +98,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     <div className="flex flex-col w-full">
       {/* 상품명 */}
       <h3
-        className="text-center font-semibold text-[#1A1A1A] uppercase text-3xl sm:text-4xl lg:text-5xl xl:text-[55px] xl:leading-[65px] font-sans"
+        className="text-center font-semibold text-[#000000] uppercase text-3xl sm:text-4xl lg:text-5xl xl:text-[55px] xl:leading-[65px] font-sans"
         style={{ letterSpacing: "-0.04em" }}
       >
         {product.name}
@@ -126,7 +126,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
         {product.accordionDetails.map((feat, fIdx) => {
           const { black, color } = splitTitle(feat.title);
           // 컬러 title 색상: 0번 오렌지, 1번 블루 (교차)
-          const colorClass = fIdx % 2 === 0 ? "text-[#E8610A]" : "text-[#4A90D9]";
+          const colorClass = fIdx % 2 === 0 ? "text-[#ec7123]" : "text-[#468fcd]";
           return (
             <div key={fIdx} className="w-full flex flex-col">
               {/* 검정 title + 컬러 title 을 한 줄에 표시 */}
@@ -135,12 +135,12 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                 style={{ letterSpacing: "-0.025em" }}
                 id={`accordion-feat-title-${fIdx}`}
               >
-                {black && <span className="text-[#1A1A1A]">{black} </span>}
+                {black && <span className="text-[#000000]">{black} </span>}
                 <span className={colorClass}>{color}</span>
               </h4>
               {/* 하단 설명글 */}
               <p
-                className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] mt-2 xl:mt-4 font-sans"
+                className="text-[#000000]/85 font-normal text-base sm:text-lg md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] mt-2 xl:mt-4 font-sans"
                 style={{ letterSpacing: "-0.025em" }}
                 id={`accordion-feat-desc-${fIdx}`}
               >
@@ -157,7 +157,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     <section
       ref={productRef}
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#F5E6A3] py-10 md:py-16 lg:py-24 xl:py-[100px] w-full"
+      className="bg-[#fae6aa] py-10 md:py-16 lg:py-24 xl:py-[100px] w-full"
       id="product-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}
@@ -210,7 +210,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   >
                     {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}
                     <h3
-                      className="font-normal text-[#1A1A1A] text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] uppercase font-sans"
+                      className="font-normal text-[#000000] text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] uppercase font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`product-title-${index}`}
                     >
@@ -218,7 +218,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                     </h3>
                     {/* 설명글 텍스트: 사이즈 25, regular, 자간 -40 */}
                     <p
-                      className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] font-sans"
+                      className="text-[#000000]/85 font-normal text-base sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`product-desc-${index}`}
                     >
@@ -234,8 +234,8 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                     <span
                       className={`text-xs font-semibold uppercase tracking-wider transition-colors ${
                         isSelected
-                          ? "text-[#4A90D9]"
-                          : "text-[#E8610A] hover:text-[#E8610A]/80"
+                          ? "text-[#468fcd]"
+                          : "text-[#ec7123] hover:text-[#ec7123]/80"
                       }`}
                       id={`product-indicator-${index}`}
                     >
