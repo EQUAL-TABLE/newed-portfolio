@@ -131,7 +131,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                         <React.Fragment key={`group-${idx}`}>
                           {sliderBar}
                           <div
-                            className="w-[30px] h-[20px] bg-[#FFFBF0]/30 rounded-sm flex-shrink-0 mx-2 xl:mx-[12px]"
+                            className="w-[30px] h-[20px] bg-[#fafaf8]/30 rounded-sm flex-shrink-0 mx-2 xl:mx-[12px]"
                             id={`thumbnail-sep-${idx}`}
                           />
                         </React.Fragment>
@@ -155,7 +155,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                 className="text-right py-2 md:py-4 xl:py-0 self-end w-full mt-4 lg:mt-6 xl:mt-0"
                 id="hero-slider-caption-block"
               >
-                <div className="font-bold text-white text-right font-sans uppercase text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[70px] xl:leading-[80px] xl:tracking-[-3.5px] w-full">
+                <div className="font-bold text-[#fafaf8] text-right font-sans uppercase text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[70px] xl:leading-[80px] xl:tracking-[-3.5px] w-full">
                   ONE CUP, SUDDENLY LIGHTER <br /> THAT'S NEWED
                 </div>
               </div>

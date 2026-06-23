@@ -98,7 +98,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     <div className="flex flex-col w-full">
       {/* 상품명 */}
       <h3
-        className="text-center font-semibold text-[#1A1A1A] uppercase text-3xl sm:text-4xl lg:text-5xl xl:text-[55px] xl:leading-[65px] font-sans"
+        className="text-center font-semibold text-[#000000] uppercase text-3xl sm:text-4xl lg:text-5xl xl:text-[55px] xl:leading-[65px] font-sans"
         style={{ letterSpacing: "-0.04em" }}
       >
         {product.name}
@@ -126,7 +126,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
         {product.accordionDetails.map((feat, fIdx) => {
           const { black, color } = splitTitle(feat.title);
           // 컬러 title 색상: 0번 오렌지, 1번 블루 (교차)
-          const colorClass = fIdx % 2 === 0 ? "text-[#E8610A]" : "text-[#4A90D9]";
+          const colorClass = fIdx % 2 === 0 ? "text-[#ec7123]" : "text-[#468fcd]";
           return (
             <div key={fIdx} className="w-full flex flex-col">
               {/* 검정 title + 컬러 title 을 한 줄에 표시 */}
@@ -135,12 +135,12 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                 style={{ letterSpacing: "-0.025em" }}
                 id={`accordion-feat-title-${fIdx}`}
               >
-                {black && <span className="text-[#1A1A1A]">{black} </span>}
+                {black && <span className="text-[#000000]">{black} </span>}
                 <span className={colorClass}>{color}</span>
               </h4>
               {/* 하단 설명글 */}
               <p
-                className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] mt-2 xl:mt-4 font-sans"
+                className="text-[#000000]/85 font-normal text-base sm:text-lg md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] mt-2 xl:mt-4 font-sans"
                 style={{ letterSpacing: "-0.025em" }}
                 id={`accordion-feat-desc-${fIdx}`}
               >
@@ -157,7 +157,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     <section
       ref={productRef}
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#F5E6A3] py-10 md:py-16 lg:py-24 xl:py-[100px] w-full"
+      className="bg-[#fae6aa] py-10 md:py-16 lg:py-24 xl:py-[100px] w-full"
       id="product-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}
@@ -210,7 +210,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   >
                     {/* 상품명 텍스트: 사이즈 30, regular, 자간 -40 */}
                     <h3
-                      className="font-normal text-[#1A1A1A] text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] uppercase font-sans"
+                      className="font-normal text-[#000000] text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] uppercase font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`product-title-${index}`}
                     >
@@ -218,7 +218,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                     </h3>
                     {/* 설명글 텍스트: 사이즈 25, regular, 자간 -40 */}
                     <p
-                      className="text-[#1A1A1A]/85 font-normal text-base sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] font-sans"
+                      className="text-[#000000]/85 font-normal text-base sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`product-desc-${index}`}
                     >
@@ -234,8 +234,8 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                     <span
                       className={`text-xs font-semibold uppercase tracking-wider transition-colors ${
                         isSelected
-                          ? "text-[#4A90D9]"
-                          : "text-[#E8610A] hover:text-[#E8610A]/80"
+                          ? "text-[#468fcd]"
+                          : "text-[#ec7123] hover:text-[#ec7123]/80"
                       }`}
                       id={`product-indicator-${index}`}
                     >

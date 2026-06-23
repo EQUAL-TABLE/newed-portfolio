@@ -3,7 +3,7 @@ import skyblueIcecream from "../assets/images/skyblue_icecream.png";
 export default function FirstSip() {
   return (
     <section
-      className="w-full bg-[#4A90D9] overflow-hidden"
+      className="w-full bg-[#468fcd] overflow-hidden"
       id="first-sip-section"
     >
       {/* 1980px를 최대 너비로 상정하고 좌측 내부 여백 100 (xl:pl-[100px], pr-0). 모바일에서는 이미지가 화면 끝까지 차도록 좌측 여백을 자식 요소에 개별 할당 */}
@@ -13,7 +13,7 @@ export default function FirstSip() {
       >
         <div
           // lg(1024px) 이상에서 약 25% 가량(좌측) + 사이 약 8% 간격 + 나머지 구역(우측) 으로 정렬, 미만에서는 세로 쌓기
-          className="flex flex-col lg:flex-row lg:gap-[8%] w-full items-stretch bg-[#4A90D9] lg:min-h-[640px] xl:min-h-[800px]"
+          className="flex flex-col lg:flex-row lg:gap-[8%] w-full items-stretch bg-[#468fcd] lg:min-h-[640px] xl:min-h-[800px]"
           id="first-sip-layout"
         >
           {/* 좌측 영역: 모바일 및 태블릿에서는 전폭, lg 이상 데스크탑에서는 가변적이되 최대 445px 제한 */}
@@ -23,7 +23,7 @@ export default function FirstSip() {
           >
             {/* 텍스트 사이즈 100, 행간 120, 자간 -40 (즉 -4% or -0.04em), semi bold */}
             <h2
-              className="font-semibold text-white uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[100px] xl:leading-[120px] tracking-tight"
+              className="font-semibold text-[#fafaf8] uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[100px] xl:leading-[120px] tracking-tight"
               style={{ letterSpacing: "-0.04em" }}
               id="first-sip-heading"
             >

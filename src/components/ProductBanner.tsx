@@ -2,7 +2,7 @@ export default function ProductBanner() {
   return (
     <section
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#E8610A] py-10 md:py-16 lg:py-24 xl:py-[100px] text-[#1A1A1A] w-full"
+      className="bg-[#ec7123] py-10 md:py-16 lg:py-24 xl:py-[100px] text-[#000000] w-full"
       id="product-banner-section"
     >
       {/* 1980px 너비 기준 좌우 내부 여백 100 (xl:px-[100px]) */}

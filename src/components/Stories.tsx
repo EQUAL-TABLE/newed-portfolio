@@ -15,7 +15,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
     <section
       ref={storiesRef} // 네비바 메뉴에서 스무스 스크롤 대상(storiesRef)으로 타겟팅을 잡기 위해 지정합니다.
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#fafaf8] py-10 md:py-16 lg:py-24 xl:py-[100px] border-b border-[#ebd787]/35 w-full"
+      className="bg-[#fafaf8] py-10 md:py-16 lg:py-24 xl:py-[100px] border-b border-[#fae6aa]/35 w-full"
       id="stories-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}
@@ -34,7 +34,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
             id="stories-title-col"
           >
             <h2
-              className="font-semibold text-[#1A1A1A] uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[100px] xl:leading-[120px] font-sans"
+              className="font-semibold text-[#000000] uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[100px] xl:leading-[120px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="stories-heading"
             >
@@ -49,7 +49,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
           >
             {/* 우측 설명 글: 사이즈 55, 행간 80, 자간 -40 (-0.04em), regular */}
             <p
-              className="text-[#1A1A1A] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] font-sans"
+              className="text-[#000000] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="stories-description-text"
             >
@@ -66,7 +66,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
             >
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="group text-[#E8610A] hover:text-[#c95308] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
+                className="group text-[#ec7123] hover:text-[#ec7123] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
                 style={{ letterSpacing: "-0.04em" }}
                 id="stories-toggle-button"
               >
@@ -94,7 +94,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
               </div>
               {/* MORE 내의 텍스트 스타일: 위의 "우측 설명 글" 스타일과 동일 */}
               <div
-                className="text-[#1a1a1a] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] space-y-6 md:space-y-8 font-sans mt-6 lg:mt-[100px]"
+                className="text-[#000000] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] space-y-6 md:space-y-8 font-sans mt-6 lg:mt-[100px]"
                 style={{ letterSpacing: "-0.025em" }}
                 id="stories-accordion-inner"
               >

@@ -27,7 +27,7 @@ export default function App() {
   const productRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <div className="min-h-screen flex flex-col w-full bg-[#F5F0E8] overflow-x-hidden" id="app-root-container">
+    <div className="min-h-screen flex flex-col w-full bg-[#fafaf8] overflow-x-hidden" id="app-root-container">
       {/* 
         렌더링 컴포넌트 순서 주석:
         1. Navbar: 최상단에 고정 배치되어 각 섹션 스크롤 제어를 조율합니다.
