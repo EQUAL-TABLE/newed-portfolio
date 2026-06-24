@@ -14,8 +14,28 @@ import ProductSection from "./components/ProductSection";
 import ProductBanner from "./components/ProductBanner";
 import Footer from "./components/Footer";
 import FloatingCart from "./components/FloatingCart";
+import {
+  useSectionTracking,
+  type TrackedSection,
+} from "./hooks/useSectionTracking";
+
+// GA4 스크롤 노출/체류시간 추적 대상 섹션 (각 컴포넌트 루트의 id와 매핑)
+// 배열을 모듈 레벨 상수로 두어 렌더마다 재생성되지 않도록 합니다(훅 의존성 안정화).
+const TRACKED_SECTIONS: TrackedSection[] = [
+  { id: "hero-slider-section", name: "Hero" },
+  { id: "brand-statement-section", name: "BrandStatement" },
+  { id: "first-sip-section", name: "FirstSip" },
+  { id: "stories-section", name: "Stories" },
+  { id: "full-image-section", name: "FullImage" },
+  { id: "product-section", name: "ProductSection" },
+  { id: "product-banner-section", name: "ProductBanner" },
+  { id: "brand-footer", name: "Footer" },
+];
 
 export default function App() {
+  // 스크롤에 따른 섹션 노출/체류시간을 GA4로 전송
+  useSectionTracking(TRACKED_SECTIONS);
+
   // 각 ref 선언 및 용도 주석:
   // 1. heroRef: 홈페이지 최상단 및 메인 인트로 슬라이더 영역을 참조하며, 네비게이션의 HOMEPAGE 클릭 시 이곳으로 부드럽게 스크롤됩니다.
   const heroRef = useRef<HTMLDivElement | null>(null);

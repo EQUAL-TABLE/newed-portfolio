@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { trackSliderThumb } from "../lib/analytics";
 import bite from "../assets/images/bite.webp";
 import slideImg1 from "../assets/images/slideImg1.webp";
 import slideImg2 from "../assets/images/slideImg2.webp";
@@ -29,6 +30,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
 
   // 슬라이드 변경을 트리거하는 핸들러 함수
   const handleThumbClick = (index: number) => {
+    trackSliderThumb(index);
     setActiveSlide(index);
   };
 

@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo_bright from "../assets/images/logo_bright.webp";
+import {
+  trackMenuClick,
+  trackOutbound,
+  trackUiToggle,
+} from "../lib/analytics";
+
+// 와디즈 스토어 URL (SHOP 버튼 / 추적 라벨에서 공통 사용)
+const WADIZ_STORE_URL =
+  "https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244";
+const INSTAGRAM_URL = "https://www.instagram.com/newed_official/";
 
 // Props 타입 정의
 interface NavbarProps {
@@ -18,7 +28,13 @@ export default function Navbar({
   const [isOpen, setIsOpen] = useState(false);
 
   // 부드럽게 지정한 섹션으로 스크롤 이동시키는 함수 (네비게이션 바 높이에 따른 오프셋 계산 적용)
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
+  // menuName / device: GA4 메뉴 클릭 추적용 (이동 동작에는 영향 없음)
+  const scrollToSection = (
+    ref: React.RefObject<HTMLDivElement | null>,
+    menuName: string,
+    device: "web" | "mobile" = "web",
+  ) => {
+    trackMenuClick(menuName, device);
     if (ref.current) {
       const elementPosition =
         ref.current.getBoundingClientRect().top + window.scrollY;
@@ -36,16 +52,22 @@ export default function Navbar({
 
   // 인스타그램 새 창 이동 함수
   const openInstagram = () => {
-    window.open("https://www.instagram.com/newed_official/", "_blank");
+    trackOutbound("instagram", INSTAGRAM_URL);
+    window.open(INSTAGRAM_URL, "_blank");
     setIsOpen(false);
   };
 
   const openStore = () => {
-    window.open(
-      "https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244",
-      "_blank",
-    );
+    trackOutbound("shop_wadiz", WADIZ_STORE_URL);
+    window.open(WADIZ_STORE_URL, "_blank");
     setIsOpen(false);
+  };
+
+  // 모바일 햄버거 메뉴 토글 (열림/닫힘 상태를 GA4로 추적)
+  const toggleMobileMenu = () => {
+    const next = !isOpen;
+    trackUiToggle("mobile_menu", next);
+    setIsOpen(next);
   };
 
   return (
@@ -65,7 +87,7 @@ export default function Navbar({
           {/* 왼쪽: NEWED 타원형 로고 배지 (4분할 중 좌측 1칸) */}
           <div
             className="md:col-span-1 flex justify-start items-center cursor-pointer select-none"
-            onClick={() => scrollToSection(heroRef)}
+            onClick={() => scrollToSection(heroRef, "logo")}
             id="navbar-logo-container"
           >
             <div>
@@ -84,7 +106,7 @@ export default function Navbar({
             id="navbar-web-menu"
           >
             <button
-              onClick={() => scrollToSection(heroRef)}
+              onClick={() => scrollToSection(heroRef, "homepage")}
               className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: "clamp(13px, 2.5vw, 50px)",
@@ -96,7 +118,7 @@ export default function Navbar({
               HOMEPAGE
             </button>
             <button
-              onClick={() => scrollToSection(storiesRef)}
+              onClick={() => scrollToSection(storiesRef, "stories")}
               className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: "clamp(13px, 2.5vw, 50px)",
@@ -108,7 +130,7 @@ export default function Navbar({
               STORIES
             </button>
             <button
-              onClick={() => scrollToSection(productRef)}
+              onClick={() => scrollToSection(productRef, "product")}
               className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: "clamp(13px, 2.5vw, 50px)",
@@ -151,7 +173,7 @@ export default function Navbar({
             id="navbar-mobile-toggle-container"
           >
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={toggleMobileMenu}
               className="text-[#000000] hover:text-[#ec7123] transition-colors p-1 cursor-pointer focus:outline-none"
               aria-label="Toggle menu"
               id="navbar-mobile-hamburger"
@@ -169,21 +191,21 @@ export default function Navbar({
           id="navbar-mobile-dropdown"
         >
           <button
-            onClick={() => scrollToSection(heroRef)}
+            onClick={() => scrollToSection(heroRef, "homepage", "mobile")}
             className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-homepage"
           >
             HOMEPAGE
           </button>
           <button
-            onClick={() => scrollToSection(storiesRef)}
+            onClick={() => scrollToSection(storiesRef, "stories", "mobile")}
             className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-stories"
           >
             STORIES
           </button>
           <button
-            onClick={() => scrollToSection(productRef)}
+            onClick={() => scrollToSection(productRef, "product", "mobile")}
             className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-product"
           >

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { trackProductClick } from "../lib/analytics";
 import DeepColor from "../assets/images/deep_color.webp";
 import BrightColor from "../assets/images/bright_color.webp";
 import DecafColor from "../assets/images/decaf_color.webp";
@@ -79,11 +80,10 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
 
   // 카드 클릭 시 토글 핸들러
   const handleProductClick = (index: number) => {
-    if (activeProduct === index) {
-      setActiveProduct(null);
-    } else {
-      setActiveProduct(index);
-    }
+    // 같은 카드를 다시 누르면 닫힘, 아니면 해당 카드를 열림 상태로 전환
+    const willOpen = activeProduct !== index;
+    trackProductClick(products[index].name, index, willOpen);
+    setActiveProduct(willOpen ? index : null);
   };
 
   // 제목 문자열을 콤마 기준으로 [검정 부분 / 컬러 부분]으로 분리

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { trackAccordionToggle } from "../lib/analytics";
 import sufferboard from "../assets/images/sufferboard.webp";
 import stories_more from "../assets/images/stories_more.webp";
 
@@ -65,7 +66,11 @@ export default function Stories({ storiesRef }: StoriesProps) {
               id="stories-button-row"
             >
               <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => {
+                  const next = !isOpen;
+                  trackAccordionToggle("stories", next);
+                  setIsOpen(next);
+                }}
                 className="group text-[#ec7123] hover:text-[#ec7123] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
                 style={{ letterSpacing: "-0.04em" }}
                 id="stories-toggle-button"
