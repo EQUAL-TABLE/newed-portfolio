@@ -19,13 +19,15 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
   const [activeSlide, setActiveSlide] = useState(0);
 
   // activeSlide에 따른 메인 슬라이드 이미지 매핑
+  // posY: 슬라이드별 세로 표시 기준점(%). 원본이 세로로 길어 930*600 영역에 잘릴 때,
+  //       어느 세로 위치를 보여줄지 이미지마다 개별 지정 (0% = 상단, 50% = 중앙, 100% = 하단)
   const mainImages = [
-    slideImg1,
-    slideImg2,
-    slideImg3,
-    slideImg4,
-    slideImg5,
-    slideImg6,
+    { src: slideImg1, posY: "42%" },
+    { src: slideImg2, posY: "65%" },
+    { src: slideImg3, posY: "53%" },
+    { src: slideImg4, posY: "70%" },
+    { src: slideImg5, posY: "60%" },
+    { src: slideImg6, posY: "52%" },
   ];
 
   // 슬라이드 변경을 트리거하는 핸들러 함수
@@ -71,21 +73,22 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
             className="w-full flex flex-col justify-between mt-6 lg:mt-0 lg:flex-grow lg:flex-1 lg:max-w-[930px] lg:flex-shrink-0"
             id="hero-right-col"
           >
-            {/* 메인 슬라이드 이미지 - 930 * 580 */}
+            {/* 메인 슬라이드 이미지 - 930 * 600 */}
             <div
-              className="w-full aspect-[930/580] lg:max-w-[930px] bg-black/5 relative overflow-hidden rounded-sm cursor-pointer lg:flex-shrink-0"
+              className="w-full aspect-[930/600] lg:max-w-[930px] bg-black/5 relative overflow-hidden rounded-sm cursor-pointer lg:flex-shrink-0"
               id="hero-right-main-image-container"
             >
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeSlide}
-                  src={mainImages[activeSlide]}
+                  src={mainImages[activeSlide].src}
                   alt={`Main Slide ${activeSlide + 1}`}
                   initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  animate={{ opacity: 5, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="w-full h-full object-cover"
+                  style={{ objectPosition: `center ${mainImages[activeSlide].posY}` }}
                   loading="lazy"
                   id={`hero-slide-image-${activeSlide}`}
                 />
@@ -94,7 +97,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
 
             {/* 슬라이더 이미지와 슬라이더 바 사이 간격을 조절하는 하단 파트 */}
             <div
-              className="flex flex-col flex-1 justify-between mt-4 md:mt-6 lg:mt-6 xl:mt-[30px]"
+              className="flex flex-col flex-1 justify-between mt-4 md:mt-6 lg:mt-6 xl:mt-[0px]"
               id="hero-right-bottom-part"
             >
               {/* Spacer 1 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
