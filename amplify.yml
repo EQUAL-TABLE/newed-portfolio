@@ -1,0 +1,20 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        # Amplify 콘솔에 등록한 VITE_ 접두사 환경변수를 .env.production 파일로 기록하여
+        # Vite 빌드(import.meta.env.VITE_*)가 확실히 읽도록 강제합니다.
+        # (Amplify 빌드 셸의 환경변수가 Vite로 자동 주입되지 않는 문제를 우회)
+        - env | grep -e VITE_ >> .env.production || true
+        - npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
