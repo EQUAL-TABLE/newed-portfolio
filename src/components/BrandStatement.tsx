@@ -14,7 +14,7 @@ export default function BrandStatement() {
         {/* 아주 크고 시선을 끄는 Mohave 볼드/세미볼드 폰트 타이포그래피 활용 */}
         {/* 크기 130, 행간 140, 자간 -40 (-0.04em), semi bold 적용 */}
         <p
-          className="font-semibold text-[#000000] text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[130px] xl:leading-[140px] font-sans"
+          className="font-semibold text-[#000000] text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[100px] xl:leading-[110px] font-sans"
           style={{ letterSpacing: "-0.04em" }}
           id="brand-statement-paragraph"
         >

@@ -23,7 +23,7 @@ export default function FirstSip() {
           >
             {/* 텍스트 사이즈 100, 행간 120, 자간 -40 (즉 -4% or -0.04em), semi bold */}
             <h2
-              className="font-semibold text-[#fafaf8] uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[100px] xl:leading-[120px] tracking-tight"
+              className="font-semibold text-[#fafaf8] uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[70px] xl:leading-[80px] tracking-tight"
               style={{ letterSpacing: "-0.04em" }}
               id="first-sip-heading"
             >

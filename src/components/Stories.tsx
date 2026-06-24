@@ -35,7 +35,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
             id="stories-title-col"
           >
             <h2
-              className="font-semibold text-[#000000] uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[100px] xl:leading-[120px] font-sans"
+              className="font-semibold text-[#000000] uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[70px] xl:leading-[120px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="stories-heading"
             >
@@ -50,7 +50,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
           >
             {/* 우측 설명 글: 사이즈 55, 행간 80, 자간 -40 (-0.04em), regular */}
             <p
-              className="text-[#000000] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] font-sans"
+              className="text-[#000000] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="stories-description-text"
             >
@@ -71,7 +71,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
                   trackAccordionToggle("stories", next);
                   setIsOpen(next);
                 }}
-                className="group text-[#ec7123] hover:text-[#ec7123] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[55px] xl:leading-[80px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
+                className="group text-[#ec7123] hover:text-[#ec7123] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[30px] xl:leading-[80px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
                 style={{ letterSpacing: "-0.04em" }}
                 id="stories-toggle-button"
               >
@@ -99,7 +99,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
               </div>
               {/* MORE 내의 텍스트 스타일: 위의 "우측 설명 글" 스타일과 동일 */}
               <div
-                className="text-[#000000] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] space-y-6 md:space-y-8 font-sans mt-6 lg:mt-[100px]"
+                className="text-[#000000] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[30px] xl:leading-[50px] space-y-6 md:space-y-8 font-sans mt-6 lg:mt-[100px] mb-10 md:mb-16 lg:mb-[100px]"
                 style={{ letterSpacing: "-0.025em" }}
                 id="stories-accordion-inner"
               >
@@ -107,8 +107,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
                   프랑스에 커피가 처음 닿은 도시, 마르세유 <br />
                   우리는 마르세유 커피하우스가 처음 깨운 선명한 감각과 그 새로움을 <br />
                   있는 그대로 즐기던 마르세유 사람들의 자유로운 직관에서 영감을 받았습니다. <br />
-                  우리는 그 시절의 낭만을 현대적으로 재해석해 고객들에게 <br />
-                  선명한 즐거움을 선사합니다.
+                  그 시절의 낭만을 현대적으로 재해석해 고객들에게 선명한 즐거움을 선사합니다.
                 </p>
               </div>
             </div>

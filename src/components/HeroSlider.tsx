@@ -37,7 +37,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
   return (
     <div
       ref={heroRef}
-      className="w-full bg-[#ec7123] md:pt-[104px] lg:pt-[140px] xl:pt-[180px]" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
+      className="w-full bg-[#ec7123] md:pt-24 lg:pt-30 xl:pt-20" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
       id="hero-slider-section"
     >
       {/* 반응형 여백을 담당하며 가운데 정렬되는 감싸는 프레임. 상하 안쪽 여백 100, 좌우 안쪽 여백 100 */}
@@ -118,7 +118,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                       <button
                         key={`bar-${idx}`}
                         onClick={() => handleThumbClick(idx)}
-                        className={`h-[20px] flex-1 transition-all duration-300 relative rounded-sm cursor-pointer focus:outline-none ${
+                        className={`h-[10px] flex-1 transition-all duration-300 relative rounded-sm cursor-pointer focus:outline-none ${
                           isSelected
                             ? "bg-[#468fcd]"
                             : "bg-[#fae6aa] hover:bg-[#fae6aa]/80"
@@ -133,7 +133,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                         <React.Fragment key={`group-${idx}`}>
                           {sliderBar}
                           <div
-                            className="w-[30px] h-[20px] bg-[#fafaf8]/30 rounded-sm flex-shrink-0 mx-2 xl:mx-[12px]"
+                            className="w-[30px] h-[10px] bg-[#fafaf8]/30 rounded-sm flex-shrink-0 mx-2 xl:mx-[12px]"
                             id={`thumbnail-sep-${idx}`}
                           />
                         </React.Fragment>
@@ -157,7 +157,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                 className="text-right py-2 md:py-4 xl:py-0 self-end w-full mt-4 lg:mt-6 xl:mt-0"
                 id="hero-slider-caption-block"
               >
-                <div className="font-bold text-[#fafaf8] text-right font-sans uppercase text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[70px] xl:leading-[80px] xl:tracking-[-3.5px] w-full">
+                <div className="font-bold text-[#fafaf8] text-right font-sans uppercase text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[90px] xl:leading-[85px] xl:tracking-[-3.5px] w-full">
                   ONE CUP, SUDDENLY LIGHTER <br /> THAT'S NEWED
                 </div>
               </div>

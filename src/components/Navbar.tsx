@@ -72,7 +72,7 @@ export default function Navbar({
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 bg-[#fae6aa] border-b border-[#fae6aa]/50 pt-4 sm:pt-6 md:pt-8 lg:pt-12 xl:pt-[100px] pb-3 sm:pb-4 md:pb-5 lg:pb-6 xl:pb-[30px]"
+      className="fixed top-0 left-0 w-full z-50 bg-[#fae6aa] border-b border-[#fae6aa]/50 pt-4 sm:pt-6 md:pt-8 lg:pt-12 xl:pt-[20px] pb-3 sm:pb-4 md:pb-5 lg:pb-6 xl:pb-[10px]"
       style={{ marginLeft: "0px", height: "auto" }}
       id="main-navbar"
     >
@@ -94,7 +94,7 @@ export default function Navbar({
               <img
                 src={logo_bright}
                 alt="NEWED Logo"
-                className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16"
+                className="w-24 sm:w-28 md:w-36 lg:w-40 xl:w-45 h-auto object-contain"
                 id="navbar-logo-image"
               />
             </div>
@@ -109,7 +109,7 @@ export default function Navbar({
               onClick={() => scrollToSection(heroRef, "homepage")}
               className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
-                fontSize: "clamp(13px, 2.5vw, 50px)",
+                fontSize: "clamp(13px, 2.5vw, 30px)",
                 letterSpacing: "-0.05em",
                 lineHeight: "1",
               }}
@@ -121,7 +121,7 @@ export default function Navbar({
               onClick={() => scrollToSection(storiesRef, "stories")}
               className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
-                fontSize: "clamp(13px, 2.5vw, 50px)",
+                fontSize: "clamp(13px, 2.5vw, 30px)",
                 letterSpacing: "-0.05em",
                 lineHeight: "1",
               }}
@@ -133,7 +133,7 @@ export default function Navbar({
               onClick={() => scrollToSection(productRef, "product")}
               className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
-                fontSize: "clamp(13px, 2.5vw, 50px)",
+                fontSize: "clamp(13px, 2.5vw, 30px)",
                 letterSpacing: "-0.05em",
                 lineHeight: "1",
               }}
@@ -145,7 +145,7 @@ export default function Navbar({
               onClick={openStore}
               className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
-                fontSize: "clamp(13px, 2.5vw, 50px)",
+                fontSize: "clamp(13px, 2.5vw, 30px)",
                 letterSpacing: "-0.05em",
                 lineHeight: "1",
               }}
@@ -157,7 +157,7 @@ export default function Navbar({
               onClick={openInstagram}
               className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
-                fontSize: "clamp(13px, 2.5vw, 50px)",
+                fontSize: "clamp(13px, 2.5vw, 30px)",
                 letterSpacing: "-0.05em",
                 lineHeight: "1",
               }}
