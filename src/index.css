@@ -14,6 +14,15 @@
   --font-pretendard: "Pretendard", sans-serif;
 }
 
+/* 다크 모드 강제 적용 방지: 운영체제/브라우저가 색상을 반전·왜곡하지 못하도록 라이트 모드로 고정 */
+:root {
+  color-scheme: light only;
+}
+
+html {
+  color-scheme: light only;
+}
+
 body {
   font-family: "Mohave", "Pretendard", sans-serif;
   background-color: #fafaf8;
