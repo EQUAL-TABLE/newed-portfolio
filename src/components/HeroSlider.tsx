@@ -39,7 +39,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
   return (
     <div
       ref={heroRef}
-      className="w-full bg-[#ec7123] md:pt-24 lg:pt-30 xl:pt-20" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
+      className="w-full bg-[#ec7123] md:pt-16 lg:pt-18 xl:pt-20" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
       id="hero-slider-section"
     >
       {/* 반응형 여백을 담당하며 가운데 정렬되는 감싸는 프레임. 상하 안쪽 여백 100, 좌우 안쪽 여백 100 */}
@@ -136,7 +136,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                         <React.Fragment key={`group-${idx}`}>
                           {sliderBar}
                           <div
-                            className="w-[30px] h-[10px] bg-[#fafaf8]/30 rounded-sm flex-shrink-0 mx-2 xl:mx-[12px]"
+                            className="w-[20px] xl:w-[25px] h-[10px] bg-[#fafaf8]/30 rounded-sm flex-shrink-0 mx-2 xl:mx-[12px]"
                             id={`thumbnail-sep-${idx}`}
                           />
                         </React.Fragment>
@@ -157,7 +157,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
               {/* 우측 정렬 텍스트 슬레이트 - 설명 텍스트 하단 라인이 좌측 이미지 하단과 완벽 일치 */}
               {/* 크기 70px, 자간 -3.5px(또는 -0.05em), 행간 80px, Bold 적용 */}
               <div
-                className="text-right py-2 md:py-4 xl:py-0 self-end w-full mt-4 lg:mt-6 xl:mt-0"
+                className="text-right self-end w-full"
                 id="hero-slider-caption-block"
               >
                 <div className="font-bold text-[#fafaf8] text-right font-sans uppercase text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[90px] xl:leading-[85px] xl:tracking-[-3.5px] w-full">

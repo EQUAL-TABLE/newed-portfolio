@@ -72,7 +72,7 @@ export default function Navbar({
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 bg-[#fae6aa] border-b border-[#fae6aa]/50 pt-4 sm:pt-6 md:pt-8 lg:pt-12 xl:pt-[20px] pb-3 sm:pb-4 md:pb-5 lg:pb-6 xl:pb-[10px]"
+      className="fixed top-0 left-0 w-full z-50 bg-[#fae6aa] border-b border-[#fae6aa]/50 pt-1 sm:pt-2 md:pt-3 lg:pt-4 xl:pt-[20px] pb-1 sm:pb-1 md:pb-2 lg:pb-2 xl:pb-[10px]"
       style={{ marginLeft: "0px", height: "auto" }}
       id="main-navbar"
     >

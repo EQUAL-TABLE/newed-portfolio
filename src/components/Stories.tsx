@@ -35,7 +35,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
             id="stories-title-col"
           >
             <h2
-              className="font-semibold text-[#000000] uppercase text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[70px] xl:leading-[120px] font-sans"
+              className="font-semibold text-[#000000] uppercase text-xl sm:text-2xl md:text-4xl lg:text-6xl xl:text-[70px] xl:leading-[120px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="stories-heading"
             >
@@ -61,8 +61,11 @@ export default function Stories({ storiesRef }: StoriesProps) {
             </p>
 
             {/* MORE 텍스트: 사이즈 55, 행간 80, 자간 -40 (-0.04em), regular */}
+            {/* 아코디언이 열리면 order-last로 버튼을 아코디언 하단으로 이동(레이아웃 구조는 유지) */}
             <div
-              className="flex justify-end mt-4 md:mt-6 xl:mt-[40px]"
+              className={`flex justify-end mt-4 md:mt-6 xl:mt-[40px] ${
+                isOpen ? "order-last" : ""
+              }`}
               id="stories-button-row"
             >
               <button
@@ -71,7 +74,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
                   trackAccordionToggle("stories", next);
                   setIsOpen(next);
                 }}
-                className="group text-[#ec7123] hover:text-[#ec7123] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[30px] xl:leading-[80px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
+                className="group text-[#ec7123] hover:text-[#ec7123] font-normal text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[30px] xl:leading-[10px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
                 style={{ letterSpacing: "-0.04em" }}
                 id="stories-toggle-button"
               >
@@ -93,13 +96,13 @@ export default function Stories({ storiesRef }: StoriesProps) {
                 <img
                   src={stories_more}
                   alt="stories_more"
-                  className="w-full max-h-[550px] object-cover object-[center_20%]"
+                  className="w-full max-h-[550px] object-cover object-[center_35%] mt-10 md:mt-16 lg:mt-[100px]"
                   loading="lazy"
                 />
               </div>
               {/* MORE 내의 텍스트 스타일: 위의 "우측 설명 글" 스타일과 동일 */}
               <div
-                className="text-[#000000] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[30px] xl:leading-[50px] space-y-6 md:space-y-8 font-sans mt-6 lg:mt-[100px] mb-10 md:mb-16 lg:mb-[100px]"
+                className="text-[#000000] font-normal text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[30px] xl:leading-[50px] space-y-6 md:space-y-8 font-sans mt-6 lg:mt-[100px]"
                 style={{ letterSpacing: "-0.025em" }}
                 id="stories-accordion-inner"
               >

@@ -106,7 +106,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
 
   // 한글 본문 공통 서식 (Web 기준 40px / 행간 60 / 자간 -0.025em, Pretendard는 font-sans 폴백으로 적용)
   const koreanTextClass =
-    "text-base sm:text-lg md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] font-sans";
+    "text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[30px] xl:leading-[50px] font-sans";
 
   // 아코디언 내부 공통 콘텐츠 (데스크탑/모바일 동일 구조 공유)
   // 구조: 상품명 → 상세 이미지(한 줄) → [검정 title + 컬러 title(한 줄)] → 설명글  (디테일 수만큼 반복)
@@ -121,7 +121,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       </h3>
 
       {/* 상세 상품 이미지: 모바일 가운데(두 개 나란히) / Web 좌측 정렬 */}
-      <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-[820px] mx-auto lg:mx-0 w-full mt-6 md:mt-10 lg:mt-[0px]">
+      <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-[820px] mx-auto lg:mx-0 w-full">
         {product.accordionDetails.map((feat, fIdx) => (
           <div
             key={fIdx}
@@ -138,7 +138,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       </div>
 
       {/* 디테일별: [검정 title + 컬러 title(한 줄)] + 하단 설명글 */}
-      <div className="flex flex-col space-y-8 md:space-y-12 lg:space-y-[60px] mt-8 md:mt-12 lg:mt-[20px]">
+      <div className="flex flex-col space-y-8 md:space-y-12 lg:space-y-[60px] mt-3 md:mt-4 lg:mt-[20px]">
         {product.accordionDetails.map((feat, fIdx) => {
           const { black, color } = splitTitle(feat.title);
           return (
@@ -224,7 +224,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   >
                     {/* 상품명 텍스트 */}
                     <h3
-                      className="font-normal text-[#000000] text-xl sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] uppercase font-sans"
+                      className="font-normal text-[#000000] text-sm sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] uppercase font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`product-title-${index}`}
                     >
@@ -232,7 +232,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                     </h3>
                     {/* 설명글 텍스트 */}
                     <p
-                      className="text-[#000000]/85 font-normal text-base sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] font-sans"
+                      className="text-[#000000]/85 font-normal text-sm sm:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] font-sans"
                       style={{ letterSpacing: "-0.04em" }}
                       id={`product-desc-${index}`}
                     >

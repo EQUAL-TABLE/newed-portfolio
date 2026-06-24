@@ -13,28 +13,35 @@ export default function Footer() {
       className="bg-[#000000] py-6 md:py-8 lg:py-9 xl:py-[40px] px-4 sm:px-8 md:px-16 lg:px-20 xl:px-[100px] w-full border-t border-black/20 select-none"
       id="brand-footer"
     >
-      <div className="w-full max-w-[1980px] mx-auto flex flex-col items-center justify-center gap-3 sm:gap-4" id="footer-content-container">
+      <div
+        className="w-full max-w-[1980px] mx-auto flex flex-col items-center justify-center gap-3 sm:gap-4"
+        id="footer-content-container"
+      >
         {/* regular, 자간 -40, xl사이즈 25px에 최적화된 텍스트 */}
         <p
-          className="text-[#fafaf8]/85 text-xs sm:text-base md:text-lg lg:text-xl xl:text-[25px] xl:leading-[35px] font-sans uppercase font-normal text-center"
+          className="text-[#fafaf8]/85 text-xs sm:text-base md:text-lg lg:text-xl xl:text-[20px] xl:leading-[20px] font-sans uppercase font-normal text-center"
           style={{ letterSpacing: "-0.04em" }}
           id="footer-text-line"
         >
-          EQUALTABLE INC. BUSINESS NUMBER : 564-87-02196 | ADDRESS : B1209, 40-36, Sinnaeyeok-ro 3-gil, Jungnang-gu, Seoul | info.equaltable@gmail.com | ©NEWED.ALL RICHTSRESERVED
+          EQUALTABLE INC. BUSINESS NUMBER : 564-87-02196 | ADDRESS : B1209,
+          40-36, Sinnaeyeok-ro 3-gil, Jungnang-gu, Seoul |
+          info.equaltable@gmail.com | ©NEWED.ALL RICHTSRESERVED |{" "}
+          {/* 개인정보 처리방침 열람 링크 (모달 트리거) */}
+          <button
+            onClick={() => setIsPolicyOpen(true)}
+            className="text-[#fafaf8]/85 text-xs sm:text-base md:text-lg lg:text-xl xl:text-[20px] xl:leading-[20px] font-sans uppercase-4 cursor-pointer"
+            id="footer-privacy-link"
+          >
+            개인정보 처리방침
+          </button>
         </p>
-
-        {/* 개인정보 처리방침 열람 링크 (모달 트리거) */}
-        <button
-          onClick={() => setIsPolicyOpen(true)}
-          className="text-[#fafaf8]/60 hover:text-[#ec7123] transition-colors text-[11px] sm:text-sm font-sans underline underline-offset-4 cursor-pointer"
-          id="footer-privacy-link"
-        >
-          개인정보 처리방침
-        </button>
       </div>
 
       {/* 개인정보 처리방침 모달 */}
-      <PrivacyPolicy isOpen={isPolicyOpen} onClose={() => setIsPolicyOpen(false)} />
+      <PrivacyPolicy
+        isOpen={isPolicyOpen}
+        onClose={() => setIsPolicyOpen(false)}
+      />
     </footer>
   );
 }
