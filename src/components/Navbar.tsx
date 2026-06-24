@@ -102,7 +102,7 @@ export default function Navbar({
 
           {/* 오른쪽: 웹 크기의 가로 메뉴 목록 (4분할 중 우측 3칸 영역을 묶어 4개 메뉴를 양쪽끝에서부터 균등 배치) */}
           <div
-            className="hidden md:flex md:col-span-3 items-center justify-between w-full"
+            className="hidden md:flex md:col-span-3 items-center justify-between w-full md:pl-8 lg:pl-12 xl:pl-40"
             id="navbar-web-menu"
           >
             <button
