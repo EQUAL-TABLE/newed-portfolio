@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import DeepColor from "../assets/images/deep_color.png";
-import BrightColor from "../assets/images/bright_color.png";
-import DecafColor from "../assets/images/decaf_color.png";
-import Deep_product1 from "../assets/images/deep_product_1.png";
-import Deep_product2 from "../assets/images/deep_product_2.png";
-import Bright_product1 from "../assets/images/bright_product_1.png";
-import Bright_product2 from "../assets/images/bright_product_2.png";
-import Decaf_product1 from "../assets/images/decaf_product_1.png";
-import Decaf_product2 from "../assets/images/decaf_product_2.png";
+import DeepColor from "../assets/images/deep_color.webp";
+import BrightColor from "../assets/images/bright_color.webp";
+import DecafColor from "../assets/images/decaf_color.webp";
+import Deep_product1 from "../assets/images/deep_product_1.webp";
+import Deep_product2 from "../assets/images/deep_product_2.webp";
+import Bright_product1 from "../assets/images/bright_product_1.webp";
+import Bright_product2 from "../assets/images/bright_product_2.webp";
+import Decaf_product1 from "../assets/images/decaf_product_1.webp";
+import Decaf_product2 from "../assets/images/decaf_product_2.webp";
 
 
 // Props 인터페이스 정의

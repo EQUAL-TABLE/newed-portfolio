@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import logo_bright from "../assets/images/logo_bright.png";
+import logo_bright from "../assets/images/logo_bright.webp";
 
 // Props 타입 정의
 interface NavbarProps {

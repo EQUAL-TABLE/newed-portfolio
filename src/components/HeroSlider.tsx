@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import bite from "../assets/images/bite.png";
-import slideImg1 from "../assets/images/slideImg1.jpg";
-import slideImg2 from "../assets/images/slideImg2.jpg";
-import slideImg3 from "../assets/images/slideImg3.jpg";
-import slideImg4 from "../assets/images/slideImg4.jpg";
-import slideImg5 from "../assets/images/slideImg5.jpg";
-import slideImg6 from "../assets/images/slideImg6.jpg";
+import bite from "../assets/images/bite.webp";
+import slideImg1 from "../assets/images/slideImg1.webp";
+import slideImg2 from "../assets/images/slideImg2.webp";
+import slideImg3 from "../assets/images/slideImg3.webp";
+import slideImg4 from "../assets/images/slideImg4.webp";
+import slideImg5 from "../assets/images/slideImg5.webp";
+import slideImg6 from "../assets/images/slideImg6.webp";
 
 // Props 인터페이스 정의
 interface HeroSliderProps {

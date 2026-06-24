@@ -1,4 +1,4 @@
-import beach from "../assets/images/beach.jpg";
+import beach from "../assets/images/beach.webp";
 
 export default function FullImage() {
   return (

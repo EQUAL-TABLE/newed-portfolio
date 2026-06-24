@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import sufferboard from "../assets/images/sufferboard.png";
-import stories_more from "../assets/images/stories_more.png";
+import sufferboard from "../assets/images/sufferboard.webp";
+import stories_more from "../assets/images/stories_more.webp";
 
 // Props 인터페이스 정의
 interface StoriesProps {

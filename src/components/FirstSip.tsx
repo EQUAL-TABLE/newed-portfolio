@@ -1,4 +1,4 @@
-import skyblueIcecream from "../assets/images/skyblue_icecream.png";
+import skyblueIcecream from "../assets/images/skyblue_icecream.webp";
 
 export default function FirstSip() {
   return (
