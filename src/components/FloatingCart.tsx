@@ -1,5 +1,5 @@
 import { ShoppingBag } from "lucide-react";
-import cart from "../assets/images/cart.png";
+import cart from "../assets/images/cart.webp";
 
 export default function FloatingCart() {
   // 장바구니 클릭 시 지정된 인스타그램 오피셜 계정 링크로 새 창 이동 처리하는 핸들러 함수
