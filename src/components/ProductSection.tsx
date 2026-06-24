@@ -23,6 +23,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
   const products = [
     {
       name: "DEEP EDITION",
+      color: "#ec7123", // 활성화 시 상품명/컬러 타이틀에 적용되는 대표 색상
       desc: "orange chocolat & creamy nut",
       image: DeepColor,
       accordionDetails: [
@@ -40,6 +41,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     },
     {
       name: "BRIGHT EDITION",
+      color: "#468fcd", // 활성화 시 상품명/컬러 타이틀에 적용되는 대표 색상
       desc: "lychee sorbet & peach melba",
       image: BrightColor,
       accordionDetails: [
@@ -57,6 +59,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     },
     {
       name: "DECAF EDITION",
+      color: "#794a9a", // 활성화 시 상품명/컬러 타이틀에 적용되는 대표 색상
       desc: "pistachio ganache & apricot atelier",
       image: DecafColor,
       accordionDetails: [
@@ -92,20 +95,33 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     return { black: title.slice(0, idx + 1), color: title.slice(idx + 1).trim() };
   };
 
+  // 문자열 내의 "<br />"(및 <br/>, <br>) 태그를 실제 줄바꿈으로 렌더링
+  const renderMultiline = (text: string) =>
+    text.split(/<br\s*\/?>/i).map((line, lineIdx, arr) => (
+      <React.Fragment key={lineIdx}>
+        {line.trim()}
+        {lineIdx < arr.length - 1 && <br />}
+      </React.Fragment>
+    ));
+
+  // 한글 본문 공통 서식 (Web 기준 40px / 행간 60 / 자간 -0.025em, Pretendard는 font-sans 폴백으로 적용)
+  const koreanTextClass =
+    "text-base sm:text-lg md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] font-sans";
+
   // 아코디언 내부 공통 콘텐츠 (데스크탑/모바일 동일 구조 공유)
   // 구조: 상품명 → 상세 이미지(한 줄) → [검정 title + 컬러 title(한 줄)] → 설명글  (디테일 수만큼 반복)
   const renderAccordionContent = (product: (typeof products)[number]) => (
     <div className="flex flex-col w-full">
-      {/* 상품명 */}
+      {/* 상품명: 모바일 가운데 정렬 / Web 좌측 정렬, 색상은 활성 제품 대표 색상 */}
       <h3
-        className="text-center font-semibold text-[#000000] uppercase text-3xl sm:text-4xl lg:text-5xl xl:text-[55px] xl:leading-[65px] font-sans"
-        style={{ letterSpacing: "-0.04em" }}
+        className="text-center lg:text-left font-semibold uppercase text-3xl sm:text-4xl lg:text-5xl xl:text-[55px] xl:leading-[65px] font-sans"
+        style={{ letterSpacing: "-0.04em", color: product.color }}
       >
         {product.name}
       </h3>
 
-      {/* 상세 상품 이미지 (한 줄에 나란히 배치) */}
-      <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-[820px] mx-auto w-full mt-6 md:mt-10 lg:mt-[60px]">
+      {/* 상세 상품 이미지: 모바일 가운데(두 개 나란히) / Web 좌측 정렬 */}
+      <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-[820px] mx-auto lg:mx-0 w-full mt-6 md:mt-10 lg:mt-[0px]">
         {product.accordionDetails.map((feat, fIdx) => (
           <div
             key={fIdx}
@@ -122,29 +138,27 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       </div>
 
       {/* 디테일별: [검정 title + 컬러 title(한 줄)] + 하단 설명글 */}
-      <div className="flex flex-col space-y-8 md:space-y-12 lg:space-y-[60px] mt-8 md:mt-12 lg:mt-[80px]">
+      <div className="flex flex-col space-y-8 md:space-y-12 lg:space-y-[60px] mt-8 md:mt-12 lg:mt-[20px]">
         {product.accordionDetails.map((feat, fIdx) => {
           const { black, color } = splitTitle(feat.title);
-          // 컬러 title 색상: 0번 오렌지, 1번 블루 (교차)
-          const colorClass = fIdx % 2 === 0 ? "text-[#ec7123]" : "text-[#468fcd]";
           return (
             <div key={fIdx} className="w-full flex flex-col">
-              {/* 검정 title + 컬러 title 을 한 줄에 표시 */}
+              {/* 검정 title + 컬러 title 을 한 줄에 표시 (컬러 부분은 활성 제품 대표 색상) */}
               <h4
-                className="font-semibold text-xl sm:text-2xl lg:text-[28px] xl:text-[30px] xl:leading-[40px] font-sans"
+                className={`font-semibold ${koreanTextClass}`}
                 style={{ letterSpacing: "-0.025em" }}
                 id={`accordion-feat-title-${fIdx}`}
               >
                 {black && <span className="text-[#000000]">{black} </span>}
-                <span className={colorClass}>{color}</span>
+                <span style={{ color: product.color }}>{color}</span>
               </h4>
-              {/* 하단 설명글 */}
+              {/* 하단 설명글 (<br /> 태그를 실제 줄바꿈으로 렌더링) */}
               <p
-                className="text-[#000000]/85 font-normal text-base sm:text-lg md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] mt-2 xl:mt-4 font-sans"
+                className={`text-[#000000]/85 font-normal mt-2 xl:mt-4 ${koreanTextClass}`}
                 style={{ letterSpacing: "-0.025em" }}
                 id={`accordion-feat-desc-${fIdx}`}
               >
-                {feat.desc}
+                {renderMultiline(feat.desc)}
               </p>
             </div>
           );
