@@ -22,9 +22,14 @@ export function initGA(): void {
   if (!isEnabled || initialized || typeof window === "undefined") return;
 
   // dataLayer 및 gtag 함수 부트스트랩
+  // ⚠️ 반드시 'arguments' 객체를 그대로 push 해야 합니다.
+  // gtag.js는 dataLayer 항목이 arguments 객체일 때만 gtag 명령(config/event)으로
+  // 인식하여 조회(hit)를 전송합니다. (...args) 배열을 push하면 명령으로 인식되지 않아
+  // 태그는 로드되지만 데이터가 전혀 전송되지 않습니다. (Google 공식 스니펫 형식)
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag(...args: unknown[]) {
-    window.dataLayer.push(args);
+  window.gtag = function gtag() {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer.push(arguments);
   };
 
   // gtag.js 외부 스크립트 비동기 로드
