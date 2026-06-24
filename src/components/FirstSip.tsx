@@ -18,7 +18,7 @@ export default function FirstSip() {
         >
           {/* 좌측 영역: 모바일 및 태블릿에서는 전폭, lg 이상 데스크탑에서는 가변적이되 최대 445px 제한 */}
           <div
-            className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 flex flex-col justify-start pt-10 md:pt-16 lg:pt-24 xl:pt-[100px] font-sans select-none"
+            className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 flex flex-col justify-start px-4 sm:px-6 md:px-8 lg:px-0 pt-10 md:pt-16 lg:pt-24 xl:pt-[100px] font-sans select-none"
             id="first-sip-text-block"
           >
             {/* 텍스트 사이즈 100, 행간 120, 자간 -40 (즉 -4% or -0.04em), semi bold */}

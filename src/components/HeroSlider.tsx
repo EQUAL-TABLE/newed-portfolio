@@ -39,7 +39,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
   return (
     <div
       ref={heroRef}
-      className="w-full bg-[#ec7123] md:pt-16 lg:pt-18 xl:pt-20" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
+      className="w-full bg-[#ec7123] pt-12 sm:pt-14 md:pt-16 lg:pt-18 xl:pt-20" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
       id="hero-slider-section"
     >
       {/* 반응형 여백을 담당하며 가운데 정렬되는 감싸는 프레임. 상하 안쪽 여백 100, 좌우 안쪽 여백 100 */}
@@ -54,7 +54,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
         >
           {/* 왼쪽 영역: 단독 세로 포트레이트 이미지 배정, 최대 800 * 800 */}
           <div
-            className="w-full aspect-square lg:w-[45%] lg:max-w-[800px] lg:flex-shrink-0 relative overflow-hidden rounded-sm"
+            className="w-full aspect-square lg:w-[45%] lg:max-w-[800px] lg:flex-shrink-0 relative overflow-hidden"
             id="hero-left-col"
           >
             {/* 세로 포트레이트 이미지를 지연 로딩(lazy)하여 적용 */}
@@ -75,7 +75,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
           >
             {/* 메인 슬라이드 이미지 - 930 * 600 */}
             <div
-              className="w-full aspect-[930/600] lg:max-w-[930px] bg-black/5 relative overflow-hidden rounded-sm cursor-pointer lg:flex-shrink-0"
+              className="w-full aspect-[930/600] lg:max-w-[930px] bg-black/5 relative overflow-hidden cursor-pointer lg:flex-shrink-0"
               id="hero-right-main-image-container"
             >
               <AnimatePresence mode="wait">
@@ -97,12 +97,12 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
 
             {/* 슬라이더 이미지와 슬라이더 바 사이 간격을 조절하는 하단 파트 */}
             <div
-              className="flex flex-col flex-1 justify-between mt-4 md:mt-6 lg:mt-6 xl:mt-[0px]"
+              className="flex flex-col flex-1 justify-between"
               id="hero-right-bottom-part"
             >
               {/* Spacer 1 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
               <div
-                className="hidden lg:block flex-1 min-h-[16px] xl:min-h-[25px]"
+                className="h-2 md:h-4 lg:h-6 xl:h-8  flex-shrink-0"
                 id="hero-spacer-1"
               />
 
@@ -121,7 +121,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                       <button
                         key={`bar-${idx}`}
                         onClick={() => handleThumbClick(idx)}
-                        className={`h-[10px] flex-1 transition-all duration-300 relative rounded-sm cursor-pointer focus:outline-none ${
+                        className={`h-[10px] flex-1 transition-all duration-300 relative cursor-pointer focus:outline-none ${
                           isSelected
                             ? "bg-[#468fcd]"
                             : "bg-[#fae6aa] hover:bg-[#fae6aa]/80"
@@ -136,7 +136,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                         <React.Fragment key={`group-${idx}`}>
                           {sliderBar}
                           <div
-                            className="w-[20px] xl:w-[25px] h-[10px] bg-[#fafaf8]/30 rounded-sm flex-shrink-0 mx-2 xl:mx-[12px]"
+                            className="w-[20px] xl:w-[25px] h-[10px] bg-[#fafaf8]/30 flex-shrink-0 mx-2 xl:mx-[12px]"
                             id={`thumbnail-sep-${idx}`}
                           />
                         </React.Fragment>
@@ -150,7 +150,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
 
               {/* Spacer 2 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
               <div
-                className="hidden lg:block flex-1 min-h-[16px] xl:min-h-[25px]"
+                className="h-2 md:h-4 lg:h-6 xl:h-8 flex-shrink-0"
                 id="hero-spacer-2"
               />
 

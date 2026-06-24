@@ -10,7 +10,6 @@ import Bright_product2 from "../assets/images/bright_product_2.webp";
 import Decaf_product1 from "../assets/images/decaf_product_1.webp";
 import Decaf_product2 from "../assets/images/decaf_product_2.webp";
 
-
 // Props 인터페이스 정의
 interface ProductSectionProps {
   productRef: React.RefObject<HTMLDivElement | null>;
@@ -92,7 +91,10 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
   const splitTitle = (title: string) => {
     const idx = title.indexOf(",");
     if (idx === -1) return { black: "", color: title };
-    return { black: title.slice(0, idx + 1), color: title.slice(idx + 1).trim() };
+    return {
+      black: title.slice(0, idx + 1),
+      color: title.slice(idx + 1).trim(),
+    };
   };
 
   // 문자열 내의 "<br />"(및 <br/>, <br>) 태그를 실제 줄바꿈으로 렌더링
@@ -171,7 +173,8 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     <section
       ref={productRef}
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#fae6aa] py-10 md:py-16 lg:py-24 xl:py-[100px] w-full"
+      className="bg-[#fae6aa] pt-10 md:pt-16 lg:pt-20 xl:pt-[100px] w-full
+      pb-20 md:pb-32 lg:pb-40 xl:pb-[200px]"
       id="product-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}
@@ -285,11 +288,20 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
         >
           {activeProduct !== null && (
             // STORIES 섹션과 동일하게 좌측 약 25% 여백 + 우측(나머지 75%) 영역 안에서만 콘텐츠 표시
-            <div className="flex flex-row gap-[8%] w-full" id="product-detail-accordion-layout">
+            <div
+              className="flex flex-row gap-[8%] w-full"
+              id="product-detail-accordion-layout"
+            >
               {/* 좌측 여백 컬럼 (콘텐츠 없음) */}
-              <div className="w-[25%] max-w-[445px] flex-shrink-0" aria-hidden="true" />
+              <div
+                className="w-[25%] max-w-[445px] flex-shrink-0"
+                aria-hidden="true"
+              />
               {/* 우측 콘텐츠 영역 */}
-              <div className="flex-1 w-full" id="product-detail-accordion-content">
+              <div
+                className="flex-1 w-full"
+                id="product-detail-accordion-content"
+              >
                 {renderAccordionContent(products[activeProduct])}
               </div>
             </div>
