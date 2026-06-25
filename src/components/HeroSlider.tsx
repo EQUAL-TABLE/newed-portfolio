@@ -199,7 +199,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
               >
                 <div
                   className="font-bold text-[#fafaf8] text-right font-sans uppercase
-                text-5xl sm:text-5xl md:text-2xl lg:text-8xl xl:text-8xl
+                text-5xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl
                 xl:leading-[85px] w-full"
                   style={{ letterSpacing: "-0.05em" }}
                 >
