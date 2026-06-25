@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { trackProductClick } from "../lib/analytics";
+import { trackProductClick, trackOutbound } from "../lib/analytics";
+
+// 와디즈 스토어 URL (모바일 아코디언 상세 이미지 클릭 시 이동)
+const WADIZ_STORE_URL =
+  "https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244";
 import DeepColor from "../assets/images/deep_color.webp";
 import BrightColor from "../assets/images/bright_color.webp";
 import DecafColor from "../assets/images/decaf_color.webp";
@@ -112,7 +116,11 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
 
   // 아코디언 내부 공통 콘텐츠 (데스크탑/모바일 동일 구조 공유)
   // 구조: 상품명 → 상세 이미지(한 줄) → [검정 title + 컬러 title(한 줄)] → 설명글  (디테일 수만큼 반복)
-  const renderAccordionContent = (product: (typeof products)[number]) => (
+  // isMobile: 모바일 인스턴스(lg 미만)에서만 상세 이미지 클릭 시 와디즈 스토어로 이동
+  const renderAccordionContent = (
+    product: (typeof products)[number],
+    isMobile = false,
+  ) => (
     <div className="flex flex-col w-full">
       {/* 상품명: 모바일 가운데 정렬 / Web 좌측 정렬, 색상은 활성 제품 대표 색상 */}
       <h3
@@ -127,7 +135,17 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
         {product.accordionDetails.map((feat, fIdx) => (
           <div
             key={fIdx}
-            className="w-full aspect-square overflow-hidden rounded-sm"
+            onClick={
+              isMobile
+                ? () => {
+                    trackOutbound("shop_wadiz", WADIZ_STORE_URL);
+                    window.open(WADIZ_STORE_URL, "_blank");
+                  }
+                : undefined
+            }
+            className={`w-full aspect-square overflow-hidden rounded-sm ${
+              isMobile ? "cursor-pointer" : ""
+            }`}
           >
             <img
               src={feat.image}
@@ -270,7 +288,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
                   }`}
                   id={`product-mobile-accordion-${index}`}
                 >
-                  {renderAccordionContent(item)}
+                  {renderAccordionContent(item, true)}
                 </div>
               </div>
             );

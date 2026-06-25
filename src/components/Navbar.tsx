@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
 import logo_bright from "../assets/images/logo_bright.webp";
-import {
-  trackMenuClick,
-  trackOutbound,
-  trackUiToggle,
-} from "../lib/analytics";
+import { trackMenuClick, trackOutbound, trackUiToggle } from "../lib/analytics";
 
 // 와디즈 스토어 URL (SHOP 버튼 / 추적 라벨에서 공통 사용)
 const WADIZ_STORE_URL =
@@ -70,9 +65,21 @@ export default function Navbar({
     setIsOpen(next);
   };
 
+  // 로고 클릭 핸들러: 모바일(<768px)에서는 메뉴 토글, 데스크탑에서는 Hero 섹션으로 스크롤
+  const handleLogoClick = () => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      toggleMobileMenu();
+    } else {
+      scrollToSection(heroRef, "logo");
+    }
+  };
+
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 bg-[#fae6aa] border-b border-[#fae6aa]/50 pt-1 sm:pt-2 md:pt-3 lg:pt-4 xl:pt-[20px] pb-1 sm:pb-1 md:pb-2 lg:pb-2 xl:pb-[10px]"
+      className="fixed top-0 left-0 w-full z-50
+        bg-[#fae6aa] border-b border-[#fae6aa]/50 
+        pt-1 sm:pt-2 md:pt-3 lg:pt-4 xl:pt-5 
+        pb-1 sm:pb-1 md:pb-2 lg:pb-2 xl:pb-2.5"
       style={{ marginLeft: "0px", height: "auto" }}
       id="main-navbar"
     >
@@ -81,20 +88,21 @@ export default function Navbar({
         id="navbar-container"
       >
         <div
-          className="w-full md:grid md:grid-cols-4 md:items-center flex items-center justify-between"
+          className="w-full md:grid md:grid-cols-4 md:items-center flex items-center justify-center"
           id="navbar-inner-grid"
         >
           {/* 왼쪽: NEWED 타원형 로고 배지 (4분할 중 좌측 1칸) */}
           <div
-            className="md:col-span-1 flex justify-start items-center cursor-pointer select-none"
-            onClick={() => scrollToSection(heroRef, "logo")}
+            className="md:col-span-1 flex justify-center md:justify-start items-center cursor-pointer select-none"
+            onClick={handleLogoClick}
             id="navbar-logo-container"
           >
             <div>
               <img
                 src={logo_bright}
                 alt="NEWED Logo"
-                className="w-24 sm:w-28 md:w-36 lg:w-40 xl:w-45 h-auto object-contain"
+                className="w-50 sm:w-50 md:w-50 lg:w-40 xl:w-45 h-auto object-contain
+                py-1.5"
                 id="navbar-logo-image"
               />
             </div>
@@ -167,60 +175,46 @@ export default function Navbar({
             </button>
           </div>
 
-          {/* 오른쪽: 모바일 햄버거 토글 버튼 (768px 미만) */}
-          <div
-            className="md:hidden flex items-center"
-            id="navbar-mobile-toggle-container"
-          >
-            <button
-              onClick={toggleMobileMenu}
-              className="text-[#000000] hover:text-[#ec7123] transition-colors p-1 cursor-pointer focus:outline-none"
-              aria-label="Toggle menu"
-              id="navbar-mobile-hamburger"
-            >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
         </div>
       </div>
 
       {/* 모바일 전체 화면 드롭다운 오버레이 슬라이드 메뉴 */}
       {isOpen && (
         <div
-          className="absolute top-full left-0 w-full bg-[#fae6aa] border-b border-[#000000]/10 flex flex-col items-center py-6 space-y-5 shadow-lg md:hidden animate-fade-in"
+          className="absolute top-full left-0 w-full bg-[#fae6aa] border-b border-[#000000]/10 flex flex-col items-center shadow-lg md:hidden animate-fade-in"
           id="navbar-mobile-dropdown"
         >
           <button
             onClick={() => scrollToSection(heroRef, "homepage", "mobile")}
-            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
+            className="w-full text-left pt-2.5 px-4 sm:px-6 pb-2.5 font-bold text-[#000000] text-4xl uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-homepage"
           >
             HOMEPAGE
           </button>
           <button
             onClick={() => scrollToSection(storiesRef, "stories", "mobile")}
-            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
+            className="w-full text-left px-4 sm:px-6 pb-2.5 font-bold text-[#000000] text-4xl uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-stories"
           >
             STORIES
           </button>
           <button
             onClick={() => scrollToSection(productRef, "product", "mobile")}
-            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
+            className="w-full text-left px-4 sm:px-6 pb-2.5 font-bold text-[#000000] text-4xl uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-product"
           >
             PRODUCT
           </button>
-                    <button
+          <button
             onClick={openStore}
-            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
+            className="w-full text-left px-4 sm:px-6 pb-2.5 font-bold text-[#000000] text-4xl uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-shop"
           >
             SHOP
           </button>
           <button
             onClick={openInstagram}
-            className="w-full text-center py-2 font-bold text-[#000000] text-lg uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
+            className="w-full text-left px-4 sm:px-6 pb-2.5 font-bold text-[#000000] text-4xl uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-instagram"
           >
             INSTAGRAM
