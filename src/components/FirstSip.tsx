@@ -18,19 +18,30 @@ export default function FirstSip() {
         >
           {/* 좌측 영역: 모바일 및 태블릿에서는 전폭, lg 이상 데스크탑에서는 가변적이되 최대 445px 제한 */}
           <div
-            className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 flex flex-col justify-start px-4 sm:px-6 md:px-8 lg:px-0 pt-10 md:pt-16 lg:pt-24 xl:pt-[100px] font-sans select-none"
+            className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 flex flex-col justify-start 
+            px-4 sm:px-6 md:px-8 lg:px-0 
+            pt-8 md:pt-16 lg:pt-24 xl:pt-[100px] 
+            font-sans select-none"
             id="first-sip-text-block"
           >
             {/* 텍스트 사이즈 100, 행간 120, 자간 -40 (즉 -4% or -0.04em), semi bold */}
             <h2
-              className="font-semibold text-[#fafaf8] uppercase text-xl sm:text-2xl md:text-4xl lg:text-6xl xl:text-[70px] xl:leading-[80px] tracking-tight"
+              className="font-semibold text-[#fafaf8] uppercase 
+              text-5xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[70px] 
+              xl:leading-[80px] 
+              tracking-tight"
               style={{ letterSpacing: "-0.04em" }}
               id="first-sip-heading"
             >
               <span className="block">FIRST SIP</span>
-              <span className="block">THAT</span>
-              <span className="block">FEELING</span>
+              {/* 모바일: "THAT FEELING" 한 줄(총 2줄) / 웹(lg+): "THAT"·"FEELING" 분리(총 3줄) */}
+              <span className="block">
+                THAT{" "}
+                <br className="hidden lg:block" />
+                FEELING
+              </span>
             </h2>
+              <div className="h-8 md:pt-16 lg:hidden flex-shrink-0" id="hero-mobile-bottom-spacer" />
           </div>
 
           {/* 우측 영역: 나머지 공간 전체 이미지. 모바일 및 태블릿에서는 aspect ratio와 absolute를 활용해 여백 없이 완벽 피트시킴 */}

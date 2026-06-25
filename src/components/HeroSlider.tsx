@@ -69,7 +69,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
   return (
     <div
       ref={heroRef}
-      className="w-full bg-[#ec7123] pt-12 sm:pt-14 md:pt-16 lg:pt-18 xl:pt-20" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
+      className="w-full bg-[#ec7123] pt-23 sm:pt-23 md:pt-16 lg:pt-18 xl:pt-20" // 네비바 고정 높이에 따른 오프셋 확보 & 전반적인 오렌지 배경 역할
       id="hero-slider-section"
     >
       {/* 반응형 여백을 담당하며 가운데 정렬되는 감싸는 프레임. 상하 안쪽 여백 100, 좌우 안쪽 여백 100 */}
@@ -158,7 +158,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                       <button
                         key={`bar-${idx}`}
                         onClick={() => handleThumbClick(idx)}
-                        className={`h-1.25 md:h-2.5 xl:h-2.5 flex-1 transition-all duration-300 relative cursor-pointer focus:outline-none ${
+                        className={`h-1.25 md:h-2.5 flex-1 transition-all duration-300 relative cursor-pointer focus:outline-none ${
                           isSelected
                             ? "bg-[#468fcd]"
                             : "bg-[#fae6aa] hover:bg-[#fae6aa]/80"
@@ -187,7 +187,7 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
 
               {/* Spacer 2 (lg에서 전폭 50/50 비중으로 공간을 정가운데 분할, 압착 시 최소 16px 마진 보존) */}
               <div
-                className="h-2 md:h-4 lg:h-6 xl:h-8 flex-shrink-0"
+                className="h-8 md:h-4 lg:h-6 xl:h-8 flex-shrink-0"
                 id="hero-spacer-2"
               />
 
@@ -197,10 +197,21 @@ export default function HeroSlider({ heroRef }: HeroSliderProps) {
                 className="text-right self-end w-full"
                 id="hero-slider-caption-block"
               >
-                <div className="font-bold text-[#fafaf8] text-right font-sans uppercase text-4xl sm:text-3xl md:text-3xl lg:text-5xl xl:text-[90px] xl:leading-[85px] xl:tracking-[-3.5px] w-full">
-                  ONE CUP, SUDDENLY LIGHTER THAT'S NEWED
+                <div
+                  className="font-bold text-[#fafaf8] text-right font-sans uppercase
+                text-5xl sm:text-5xl md:text-2xl lg:text-8xl xl:text-8xl
+                xl:leading-[85px] w-full"
+                  style={{ letterSpacing: "-0.05em" }}
+                >
+                  ONE CUP,{" "}
+                  {/* 모바일: "ONE CUP," 뒤에서 줄바꿈(3줄) / 웹(lg+): 줄바꿈 없이 한 줄(2줄) */}
+                  <br className="lg:hidden" />
+                  SUDDENLY LIGHTER <br /> THAT'S NEWED
                 </div>
               </div>
+
+              {/* 모바일 뷰 전용 하단 여백 (lg 이상에서는 미적용) */}
+              <div className="h-4 md:hidden flex-shrink-0" id="hero-mobile-bottom-spacer" />
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
     <section
       ref={storiesRef} // 네비바 메뉴에서 스무스 스크롤 대상(storiesRef)으로 타겟팅을 잡기 위해 지정합니다.
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#fafaf8] py-10 md:py-16 lg:py-24 xl:py-[100px] border-b border-[#fae6aa]/35 w-full"
+      className="bg-[#fafaf8] py-8 md:py-16 lg:py-24 xl:py-[100px] border-b border-[#fae6aa]/35 w-full"
       id="stories-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}
@@ -35,7 +35,8 @@ export default function Stories({ storiesRef }: StoriesProps) {
             id="stories-title-col"
           >
             <h2
-              className="font-semibold text-[#000000] uppercase text-xl sm:text-2xl md:text-4xl lg:text-6xl xl:text-[70px] xl:leading-[120px] font-sans"
+              className="font-semibold text-[#000000] uppercase 
+              text-5xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[70px] xl:leading-[120px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="stories-heading"
             >
@@ -50,13 +51,14 @@ export default function Stories({ storiesRef }: StoriesProps) {
           >
             {/* 우측 설명 글: 사이즈 55, 행간 80, 자간 -40 (-0.04em), regular */}
             <p
-              className="text-[#000000] font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[60px] font-sans"
+              className="text-[#000000] font-normal 
+              text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] 
+              leading-6 sm:leading-6 md:leading-8 lg:leading-12 xl:leading-[60px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="stories-description-text"
             >
               Marseille—where France’s first coffeehouse opened. <br />
               New things came in like waves. People simply enjoyed the thrill.
-              <br />
               NEWED brings that freedom here.
             </p>
 
@@ -74,12 +76,14 @@ export default function Stories({ storiesRef }: StoriesProps) {
                   trackAccordionToggle("stories", next);
                   setIsOpen(next);
                 }}
-                className="group text-[#ec7123] hover:text-[#ec7123] font-normal text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[30px] xl:leading-[10px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
+                className="group text-[#ec7123] hover:text-[#ec7123] font-normal 
+                text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[30px] 
+                xl:leading-[10px] uppercase flex items-center gap-2 focus:outline-none cursor-pointer transition-colors font-sans"
                 style={{ letterSpacing: "-0.04em" }}
                 id="stories-toggle-button"
               >
                 <span>MORE</span>
-                <span className="text-xl md:text-2xl lg:text-3xl xl:text-[40px] transition-transform duration-300">
+                <span className="text-xl md:text-xl lg:text-3xl xl:text-[40px] transition-transform duration-300">
                   {isOpen ? "▲" : "▼"}
                 </span>
               </button>
@@ -88,7 +92,7 @@ export default function Stories({ storiesRef }: StoriesProps) {
             {/* MORE 아코디언: 백그라운드 컬러 삭제, border 삭제, 우측 설명 글 영역과 똑같은 width 내에서 글씨 표기 */}
             <div
               className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                isOpen ? "max-h-[2500px] opacity-100 mt-6" : "max-h-0 opacity-0"
+                isOpen ? "max-h-[2500px] opacity-100" : "max-h-0 opacity-0"
               }`}
               id="stories-accordion"
             >
@@ -96,20 +100,24 @@ export default function Stories({ storiesRef }: StoriesProps) {
                 <img
                   src={stories_more}
                   alt="stories_more"
-                  className="w-full max-h-[550px] object-cover object-[center_35%] mt-10 md:mt-16 lg:mt-[100px]"
+                  className="w-full max-h-[550px] h-80 md:h-120 lg:h-120 xl:h-120 2xl:h-160 object-cover object-[center_35%] 
+                  mt-8 md:mt-16 lg:mt-[100px]"
                   loading="lazy"
                 />
               </div>
               {/* MORE 내의 텍스트 스타일: 위의 "우측 설명 글" 스타일과 동일 */}
               <div
-                className="text-[#000000] font-normal text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[30px] xl:leading-[50px] space-y-6 md:space-y-8 font-sans mt-6 lg:mt-[100px]"
+                className="text-[#000000] font-normal 
+                text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[30px] 
+                xl:leading-[50px] space-y-6 md:space-y-8 font-sans 
+                mt-8 md:mt-16 lg:mt-[100px]"
                 style={{ letterSpacing: "-0.025em" }}
                 id="stories-accordion-inner"
               >
                 <p>
                   프랑스에 커피가 처음 닿은 도시, 마르세유 <br />
-                  우리는 마르세유 커피하우스가 처음 깨운 선명한 감각과 그 새로움을 <br />
-                  있는 그대로 즐기던 마르세유 사람들의 자유로운 직관에서 영감을 받았습니다. <br />
+                  우리는 마르세유 커피하우스가 처음 깨운 선명한 감각과 그 새로움을 
+                  있는 그대로 즐기던 마르세유 사람들의 자유로운 직관에서 영감을 받았습니다.
                   그 시절의 낭만을 현대적으로 재해석해 고객들에게 선명한 즐거움을 선사합니다.
                 </p>
               </div>

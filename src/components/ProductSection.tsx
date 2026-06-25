@@ -34,12 +34,12 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
         {
           image: Deep_product1,
           title: "검증된 조합의 현대적 재해석, 오랑주쇼콜라",
-          desc: "오래 사랑받는 조합엔 다 이유가 있지 <br /> 첫  입에 알 수 있어 짙은 다크초콜릿이 만든 무드 위로 번지는 오렌지의 산뜻한 킥 <br /> 모두가 고개를 끄덕이는 클래식한 위트, 빠지는 건 한순간이야",
+          desc: "오래 사랑받는 조합엔 다 이유가 있지. 첫  입에 알 수 있어 짙은 다크초콜릿이 만든 무드 위로 번지는 오렌지의 산뜻한 킥. 모두가 고개를 끄덕이는 클래식한 위트, 빠지는 건 한순간이야",
         },
         {
           image: Deep_product2,
           title: "아는 맛이 무서운, 크리미넛",
-          desc: "갓 구운 쿠키 향처럼 그냥 지나치기 힘든 중독성 <br /> 마카다미아 뒤에 숨어 있는 크리미한 부드러움이 입안에서 사르르 <br /> 한 번 먹으면 헤어 나올 수 없어. 자꾸 생각나는 꽉 찬 행복.",
+          desc: "갓 구운 쿠키 향처럼 그냥 지나치기 힘든 중독성. 마카다미아 뒤에 숨어 있는 크리미한 부드러움이 입안에서 사르르. 한 번 먹으면 헤어 나올 수 없어. 자꾸 생각나는 꽉 찬 행복.",
         },
       ],
     },
@@ -52,12 +52,12 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
         {
           image: Bright_product1,
           title: "직관적인 청량감, 리치소르베",
-          desc: "마시는 순간, 나른했던 오후를 단숨에 날려버리는 청량감. <br /> 리치와 샤인머스캣의 싱그러움이 입안에서 생기 있게 톡 <br /> 바로 느낄 수 있을걸?  온몸을 타고 흐르는 짜릿함.",
+          desc: "마시는 순간, 나른했던 오후를 단숨에 날려버리는 청량감. 리치와 샤인머스캣의 싱그러움이 입안에서 생기 있게 톡. 바로 느낄 수 있을걸?  온몸을 타고 흐르는 짜릿함.",
         },
         {
           image: Bright_product2,
           title: "역사적 서사를 담은 프리미엄 디저트, 피치멜바",
-          desc: "단 한 명의 소프라노를 위해 만든 런던의 로맨틱한 디저트, 피치 멜바 <br /> 낭만을 가득 채운 복숭아와 라즈베리가 물들인 핑크빛 이야기에 퐁당 <br /> 입안에서 펼쳐지는 새콤달콤한 멜로 드라마 한 편, 어때? ",
+          desc: "단 한 명의 소프라노를 위해 만든 런던의 로맨틱한 디저트, 피치 멜바. 낭만을 가득 채운 복숭아와 라즈베리가 물들인 핑크빛 이야기에 퐁당.입안에서 펼쳐지는 새콤달콤한 멜로 드라마 한 편, 어때? ",
         },
       ],
     },
@@ -191,8 +191,9 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
     <section
       ref={productRef}
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#fae6aa] pt-10 md:pt-16 lg:pt-20 xl:pt-[100px] w-full
-      pb-20 md:pb-32 lg:pb-40 xl:pb-[200px]"
+      className="bg-[#fae6aa] 
+      pt-8 md:pt-16 lg:pt-[100px] w-full
+      pb-8 md:pb-16 lg:pb-[200px]"
       id="product-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}

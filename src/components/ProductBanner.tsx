@@ -2,7 +2,7 @@ export default function ProductBanner() {
   return (
     <section
       // 상하 내부 여백 100 (xl:py-[100px])
-      className="bg-[#ec7123] py-10 md:py-16 lg:py-24 xl:py-[100px] text-[#000000] w-full"
+      className="bg-[#ec7123] py-8 md:py-16 lg:py-24 xl:py-[100px] text-[#000000] w-full"
       id="product-banner-section"
     >
       {/* 1980px 너비 기준 좌우 내부 여백 100 (xl:px-[100px]) */}
@@ -15,7 +15,9 @@ export default function ProductBanner() {
           {/* 좌측 텍스트: 모바일에선 전체 너비, lg 이상 데스크탑에선 약 25% 가변 너비 부여하되 최대 445px 확보 */}
           <div className="w-full lg:w-[25%] lg:max-w-[445px] lg:flex-shrink-0 select-none pb-4 lg:pb-0" id="product-banner-title-col">
             <h2
-              className="font-semibold text-xl sm:text-2xl md:text-4xl lg:text-6xl xl:text-[70px] xl:leading-[40px] uppercase font-sans"
+              className="font-semibold 
+              text-5xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[70px] 
+              xl:leading-[40px] uppercase font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="product-banner-heading"
             >
@@ -26,7 +28,9 @@ export default function ProductBanner() {
           {/* 우측 설명 글: 사이즈 55, 행간 80, 자간 -40 (-0.04em), regular */}
           <div className="flex-1 w-full" id="product-banner-description-col">
             <p
-              className="font-normal text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] xl:leading-[40px] font-sans"
+              className="font-normal 
+              text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[40px] 
+              xl:leading-[40px] font-sans"
               style={{ letterSpacing: "-0.04em" }}
               id="product-banner-paragraph"
             >

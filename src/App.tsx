@@ -11,6 +11,7 @@ import FirstSip from "./components/FirstSip";
 import Stories from "./components/Stories";
 import FullImage from "./components/FullImage";
 import ProductSection from "./components/ProductSection";
+import InstagramFeed from "./components/InstagramFeed";
 import ProductBanner from "./components/ProductBanner";
 import Footer from "./components/Footer";
 import FloatingCart from "./components/FloatingCart";
@@ -28,6 +29,7 @@ const TRACKED_SECTIONS: TrackedSection[] = [
   { id: "stories-section", name: "Stories" },
   { id: "full-image-section", name: "FullImage" },
   { id: "product-section", name: "ProductSection" },
+  { id: "instagram-feed-section", name: "InstagramFeed" },
   { id: "product-banner-section", name: "ProductBanner" },
   { id: "brand-footer", name: "Footer" },
 ];
@@ -90,8 +92,13 @@ export default function App() {
         */}
         <ProductSection productRef={productRef} />
 
-        {/* 
-          8. ProductBanner: 오렌지 그라운드 위에 수놓아진 후각적·미각적 유도 제품 하단 밴너
+        {/*
+          8. InstagramFeed: 공식 임베드(embed.js)로 지정 게시물 4개를 2x2 그리드로 노출하는 인스타그램 섹션
+        */}
+        {/* <InstagramFeed /> */}
+
+        {/*
+          9. ProductBanner: 오렌지 그라운드 위에 수놓아진 후각적·미각적 유도 제품 하단 밴너
         */}
         <ProductBanner />
       </main>
