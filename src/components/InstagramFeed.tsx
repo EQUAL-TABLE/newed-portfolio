@@ -1,111 +1,66 @@
-import { useEffect } from "react";
-
 /**
- * 표시할 인스타그램 게시물 4개의 permalink(고정 링크) 목록입니다.
- * 새 게시물로 교체하려면, 해당 게시물 우상단 ··· 메뉴 > "링크 복사"로 받은
- * https://www.instagram.com/p/XXXXXXXXX/ 형태의 주소를 아래 배열에 넣어주세요.
- * (릴스는 /reel/XXXX/ 형태도 그대로 사용 가능합니다.)
+ * 인스타그램 최신 게시물 4개를 2x2 그리드로 노출하는 섹션입니다.
  *
- * 공식 embed.js가 로그인 없이 가져올 수 있는 "지정한 게시물"이므로,
- * 최신 글이 올라오면 이 배열의 URL을 직접 갈아끼워야 4개가 갱신됩니다.
+ * 현재는 토큰 기반 자동 수집 대신 "수동 등록" 방식입니다.
+ * 이미지는 인스타 CDN URL이 만료되는 문제를 피하기 위해 레포에 로컬 자산
+ * (src/assets/images/instagram/post-N.webp)으로 저장해 사용합니다.
+ * 새 게시물로 교체하려면 이미지를 같은 위치에 덮어쓰고 link만 갱신하세요.
+ *
+ * 노출 범위: 모바일 뷰에서만 보이고 데스크톱(웹) 뷰에서는 숨깁니다(md 이상 hidden).
  */
-const POSTS: string[] = [
-  "https://www.instagram.com/p/REPLACE_ME_1/",
-  "https://www.instagram.com/p/REPLACE_ME_2/",
-  "https://www.instagram.com/p/REPLACE_ME_3/",
-  "https://www.instagram.com/p/REPLACE_ME_4/",
+const POSTS = [
+  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/728868035_17875717035674072_2282447184216864118_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzkyNjQ0OTAwNzgwNzI2NDQ5NA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=o6ikOtdNLnAQ7kNvwFPQy9b&_nc_oc=AdrLo9xO0qrMYS-KNMy6_m-8RMnwwg3g9WJrXmGr6suYFS2oQQ5PvGMxos0Ffr70aMs&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=FrT6bdPCElglLsvzT7rCIw&_nc_ss=7a22e&oh=00_Af-XH2JwAuV0coyPbb4VFvBi8eeyxLfmIvq0XQEb7_oaPQ&oe=6A43A2D0", link: "https://www.instagram.com/newed_official/p/DZ9jJHDCXbu/" },
+  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/730397607_17875546965674072_8534657792478493089_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=MzkyNTY5OTQ3ODE2NjI2MzI3OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=lbwSZDyB2BcQ7kNvwE1sodM&_nc_oc=AdrsEp3N04SLmx5yphLPaXBYb4i1hwBqeTB-ZrPJxm4w6a9Wgiveqw-tV9XV9uMmDJk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=3NgCExl2IuemzJlnTUG81w&_nc_ss=7a22e&oh=00_Af_jWkjddhmqp6B_VpMKfwn4jpcs7Qr2QGQNx8mUwH9nKg&oe=6A438C3B", link: "https://www.instagram.com/newed_official/p/DZ64uBLCVXv/" },
+  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/726694560_17874792576674072_2665305150130031822_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ig_cache_key=MzkyMjcxMDU5MjAwMzU3Njk5Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=lbgUv0g69-YQ7kNvwEGXygJ&_nc_oc=Adof-fBQCu-S9o1S2XIRfHryX7Pp6XWm0wI10uQeEiq19CysKkhlSS3pYr4KtKjs6io&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=sxsVQTyynHyFaqD0s9qZSw&_nc_ss=7a22e&oh=00_Af83JjQ--4guZH1bw3rInrf3HjLWLsnJFVugGhJhdB2TEw&oe=6A43A1A8", link: "https://www.instagram.com/newed_official/p/DZwRIKyCR7E/?img_index=1" },
+  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/724261727_17874638214674072_6721517135165973907_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=MzkyMjA1OTI0MDc1OTk3NTY3MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=FgI2y6uhDqsQ7kNvwEzcSdv&_nc_oc=AdqXB7bFY_DYf0enZj99AbwdcnqSMj8Am21XpLZLKgkhP3nwqsUfDhnDXhq34_O5KZw&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=af37YdqQS0lLzaxqjdBxaQ&_nc_ss=7a22e&oh=00_Af9ZK-PCAaUlBc7FLZnMUB56R-2qq2c6kwURHg42P1aW7w&oe=6A4392CA", link: "https://www.instagram.com/newed_official/p/DZt9Bl5iV73/" },
 ];
 
-const EMBED_SCRIPT_SRC = "https://www.instagram.com/embed.js";
-
-// 인스타그램 embed.js가 전역(window)에 주입하는 객체 타입 선언
-declare global {
-  interface Window {
-    instgrm?: {
-      Embeds: {
-        process: () => void;
-      };
-    };
-  }
-}
-
 export default function InstagramFeed() {
-  useEffect(() => {
-    // embed.js가 아직 없으면 1회만 주입, 이미 있으면 재처리만 수행합니다.
-    const existing = document.querySelector<HTMLScriptElement>(
-      `script[src="${EMBED_SCRIPT_SRC}"]`
-    );
-
-    if (existing) {
-      // 스크립트가 이미 로드되어 있으면 새로 렌더된 blockquote들을 변환 처리
-      window.instgrm?.Embeds.process();
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = EMBED_SCRIPT_SRC;
-    script.async = true;
-    // 로드 완료 시점에 blockquote -> 실제 임베드로 변환
-    script.onload = () => window.instgrm?.Embeds.process();
-    document.body.appendChild(script);
-  }, []);
-
   return (
     <section
-      className="bg-[#fafaf8] py-8 md:py-16 lg:py-24 xl:py-[100px] w-full"
+      // 모바일 전용: md(768px) 이상에서는 숨김
+      className="bg-[#fae6aa] py-8 md:py-16 w-full block md:hidden"
       id="instagram-feed-section"
     >
       <div
-        className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] w-full max-w-[1980px] mx-auto"
+        className="px-4 sm:px-6 w-full max-w-[1980px] mx-auto"
         id="instagram-feed-inner-container"
       >
-        {/* 섹션 타이틀: 계정 핸들로 인스타그램 영역임을 명시 */}
         <a
           href="https://www.instagram.com/newed_official/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block mb-6 md:mb-10 lg:mb-12 select-none"
+          className="inline-block mb-6 select-none"
           id="instagram-feed-heading-link"
         >
           <h2
-            className="font-semibold text-5xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[70px] uppercase font-sans text-[#000000]"
+            className="font-semibold text-5xl uppercase font-sans text-[#000000]"
             style={{ letterSpacing: "-0.04em" }}
             id="instagram-feed-heading"
           >
-            @newed_official
+            INSTAGRAM
           </h2>
         </a>
 
-        {/* 모바일 1열, 그 이상에서 2x2 그리드 */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 lg:gap-8"
-          id="instagram-feed-grid"
-        >
-          {POSTS.map((permalink, index) => (
-            <div
-              key={permalink}
-              className="flex justify-center"
+        {/* 2x2 그리드 */}
+        <div className="grid grid-cols-2 " id="instagram-feed-grid">
+          {POSTS.map((post, index) => (
+            <a
+              key={post.link}
+              href={post.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block overflow-hidden bg-black/5"
               id={`instagram-feed-cell-${index + 1}`}
+              aria-label="newed_official 인스타그램 게시물 보기"
             >
-              {/* embed.js가 이 blockquote를 실제 게시물 임베드로 치환합니다. */}
-              <blockquote
-                className="instagram-media"
-                data-instgrm-permalink={permalink}
-                data-instgrm-version="14"
-                style={{
-                  background: "#FFF",
-                  border: 0,
-                  borderRadius: "3px",
-                  boxShadow:
-                    "0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)",
-                  margin: 0,
-                  maxWidth: "540px",
-                  minWidth: "0",
-                  padding: 0,
-                  width: "100%",
-                }}
+              <img
+                src={post.img}
+                alt="newed_official 인스타그램 게시물"
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               />
-            </div>
+            </a>
           ))}
         </div>
       </div>
