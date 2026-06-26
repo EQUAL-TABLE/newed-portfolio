@@ -95,7 +95,7 @@ export default function App() {
         {/*
           8. InstagramFeed: 공식 임베드(embed.js)로 지정 게시물 4개를 2x2 그리드로 노출하는 인스타그램 섹션
         */}
-        {/* <InstagramFeed /> */}
+        <InstagramFeed />
 
         {/*
           9. ProductBanner: 오렌지 그라운드 위에 수놓아진 후각적·미각적 유도 제품 하단 밴너
