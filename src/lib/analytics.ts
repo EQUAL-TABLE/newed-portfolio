@@ -106,9 +106,30 @@ export function trackUiToggle(target: string, isOpen: boolean): void {
   trackEvent("ui_toggle", { target, state: isOpen ? "open" : "close" });
 }
 
-/** 섹션이 화면에 처음 노출됨 (스크롤 도달) */
+/**
+ * 임의의 섹션 이름을 GA4 이벤트 이름 토큰으로 정규화합니다.
+ * (소문자, 영숫자/언더스코어만 허용, camelCase는 단어 경계에서 분리)
+ * 예) "Hero" → "hero", "BrandStatement" → "brand_statement"
+ */
+function toEventToken(value: string): string {
+  return value
+    .replace(/([a-z0-9])([A-Z])/g, "$1_$2") // BrandStatement → Brand_Statement
+    .toLowerCase()
+    .replace(/[^a-z0-9_]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+/**
+ * 섹션이 화면에 처음 노출됨 (스크롤 도달).
+ *
+ * ⚠️ GA4 경로탐색(Path exploration)의 노드는 '이벤트 이름'만 섹션을 구분할 수 있고
+ * 커스텀 파라미터는 노드가 될 수 없습니다. 따라서 단일 "section_view"가 아니라
+ * 섹션마다 고유한 이벤트 이름(section_view_<섹션>)으로 전송하여 경로탐색에서
+ * 섹션 간 이동을 노드로 시각화할 수 있게 합니다.
+ * section 파라미터도 함께 보내 분류(breakdown)/집계 분석 호환을 유지합니다.
+ */
 export function trackSectionView(section: string): void {
-  trackEvent("section_view", { section });
+  trackEvent(`section_view_${toEventToken(section)}`, { section });
 }
 
 /** 섹션 체류시간 (초 단위) */

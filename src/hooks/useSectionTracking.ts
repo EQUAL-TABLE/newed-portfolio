@@ -14,6 +14,12 @@ export interface TrackedSection {
 // 섹션이 "보고 있는 중"으로 간주되는 노출 비율 임계값 (50%)
 const VISIBILITY_THRESHOLD = 0.5;
 
+// 섹션을 "실제로 봤다"고 인정하는 최소 연속 체류시간(ms).
+// navbar 메뉴 클릭으로 화면이 점프하거나 사용자가 빠르게 스크롤할 때,
+// 중간에 '스쳐 지나간' 섹션들이 section_view로 잘못 집계되어 경로탐색을
+// 오염시키는 것을 막습니다. 이 시간 이상 계속 50% 노출된 섹션만 전송됩니다.
+const VIEW_DWELL_GATE_MS = 1000;
+
 /**
  * 여러 섹션의 스크롤 노출(section_view)과 체류시간(section_dwell)을 추적하는 훅.
  *
@@ -36,6 +42,8 @@ export function useSectionTracking(sections: TrackedSection[]): void {
     const enterTimes = new Map<string, number>();
     // 이미 section_view를 전송한 섹션 (세션 내 1회만)
     const viewed = new Set<string>();
+    // 체류 게이트 대기 중인 섹션의 setTimeout 핸들 (id → timer)
+    const viewTimers = new Map<string, number>();
 
     const elements = sections
       .map((s) => document.getElementById(s.id))
@@ -63,16 +71,30 @@ export function useSectionTracking(sections: TrackedSection[]): void {
             entry.intersectionRatio >= VISIBILITY_THRESHOLD;
 
           if (visible) {
-            // 진입: 노출 1회 기록 + 체류 타이머 시작
-            if (!viewed.has(id)) {
-              viewed.add(id);
-              trackSectionView(name);
-            }
+            // 진입: 체류시간 측정 시작
             if (!enterTimes.has(id)) {
               enterTimes.set(id, performance.now());
             }
+            // 체류 게이트: VIEW_DWELL_GATE_MS 동안 계속 보일 때만 최초 1회
+            // section_view 전송. 그 전에 벗어나면(스쳐 지나감) 타이머를 취소해
+            // 전송하지 않습니다.
+            if (!viewed.has(id) && !viewTimers.has(id)) {
+              const timer = window.setTimeout(() => {
+                viewTimers.delete(id);
+                if (!viewed.has(id)) {
+                  viewed.add(id);
+                  trackSectionView(name);
+                }
+              }, VIEW_DWELL_GATE_MS);
+              viewTimers.set(id, timer);
+            }
           } else {
-            // 이탈: 체류시간 전송
+            // 이탈: 게이트 타이머 취소(아직 미전송 시) + 체류시간 전송
+            const timer = viewTimers.get(id);
+            if (timer !== undefined) {
+              clearTimeout(timer);
+              viewTimers.delete(id);
+            }
             flushDwell(id);
           }
         }
@@ -96,6 +118,9 @@ export function useSectionTracking(sections: TrackedSection[]): void {
 
     return () => {
       flushAll();
+      // 대기 중인 체류 게이트 타이머 정리
+      for (const timer of viewTimers.values()) clearTimeout(timer);
+      viewTimers.clear();
       observer.disconnect();
       document.removeEventListener("visibilitychange", handleVisibility);
       window.removeEventListener("pagehide", flushAll);
