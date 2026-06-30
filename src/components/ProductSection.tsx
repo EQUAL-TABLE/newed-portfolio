@@ -193,7 +193,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
       // 상하 내부 여백 100 (xl:py-[100px])
       className="bg-[#fae6aa] 
       pt-8 md:pt-16 lg:pt-[100px] w-full
-      pb-8 md:pb-16 lg:pb-[200px]"
+      pb-8 md:pb-16 lg:pb-[100px]"
       id="product-section"
     >
       {/* 좌우 내부 여백 100 (xl:px-[100px]) */}

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import cart from "../assets/images/cart_new.png";
+import { trackOutbound } from "../lib/analytics";
+
+const WADIZ_STORE_URL =
+  "https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244";
 
 export default function FloatingCart() {
   // 컴포넌트 노출 여부 상태 (웹·모바일 공통, X 버튼으로 끌 수 있음)
@@ -8,7 +12,8 @@ export default function FloatingCart() {
 
   // 장바구니 클릭 시 지정된 와디즈 스토어 링크로 새 창 이동 처리하는 핸들러 함수
   const handleCartClick = () => {
-    window.open("https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244", "_blank");
+    trackOutbound("shop_wadiz", WADIZ_STORE_URL);
+    window.open(WADIZ_STORE_URL, "_blank");
   };
 
   // X 버튼 클릭 시 컴포넌트를 화면에서 제거

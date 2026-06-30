@@ -48,8 +48,14 @@ export default function App() {
   // 3. productRef: 3종의 커피 제품 디스플레이 카드와 상세 설명이 연결된 프로덕트 영역을 참조하며, 네비게이션의 PRODUCT 클릭 시 이곳으로 스크롤됩니다.
   const productRef = useRef<HTMLDivElement | null>(null);
 
+  // 4. productBannerRef: 오렌지 배경 위에 제품 홍보 배너가 위치한 영역을 참조하며, 네비게이션의 PRODUCT 클릭 시 이곳으로 스크롤됩니다.
+  const productBannerRef = useRef<HTMLDivElement | null>(null);
+
   return (
-    <div className="min-h-screen flex flex-col w-full bg-[#fafaf8] overflow-x-hidden" id="app-root-container">
+    <div
+      className="min-h-screen flex flex-col w-full bg-[#fafaf8] overflow-x-hidden"
+      id="app-root-container"
+    >
       {/* 
         렌더링 컴포넌트 순서 주석:
         1. Navbar: 최상단에 고정 배치되어 각 섹션 스크롤 제어를 조율합니다.
@@ -58,6 +64,7 @@ export default function App() {
         heroRef={heroRef}
         storiesRef={storiesRef}
         productRef={productRef}
+        productBannerRef={productBannerRef}
       />
 
       {/* 메인 메인 컨텐츠 영역 시작 */}
@@ -87,20 +94,20 @@ export default function App() {
         */}
         <FullImage />
 
+        {/*
+          7. ProductBanner: 오렌지 그라운드 위에 수놓아진 후각적·미각적 유도 제품 하단 밴너
+        */}
+        <ProductBanner productBannerRef={productBannerRef} />
+
         {/* 
-          7. ProductSection: 3종의 뉴에드 에디션 커피 셀렉션을 아름답게 조회하고 다이내믹 통합 아코디언 창이 전개되는 섹션 (productRef 장착)
+          8. ProductSection: 3종의 뉴에드 에디션 커피 셀렉션을 아름답게 조회하고 다이내믹 통합 아코디언 창이 전개되는 섹션 (productRef 장착)
         */}
         <ProductSection productRef={productRef} />
 
         {/*
-          8. InstagramFeed: 공식 임베드(embed.js)로 지정 게시물 4개를 2x2 그리드로 노출하는 인스타그램 섹션
+          9. InstagramFeed: 공식 임베드(embed.js)로 지정 게시물 4개를 2x2 그리드로 노출하는 인스타그램 섹션
         */}
         <InstagramFeed />
-
-        {/*
-          9. ProductBanner: 오렌지 그라운드 위에 수놓아진 후각적·미각적 유도 제품 하단 밴너
-        */}
-        <ProductBanner />
       </main>
 
       {/* 
@@ -115,7 +122,7 @@ export default function App() {
         언제든 가장 편리한 지점(좌하단)에 굳건하게 오버레이 고정되어 있어야 하므로 
         레이아웃 외부 최하단에 fixed 포지션으로 단독 독립하여 렌더링을 처리했습니다.
       */}
-       <FloatingCart />
+      <FloatingCart />
     </div>
   );
 }

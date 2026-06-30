@@ -12,12 +12,14 @@ interface NavbarProps {
   heroRef: React.RefObject<HTMLDivElement | null>;
   storiesRef: React.RefObject<HTMLDivElement | null>;
   productRef: React.RefObject<HTMLDivElement | null>;
+  productBannerRef: React.RefObject<HTMLDivElement | null>; // ProductBanner 섹션에 대한 Ref (선택적)
 }
 
 export default function Navbar({
   heroRef,
   storiesRef,
   productRef,
+  productBannerRef,
 }: NavbarProps) {
   // 모바일 메뉴 열림/닫힘 상태를 관리하는 state
   const [isOpen, setIsOpen] = useState(false);
@@ -138,7 +140,7 @@ export default function Navbar({
               STORIES
             </button>
             <button
-              onClick={() => scrollToSection(productRef, "product")}
+              onClick={() => scrollToSection(productBannerRef, "product")}
               className="font-bold text-[#000000] uppercase hover:text-[#ec7123] transition-colors cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: "clamp(13px, 2.5vw, 30px)",
@@ -199,7 +201,7 @@ export default function Navbar({
             STORIES
           </button>
           <button
-            onClick={() => scrollToSection(productRef, "product", "mobile")}
+            onClick={() => scrollToSection(productBannerRef, "product", "mobile")}
             className="w-full text-left px-4 sm:px-6 pb-2.5 font-bold text-[#000000] text-4xl uppercase hover:bg-[#fae6aa] transition-colors cursor-pointer"
             id="mobile-menu-product"
           >
