@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { trackSectionView, trackSectionDwell } from "../lib/analytics";
+import { trackSectionVisit } from "../lib/analytics";
 
 /**
  * 추적 대상 섹션 정의: DOM 요소의 id 와 GA4에 기록될 섹션 이름의 매핑.
@@ -14,19 +14,23 @@ export interface TrackedSection {
 // 섹션이 "보고 있는 중"으로 간주되는 노출 비율 임계값 (50%)
 const VISIBILITY_THRESHOLD = 0.5;
 
-// 섹션을 "실제로 봤다"고 인정하는 최소 연속 체류시간(ms).
-// navbar 메뉴 클릭으로 화면이 점프하거나 사용자가 빠르게 스크롤할 때,
-// 중간에 '스쳐 지나간' 섹션들이 section_view로 잘못 집계되어 경로탐색을
-// 오염시키는 것을 막습니다. 이 시간 이상 계속 50% 노출된 섹션만 전송됩니다.
-const VIEW_DWELL_GATE_MS = 1000;
+// "의미 있는 방문"으로 인정하는 최소 체류시간(ms).
+// 섹션을 떠나는 시점에 체류시간이 이 값 미만이면(= 스크롤로 스쳐 지나감)
+// 이벤트를 보내지 않습니다. navbar 점프/빠른 스크롤로 거쳐 간 중간 섹션이
+// 경로탐색을 오염시키는 것을 막습니다.
+const MIN_VISIT_MS = 1000;
 
 /**
- * 여러 섹션의 스크롤 노출(section_view)과 체류시간(section_dwell)을 추적하는 훅.
+ * 여러 섹션의 방문을 추적하는 훅.
  *
  * 동작:
- *  - 섹션이 화면의 50% 이상 보이면 진입 시각을 기록하고 최초 1회 section_view 전송
- *  - 섹션이 화면에서 벗어나면 진입~이탈 시간차를 section_dwell(초)로 전송
- *  - 탭 전환/페이지 종료 시점에도 현재 보고 있던 섹션들의 체류시간을 flush
+ *  - 섹션이 화면의 50% 이상 보이면 진입 시각을 기록 (이때는 아직 전송 안 함)
+ *  - 섹션이 화면에서 벗어나는 시점에 체류시간을 계산하여, 1초(MIN_VISIT_MS)
+ *    이상이면 섹션당 고유 이벤트(section_<이름>)를 체류시간과 함께 1회 전송
+ *  - 1초 미만이면(스쳐 지나감) 전송하지 않음
+ *  - 같은 섹션에 다시 진입하면 다시 측정 → 재방문마다 매번 전송(왕복 동선 보존)
+ *  - 탭 전환/페이지 종료 시점에도 현재 보고 있던 섹션을 정산(flush)하여
+ *    "이탈 직전 마지막 섹션"을 놓치지 않음
  *
  * App 에서 한 번만 호출하며, 섹션 컴포넌트 자체는 수정하지 않습니다(각 섹션의 id로 관찰).
  */
@@ -40,23 +44,23 @@ export function useSectionTracking(sections: TrackedSection[]): void {
     const nameById = new Map(sections.map((s) => [s.id, s.name]));
     // 현재 보이는 섹션의 진입 시각(performance.now 기준 ms)
     const enterTimes = new Map<string, number>();
-    // 이미 section_view를 전송한 섹션 (세션 내 1회만)
-    const viewed = new Set<string>();
-    // 체류 게이트 대기 중인 섹션의 setTimeout 핸들 (id → timer)
-    const viewTimers = new Map<string, number>();
 
     const elements = sections
       .map((s) => document.getElementById(s.id))
       .filter((el): el is HTMLElement => el !== null);
 
-    // 특정 섹션의 체류시간을 계산해 전송하고 진입 기록을 비움
-    const flushDwell = (id: string) => {
+    // 섹션을 떠나는 시점: 체류시간을 계산해 1초 이상이면 방문 1건을 전송하고
+    // 진입 기록을 비웁니다. (1초 미만은 스쳐 지나간 것으로 보고 미전송)
+    const flushVisit = (id: string) => {
       const start = enterTimes.get(id);
       if (start === undefined) return;
-      const seconds = Math.round((performance.now() - start) / 1000);
-      const name = nameById.get(id);
-      if (name) trackSectionDwell(name, seconds);
       enterTimes.delete(id);
+
+      const elapsedMs = performance.now() - start;
+      if (elapsedMs < MIN_VISIT_MS) return;
+
+      const name = nameById.get(id);
+      if (name) trackSectionVisit(name, Math.round(elapsedMs / 1000));
     };
 
     const observer = new IntersectionObserver(
@@ -71,31 +75,13 @@ export function useSectionTracking(sections: TrackedSection[]): void {
             entry.intersectionRatio >= VISIBILITY_THRESHOLD;
 
           if (visible) {
-            // 진입: 체류시간 측정 시작
+            // 진입: 체류시간 측정 시작 (전송은 이탈 시점에)
             if (!enterTimes.has(id)) {
               enterTimes.set(id, performance.now());
             }
-            // 체류 게이트: VIEW_DWELL_GATE_MS 동안 계속 보일 때만 최초 1회
-            // section_view 전송. 그 전에 벗어나면(스쳐 지나감) 타이머를 취소해
-            // 전송하지 않습니다.
-            if (!viewed.has(id) && !viewTimers.has(id)) {
-              const timer = window.setTimeout(() => {
-                viewTimers.delete(id);
-                if (!viewed.has(id)) {
-                  viewed.add(id);
-                  trackSectionView(name);
-                }
-              }, VIEW_DWELL_GATE_MS);
-              viewTimers.set(id, timer);
-            }
           } else {
-            // 이탈: 게이트 타이머 취소(아직 미전송 시) + 체류시간 전송
-            const timer = viewTimers.get(id);
-            if (timer !== undefined) {
-              clearTimeout(timer);
-              viewTimers.delete(id);
-            }
-            flushDwell(id);
+            // 이탈: 체류시간 정산 후 조건 충족 시 전송
+            flushVisit(id);
           }
         }
       },
@@ -104,10 +90,10 @@ export function useSectionTracking(sections: TrackedSection[]): void {
 
     elements.forEach((el) => observer.observe(el));
 
-    // 탭 전환/페이지 종료 시 현재 보고 있던 섹션들의 체류시간을 마저 전송
+    // 탭 전환/페이지 종료 시 현재 보고 있던 섹션들을 마저 정산
     const flushAll = () => {
       for (const id of Array.from(enterTimes.keys())) {
-        flushDwell(id);
+        flushVisit(id);
       }
     };
     const handleVisibility = () => {
@@ -118,9 +104,6 @@ export function useSectionTracking(sections: TrackedSection[]): void {
 
     return () => {
       flushAll();
-      // 대기 중인 체류 게이트 타이머 정리
-      for (const timer of viewTimers.values()) clearTimeout(timer);
-      viewTimers.clear();
       observer.disconnect();
       document.removeEventListener("visibilitychange", handleVisibility);
       window.removeEventListener("pagehide", flushAll);

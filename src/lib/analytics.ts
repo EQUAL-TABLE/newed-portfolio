@@ -120,21 +120,21 @@ function toEventToken(value: string): string {
 }
 
 /**
- * 섹션이 화면에 처음 노출됨 (스크롤 도달).
+ * 섹션 방문 1건. 섹션을 "떠나는" 시점에 1회 호출되며, 섹션마다 고유한
+ * 이벤트 이름(section_<섹션>)으로 체류시간(seconds)을 함께 전송합니다.
  *
  * ⚠️ GA4 경로탐색(Path exploration)의 노드는 '이벤트 이름'만 섹션을 구분할 수 있고
- * 커스텀 파라미터는 노드가 될 수 없습니다. 따라서 단일 "section_view"가 아니라
- * 섹션마다 고유한 이벤트 이름(section_view_<섹션>)으로 전송하여 경로탐색에서
- * 섹션 간 이동을 노드로 시각화할 수 있게 합니다.
+ * 커스텀 파라미터는 노드가 될 수 없습니다. 따라서 섹션마다 고유 이벤트 이름으로
+ * 보내 경로탐색에서 "session_start → section_hero → section_product → ..."처럼
+ * 섹션당 노드 하나로 깔끔하게 시각화되도록 합니다.
+ *
+ * 호출 측(useSectionTracking)에서 "1초 이상 체류한 방문"만 전달하므로, 단순히
+ * 스크롤로 스쳐 지나간 섹션은 여기까지 도달하지 않습니다. 재방문 시에는 매번
+ * 다시 호출되어 왕복 동선이 그대로 경로에 남습니다.
  * section 파라미터도 함께 보내 분류(breakdown)/집계 분석 호환을 유지합니다.
  */
-export function trackSectionView(section: string): void {
-  trackEvent(`section_view_${toEventToken(section)}`, { section });
-}
-
-/** 섹션 체류시간 (초 단위) */
-export function trackSectionDwell(section: string, seconds: number): void {
-  // 0초/비정상값은 전송하지 않음
+export function trackSectionVisit(section: string, seconds: number): void {
+  // 0초/비정상값은 전송하지 않음 (게이트는 호출 측에서 1차 적용)
   if (!Number.isFinite(seconds) || seconds <= 0) return;
-  trackEvent("section_dwell", { section, seconds });
+  trackEvent(`section_${toEventToken(section)}`, { section, seconds });
 }
