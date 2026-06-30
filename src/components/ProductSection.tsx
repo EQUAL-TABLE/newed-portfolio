@@ -138,7 +138,7 @@ export default function ProductSection({ productRef }: ProductSectionProps) {
             onClick={
               isMobile
                 ? () => {
-                    trackOutbound("shop_wadiz", WADIZ_STORE_URL);
+                    trackOutbound("shop_wadiz_productDetail", WADIZ_STORE_URL);
                     window.open(WADIZ_STORE_URL, "_blank");
                   }
                 : undefined

@@ -55,7 +55,7 @@ export default function Navbar({
   };
 
   const openStore = () => {
-    trackOutbound("shop_wadiz", WADIZ_STORE_URL);
+    trackOutbound("shop_wadiz_navbar", WADIZ_STORE_URL);
     window.open(WADIZ_STORE_URL, "_blank");
     setIsOpen(false);
   };

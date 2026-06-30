@@ -12,7 +12,7 @@ export default function FloatingCart() {
 
   // 장바구니 클릭 시 지정된 와디즈 스토어 링크로 새 창 이동 처리하는 핸들러 함수
   const handleCartClick = () => {
-    trackOutbound("shop_wadiz", WADIZ_STORE_URL);
+    trackOutbound("shop_wadiz_cartImg", WADIZ_STORE_URL);
     window.open(WADIZ_STORE_URL, "_blank");
   };
 

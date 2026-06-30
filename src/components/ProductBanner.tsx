@@ -11,7 +11,7 @@ const WADIZ_STORE_URL =
   
 export default function ProductBanner({ productBannerRef }: ProductBannerProps) {
   const handleShopClick = () => {
-    trackOutbound("shop_wadiz", WADIZ_STORE_URL);
+    trackOutbound("shop_wadiz_productBanner", WADIZ_STORE_URL);
     window.open(WADIZ_STORE_URL, "_blank");
   };
 
