@@ -49,7 +49,7 @@ export default function Navbar({
 
   // 인스타그램 새 창 이동 함수
   const openInstagram = () => {
-    trackOutbound("instagram", INSTAGRAM_URL);
+    trackOutbound("instagram_navbar", INSTAGRAM_URL);
     window.open(INSTAGRAM_URL, "_blank");
     setIsOpen(false);
   };

@@ -8,15 +8,20 @@
  *
  * 노출 범위: 모바일 뷰에서만 보이고 데스크톱(웹) 뷰에서는 숨깁니다(md 이상 hidden).
  */
+import { trackOutbound } from "../lib/analytics";
+
+// 인스타그램 프로필 URL (제목 클릭 시 이동)
+const INSTAGRAM_PROFILE_URL = "https://www.instagram.com/newed_official/";
+
 const POSTS = [
-  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/728678483_17876065653674072_2247979144059458930_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=MzkyNzg3MDIzNjc0NTM4OTkxNw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=qUV2XOaeMo4Q7kNvwES5xat&_nc_oc=AdoKKxRGKDeGGuYF_MhZmePx8c4QyC85pg6paltfXmvtrrHrLFNT2jV4P7c1NA_XArM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=68picxplF_9-8ZtiZIKMLA&_nc_ss=7a22e&oh=00_Af9eO8AdydEI6Ss9Rf3UtExL-pj4bkl9_yh7qrVIvvpxWg&oe=6A43F1F1", 
-    link: "https://www.instagram.com/newed_official/p/DaCmStpCddd/" },
-  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/728868035_17875717035674072_2282447184216864118_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzkyNjQ0OTAwNzgwNzI2NDQ5NA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=o6ikOtdNLnAQ7kNvwFPQy9b&_nc_oc=AdrLo9xO0qrMYS-KNMy6_m-8RMnwwg3g9WJrXmGr6suYFS2oQQ5PvGMxos0Ffr70aMs&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=FrT6bdPCElglLsvzT7rCIw&_nc_ss=7a22e&oh=00_Af-XH2JwAuV0coyPbb4VFvBi8eeyxLfmIvq0XQEb7_oaPQ&oe=6A43A2D0", 
-    link: "https://www.instagram.com/newed_official/p/DZ9jJHDCXbu/" },
-  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/730397607_17875546965674072_8534657792478493089_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=MzkyNTY5OTQ3ODE2NjI2MzI3OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=lbwSZDyB2BcQ7kNvwE1sodM&_nc_oc=AdrsEp3N04SLmx5yphLPaXBYb4i1hwBqeTB-ZrPJxm4w6a9Wgiveqw-tV9XV9uMmDJk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=3NgCExl2IuemzJlnTUG81w&_nc_ss=7a22e&oh=00_Af_jWkjddhmqp6B_VpMKfwn4jpcs7Qr2QGQNx8mUwH9nKg&oe=6A438C3B", 
-    link: "https://www.instagram.com/newed_official/p/DZ64uBLCVXv/" },
-  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/724261727_17874638214674072_6721517135165973907_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=MzkyMjA1OTI0MDc1OTk3NTY3MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=sXTSB9IpbbYQ7kNvwF5q7uE&_nc_oc=Adr2n6Ogp82v4dk2qj9_WUi05iX8Qs6xbqIbUMEyX0Kn04gNEoIDmRLF-0VK2IPB3IE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=0FJYAm_IYBGUD2NQjlzXdA&_nc_ss=7a22e&oh=00_Af8eVOuuejQXNigC0jvHYF0CiyugIlwjyFNtKWRk-VO_1A&oe=6A47F7CA", 
-    link: "https://www.instagram.com/newed_official/p/DZt9Bl5iV73/" },  
+  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/728823820_17877027645674072_5562843930059095470_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzkzMTMzNDU1MzkxODU4MDU5NA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTAwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=ul0lcfCrInAQ7kNvwGCOE_G&_nc_oc=Ado8f6WJR14wD9kPtGoJsbxCZA2p1ssSMJqVYfvZgJx7lP1zbf0m_GKdc2XaNaddnNo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=IyQV95m58KWPE4Lsclp9kg&_nc_ss=7a22e&oh=00_AQBmB1MFvlgarjU3vY0CTqRaY1M9cInCWA868KUxk9rk5A&oe=6A4A59C8", 
+    link: "https://www.instagram.com/p/DaO5_KbiSdy/"  },
+  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/730381785_17876855370674072_6747836137945473184_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ig_cache_key=MzkzMDc2ODA1Mzc2MzY5MTkzNg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=WD_ocudbVroQ7kNvwHoDQiH&_nc_oc=Adp-IHpRtKI9anWUiAnjp1drxStYws6XSd18Yk3BQkCFd0MA7SY4Py5QJ6Gu3_yTojU&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=IyQV95m58KWPE4Lsclp9kg&_nc_ss=7a22e&oh=00_AQB6UV0Z3T7TDHO_eKkmrIwse1FzCm3UkYiyjANqBhBMJw&oe=6A4A4715", 
+    link: "https://www.instagram.com/p/DaM5LgDCdWg/"  },
+  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/728678483_17876065653674072_2247979144059458930_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=MzkyNzg3MDIzNjc0NTM4OTkxNw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=NJY0G0zlPlwQ7kNvwFaRqWb&_nc_oc=AdqjeIfyxgb_-r6R0l0qKGH2qfjEjCcJE3rtO0OIl2hXrF7IM4kufNaJkVDfQgMjLAA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=IyQV95m58KWPE4Lsclp9kg&_nc_ss=7a22e&oh=00_AQBV_OcHM46cwN-esQiA-LBTv2wv8N6GLlKAzjSy8L55WA&oe=6A4A5131", 
+    link: "https://www.instagram.com/p/DaCmStpCddd/" },
+  { img: "https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/728868035_17875717035674072_2282447184216864118_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzkyNjQ0OTAwNzgwNzI2NDQ5NA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTIwMC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=eIKcZJfaW58Q7kNvwHS7IMh&_nc_oc=AdpOK7T5X47yFDTLgT1VXBhEGhG7OL3oVTsRptvmXZGaEWzXoMkWHZoD2xnx_HJ29o8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=IyQV95m58KWPE4Lsclp9kg&_nc_ss=7a22e&oh=00_AQCVP5o6Liwvyto9a4ldOid57xyFSPcKuz6kuiclh_MgSQ&oe=6A4A7290", 
+    link: "https://www.instagram.com/p/DZ9jJHDCXbu/" },  
 ];
 
 export default function InstagramFeed() {
@@ -31,9 +36,10 @@ export default function InstagramFeed() {
         id="instagram-feed-inner-container"
       >
         <a
-          href="https://www.instagram.com/newed_official/"
+          href={INSTAGRAM_PROFILE_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackOutbound("instagram_feed", INSTAGRAM_PROFILE_URL)}
           className="inline-block mb-6 select-none"
           id="instagram-feed-heading-link"
         >
@@ -54,6 +60,7 @@ export default function InstagramFeed() {
               href={post.link}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackOutbound("instagram_feed", post.link)}
               className="group relative block overflow-hidden bg-black/5"
               id={`instagram-feed-cell-${index + 1}`}
               aria-label="newed_official 인스타그램 게시물 보기"
