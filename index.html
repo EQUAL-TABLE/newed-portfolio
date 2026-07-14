@@ -60,14 +60,14 @@
 
   <script type="module" src="/src/main.tsx"></script>
 
-  <!-- Naver Webmaster Tools -->
+  <!-- Naver 전환추적/프리미엄로그분석 (공통설정 + PV 이벤트) -->
   <script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script>
   <script type="text/javascript">
     if (!wcs_add) var wcs_add = {};
     wcs_add["wa"] = "s_1125a081216";
-    if (!_nasa) var _nasa = {};
     if (window.wcs) {
-      wcs.inflow();
+      // 쿠키 도메인을 최상위 도메인으로 지정해 www/non-www 유입 쿠키(NA_SA)를 공유
+      wcs.inflow("newed.kr");
       wcs_do();
     }
   </script>

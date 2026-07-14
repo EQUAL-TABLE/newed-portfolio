@@ -23,12 +23,10 @@ interface Window {
     // 유입 추적
     inflow: (domain?: string) => void;
   };
-  // 수집 실행 함수 (PV: 인자 없음 / 전환: cnv가 담긴 객체 전달)
-  wcs_do?: (nasa?: Record<string, string>) => void;
+  // PV(page view) 이벤트 전송 함수 (index.html 공통영역에서 인자 없이 호출)
+  wcs_do?: () => void;
   // 계정 공통키(Site ID)가 담기는 전역 객체 (index.html에서 wa 설정)
   wcs_add?: Record<string, string>;
-  // 네이버 수집 파라미터 컨테이너 전역 객체
-  _nasa?: Record<string, string>;
 }
 
 declare module "*.png" {
