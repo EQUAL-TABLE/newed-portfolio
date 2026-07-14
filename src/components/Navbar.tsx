@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import logo_bright from "../assets/images/logo_bright.webp";
 import { trackMenuClick, trackOutbound, trackUiToggle } from "../lib/analytics";
+import {
+  trackNaverConversion,
+  type NaverConversionKey,
+} from "../lib/naverConversion";
+
+// 페이지 내 스크롤 메뉴(menuName)와 네이버 전환 유형 매핑.
+// 여기 없는 메뉴(homepage/logo)는 전환 대상이 아니므로 전환 로그를 쏘지 않습니다.
+const NAVER_CONVERSION_BY_MENU: Record<string, NaverConversionKey> = {
+  stories: "content", // STORIES → 콘텐츠 보기
+  product: "custom", // PRODUCT → 사용자정의
+};
 
 // 와디즈 스토어 URL (SHOP 버튼 / 추적 라벨에서 공통 사용)
 const WADIZ_STORE_URL =
@@ -32,6 +43,10 @@ export default function Navbar({
     device: "web" | "mobile" = "web",
   ) => {
     trackMenuClick(menuName, device);
+    // 네이버 전환 대상 메뉴(STORIES/PRODUCT)면 전환 로그 전송.
+    // 페이지 내 스크롤이라 이탈이 없어 순서 민감도는 없지만, 클릭 시점에 선행 호출.
+    const conversionKey = NAVER_CONVERSION_BY_MENU[menuName];
+    if (conversionKey) trackNaverConversion(conversionKey);
     if (ref.current) {
       const elementPosition =
         ref.current.getBoundingClientRect().top + window.scrollY;
@@ -49,13 +64,17 @@ export default function Navbar({
 
   // 인스타그램 새 창 이동 함수
   const openInstagram = () => {
+    // 외부 이동(새 창) 전에 추적을 모두 선행 호출하여 로그 유실 방지 (예약완료 전환)
     trackOutbound("instagram_navbar", INSTAGRAM_URL);
+    trackNaverConversion("reserve");
     window.open(INSTAGRAM_URL, "_blank");
     setIsOpen(false);
   };
 
   const openStore = () => {
+    // 외부 이동(새 창) 전에 추적을 모두 선행 호출하여 로그 유실 방지 (신청완료 전환)
     trackOutbound("shop_wadiz_navbar", WADIZ_STORE_URL);
+    trackNaverConversion("apply");
     window.open(WADIZ_STORE_URL, "_blank");
     setIsOpen(false);
   };
