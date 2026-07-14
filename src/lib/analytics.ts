@@ -60,6 +60,46 @@ export function trackEvent(
 }
 
 /* ------------------------------------------------------------------ */
+/* GTM(dataLayer) 전환 이벤트 버스 — Meta 픽셀/데이터 세트 연동용        */
+/* ------------------------------------------------------------------ */
+
+/**
+ * GTM 맞춤 이벤트(Custom Event)를 dataLayer로 전송합니다.
+ *
+ * ⚠️ GA4(gtag)와는 전송 형식이 다릅니다.
+ *   - gtag("event", ...)는 dataLayer에 'arguments' 객체를 push하며, 이는 GTM의
+ *     맞춤 이벤트 트리거가 인식하지 못합니다(= GTM으로 태그를 붙일 수 없음).
+ *   - GTM 트리거는 반드시 { event: '<이름>' } 형태의 '객체'를 push해야 잡습니다.
+ *   따라서 GTM → Meta 픽셀 연동이 필요한 전환 이벤트는 이 함수로 별도 전송합니다.
+ *
+ * GA4 활성화 여부(VITE_GA_ID)와 무관하게 동작합니다. GTM 스니펫은 index.html에서
+ * 항상 로드되므로, GA가 꺼진 환경에서도 GTM/Meta 쪽 전환은 정상 수집되어야 합니다.
+ * dataLayer는 GTM 스니펫이 <head> 최상단에서 이미 생성하지만 방어적으로 초기화합니다.
+ */
+function pushDataLayerEvent(
+  event: string,
+  params: Record<string, unknown> = {},
+): void {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event, ...params });
+}
+
+/**
+ * GTM → Meta 픽셀로 매핑할 전환 이벤트 이름.
+ * GTM 콘솔에서 아래 이름 그대로 "맞춤 이벤트" 트리거를 만들어 Meta 표준 이벤트에 연결합니다.
+ *
+ *   conversion_shop      → Meta 'Lead'        (와디즈 스토어 이동 = 구매 의도)
+ *   conversion_instagram → Meta 'Contact'     (인스타그램 이동 = 문의)
+ *   conversion_content   → Meta 'ViewContent' (STORIES/제품 콘텐츠 조회)
+ */
+export const META_CONVERSION_EVENT = {
+  shop: "conversion_shop",
+  instagram: "conversion_instagram",
+  content: "conversion_content",
+} as const;
+
+/* ------------------------------------------------------------------ */
 /* 도메인별 추적 헬퍼                                                  */
 /* ------------------------------------------------------------------ */
 
@@ -68,11 +108,29 @@ type Device = "web" | "mobile";
 /** 상단바 내부 메뉴 클릭 (HOMEPAGE / STORIES / PRODUCT / 로고) */
 export function trackMenuClick(menuName: string, device: Device): void {
   trackEvent("menu_click", { menu_name: menuName, device });
+
+  // STORIES 메뉴 = 콘텐츠 조회 전환 → Meta 'ViewContent'
+  if (menuName === "stories") {
+    pushDataLayerEvent(META_CONVERSION_EVENT.content, {
+      content_name: "stories",
+      source: "menu",
+    });
+  }
 }
 
 /** 외부 사이트로 이동하는 전환성 클릭 (와디즈 스토어 / 인스타그램) */
 export function trackOutbound(label: string, url: string): void {
   trackEvent("outbound_click", { label, url });
+
+  // 라벨 규약(shop_wadiz_* / instagram_*)으로 전환 종류를 판별해 GTM 전환 이벤트도 전송.
+  // 모든 SHOP/인스타 버튼이 이 함수를 단일 경유하므로 여기 한 곳에서 매핑합니다.
+  if (label.startsWith("shop_wadiz")) {
+    // 와디즈 스토어 이동 = 구매 의도 → Meta 'Lead'
+    pushDataLayerEvent(META_CONVERSION_EVENT.shop, { source: label, url });
+  } else if (label.includes("instagram")) {
+    // 인스타그램 이동 = 문의 → Meta 'Contact'
+    pushDataLayerEvent(META_CONVERSION_EVENT.instagram, { source: label, url });
+  }
 }
 
 /** 슬라이더 썸네일(슬라이드 전환) 클릭 */
@@ -99,6 +157,15 @@ export function trackProductClick(
     index,
     state: isOpen ? "open" : "close",
   });
+
+  // 카드를 '여는' 동작만 콘텐츠 조회 전환으로 집계 → Meta 'ViewContent'
+  // (닫기는 전환이 아니므로 제외)
+  if (isOpen) {
+    pushDataLayerEvent(META_CONVERSION_EVENT.content, {
+      content_name: productName,
+      source: "product",
+    });
+  }
 }
 
 /** UI 토글 (모바일 햄버거 메뉴 등) */
