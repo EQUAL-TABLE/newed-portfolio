@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://newed.kr/sitemap.xml
+Sitemap: https://www.newed.kr/sitemap.xml
