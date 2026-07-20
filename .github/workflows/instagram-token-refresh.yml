@@ -1,0 +1,40 @@
+name: Instagram Token Refresh
+
+# 장기 액세스 토큰(60일 만료)을 주 1회 갱신해 만료를 방지합니다.
+# 갱신된 토큰으로 IG_ACCESS_TOKEN 시크릿을 자동 업데이트합니다.
+#
+# ⚠️ 시크릿 자동 업데이트를 위해 GH_PAT 시크릿이 필요합니다.
+#    (Settings > Secrets and variables > Actions > secrets: read/write 권한의
+#     Fine-grained Personal Access Token). GH_PAT 가 없으면 갱신은 되지만
+#     시크릿 업데이트 단계는 건너뜁니다.
+on:
+  schedule:
+    - cron: "0 3 * * 1" # 매주 월요일 03:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Refresh long-lived token
+        id: refresh
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: node scripts/refresh-instagram-token.mjs
+
+      - name: Update IG_ACCESS_TOKEN secret
+        if: steps.refresh.outputs.token != '' && env.GH_PAT != ''
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set IG_ACCESS_TOKEN \
+            --body "${{ steps.refresh.outputs.token }}" \
+            --repo "${{ github.repository }}"
+          echo "IG_ACCESS_TOKEN 시크릿 업데이트 완료"

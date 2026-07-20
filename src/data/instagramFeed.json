@@ -1,0 +1,25 @@
+{
+  "updatedAt": "2026-07-20T00:00:00.000Z",
+  "posts": [
+    {
+      "img": "/instagram/post-1.webp",
+      "link": "https://www.instagram.com/p/Da2DG0ZCdey/",
+      "alt": "밤이 가까워져도 여전히 선명한 것들"
+    },
+    {
+      "img": "/instagram/post-2.webp",
+      "link": "https://www.instagram.com/p/DazjL5libBu/",
+      "alt": "홍차의 은은한 향이 먼저 열리고"
+    },
+    {
+      "img": "/instagram/post-3.webp",
+      "link": "https://www.instagram.com/p/Daw-pUbCXrn/",
+      "alt": "하루가 보랏빛으로 물드는 시간"
+    },
+    {
+      "img": "/instagram/post-4.webp",
+      "link": "https://www.instagram.com/p/DamnM-Iia3S/",
+      "alt": "노란 지붕 아래"
+    }
+  ]
+}
