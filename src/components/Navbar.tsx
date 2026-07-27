@@ -15,7 +15,7 @@ const NAVER_CONVERSION_BY_MENU: Record<string, NaverConversionKey> = {
 
 // 와디즈 스토어 URL (SHOP 버튼 / 추적 라벨에서 공통 사용)
 const WADIZ_STORE_URL =
-  "https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244";
+  "https://www.wadiz.kr/web/campaign/detail/398459";
 const INSTAGRAM_URL = "https://www.instagram.com/newed_official/";
 
 // Props 타입 정의

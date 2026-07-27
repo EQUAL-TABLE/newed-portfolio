@@ -4,7 +4,7 @@ import cart from "../assets/images/cart_new.png";
 import { trackOutbound } from "../lib/analytics";
 
 const WADIZ_STORE_URL =
-  "https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244";
+  "https://www.wadiz.kr/web/campaign/detail/398459";
 
 export default function FloatingCart() {
   // 컴포넌트 노출 여부 상태 (웹·모바일 공통, X 버튼으로 끌 수 있음)

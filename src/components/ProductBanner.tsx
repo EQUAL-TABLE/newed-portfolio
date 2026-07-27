@@ -7,7 +7,7 @@ interface ProductBannerProps {
 
 // 와디즈 스토어 URL (모바일 SHOP 버튼 클릭 시 이동)
 const WADIZ_STORE_URL =
-  "https://www.wadiz.kr/web/wcomingsoon/rwd/399604?utm_source=wadizshare_in&utm_medium=share&sharer=1069001&walinkid=81502244";
+  "https://www.wadiz.kr/web/campaign/detail/398459";
   
 export default function ProductBanner({ productBannerRef }: ProductBannerProps) {
   const handleShopClick = () => {
