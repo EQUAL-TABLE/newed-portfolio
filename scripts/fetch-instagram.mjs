@@ -1,5 +1,5 @@
 /**
- * 인스타그램(newed_official) 최신 게시물 4개를 가져와
+ * 인스타그램(newed_official) 최신 게시물 6개를 가져와
  *   1) 이미지를 public/instagram/post-N.webp 로 리사이즈+변환 저장
  *   2) 링크/대체텍스트 메타데이터를 src/data/instagramFeed.json 으로 저장
  * 합니다.
@@ -19,10 +19,10 @@ import path from "node:path";
 import sharp from "sharp";
 
 const API_VERSION = "v23.0";
-const POST_COUNT = 4;
-// 노출 위치가 모바일 2x2 그리드(셀 ~380px)라 2배 해상도인 800px면 충분합니다.
+const POST_COUNT = 6;
+// 노출 위치가 3x2 체커보드 그리드(셀 ~205px)라 2배 해상도면 충분하므로 500px로 리사이즈.
 // 큰 원본을 그대로 쓰면 렌더 버벅임(jank)이 생기므로 리사이즈합니다.
-const IMG_WIDTH = 800;
+const IMG_WIDTH = 500;
 const WEBP_QUALITY = 80;
 
 const TOKEN = process.env.IG_ACCESS_TOKEN;
