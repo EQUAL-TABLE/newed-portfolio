@@ -1,0 +1,54 @@
+/*
+  브랜드 소개 페이지 전용 스타일.
+  - 최상단 이미지(.brand-hero): 좌우 여백 없이 풀폭
+  - 이후 이미지(.brand-img): 좌우 여백 약간
+  - 텍스트 섹션(.brand-section): 가운데 정렬 (영문 타이틀 → 한글 부제 → 설명)
+*/
+
+/* 최상단 이미지: 풀폭 */
+.brand-hero {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* 이후 이미지: 좌우 여백 약간 */
+.brand-img {
+    display: block;
+    width: calc(100% - 2.5rem);   /* 좌우 1.25rem(20px) 여백 */
+    margin: 0 auto;
+    height: auto;
+}
+
+/* 텍스트 섹션 (가운데 정렬) */
+.brand-section {
+    text-align: center;
+    padding: 0 1.5rem;
+    margin: 5rem 0;
+}
+.brand-en {
+    font-size: 26px;              /* 영문 타이틀 */
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+.brand-ko {
+    font-size: 18px;              /* 한글 부제 */
+    font-weight: 700;
+    margin-top: 0.4rem;
+    letter-spacing: -1px;
+}
+.brand-desc {
+    margin-top: 1.5rem;
+    font-size: 11px;              /* 설명 */
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+    color: rgba(0, 0, 0, 1);
+}
+
+/* 단일 브레이크포인트 (400px 이하): 텍스트(px)만 축소 */
+@media (max-width: 400px) {
+    .brand-en { font-size: 20px; }
+    .brand-ko { font-size: 14px; }
+    .brand-desc { font-size: 9px; }
+}

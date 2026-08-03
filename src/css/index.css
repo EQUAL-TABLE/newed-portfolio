@@ -1,0 +1,188 @@
+/*
+  px to rem conversion: 1rem = 16px (desktop)
+
+  px    rem
+  2   0.125
+  4   0.25
+  8   0.5
+  10  0.625
+  12  0.75
+  14  0.875
+  16  1
+*/
+
+:root {
+    --orange: #ec7123;
+    --cream: #fae6aa;
+    --blue: #468fcd;
+    --white: #fafaf8;
+    --gray: #e2e2e2;
+    --ink: #000000;
+}
+
+/*
+  Responsive strategy:
+  The whole design is authored in rem (relative to the root font-size).
+  - Desktop: root = 16px  ->  .page = 41rem = 656px (fixed design width).
+  - Mobile (viewport < 656px): shrink the root font-size so 41rem === 100vw,
+    which scales the entire layout proportionally to fit the screen width exactly.
+*/
+html { font-size: 16px; }
+
+@media (max-width: 656px) {
+    html { font-size: calc(100vw / 41); }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #eeeeee;
+    font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+}
+
+.page {
+    width: 41rem;              /* 656px on desktop */
+    max-width: 100%;
+    background: #ffffff;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);   /* 2px 8px */
+}
+
+/* placeholder box (image slot) */
+.box {
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+/* ---------- header ---------- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.topbar {
+    height: 3.75rem;           /* 60px */
+    background: var(--orange);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    height: 3rem;              /* 48px */
+    padding: 0 2.5rem;         /* 40px */
+    justify-content: space-between;
+    background: #ffffff;
+}
+.nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 1rem;           /* 16px */
+    font-weight: 800;
+}
+
+/* ---------- content (38.4375rem inner, 1.25rem side padding) ---------- */
+.content { padding: 0 1.25rem; }   /* 20px */
+
+/* hero */
+.hero {
+    width: 38.4375rem;         /* 615px */
+    height: 38.4375rem;        /* 615px */
+    font-size: 1.625rem;       /* 26px */
+}
+
+/* icon row */
+.icons {
+    display: flex;
+    gap: 1.25rem;              /* 20px */
+    margin-top: 2.5rem;        /* 40px */
+}
+.icons .box {
+    width: 12rem;              /* 192px */
+    height: 12rem;             /* 192px */
+    font-size: 0.8125rem;      /* 13px */
+}
+
+/* section title */
+.section-title {
+    font-size: 1.375rem;       /* 22px */
+    font-weight: 700;
+    margin-top: 2.5rem;        /* 40px */
+}
+
+/* product grid */
+.products {
+    display: grid;
+    grid-template-columns: 18.5625rem 18.5625rem;   /* 297px 297px */
+    gap: 2.5rem 1.25rem;       /* 40px 20px */
+    margin-top: 1.25rem;       /* 20px */
+}
+.product {
+    color: var(--ink);         /* 링크(a)로 감싸도 기본 텍스트 색 유지 */
+    text-decoration: none;     /* 밑줄 제거 */
+}
+.product .thumb {
+    width: 18.5625rem;         /* 297px */
+    height: 18.5625rem;        /* 297px */
+    font-size: 1.375rem;       /* 22px */
+}
+.product .badge {
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 0.75rem;        /* 12px */
+    margin-top: 0.625rem;      /* 10px */
+}
+.product .name {
+    font-size: 0.9375rem;      /* 15px */
+    margin-top: 0.25rem;       /* 4px */
+}
+.product .price {
+    font-size: 0.9375rem;      /* 15px */
+    font-weight: 700;
+    margin-top: 0.125rem;      /* 2px */
+}
+
+/* wide banner (inside content) */
+.banner {
+    width: 38.4375rem;         /* 615px */
+    height: 13.125rem;         /* 210px */
+    font-size: 1.5rem;         /* 24px */
+    margin-top: 2.5rem;        /* 40px */
+}
+
+/* checkerboard grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 12.8125rem);   /* 205px */
+    margin-top: 2.5rem;        /* 40px */
+}
+.grid .box {
+    height: 16rem;             /* 256px */
+    font-size: 1.25rem;        /* 20px */
+}
+.grid .box:nth-child(2),
+.grid .box:nth-child(4),
+.grid .box:nth-child(6) {
+    background: var(--orange);
+}
+
+/* ---------- full-width bottom ---------- */
+.banner-full {
+    width: 41rem;              /* 656px */
+    max-width: 100%;
+    height: 13.125rem;         /* 210px */
+    font-size: 1.5rem;         /* 24px */
+    margin-top: 5rem;          /* 80px */
+}
+.footer {
+    width: 41rem;              /* 656px */
+    max-width: 100%;
+    height: 35.625rem;         /* 570px */
+    background: var(--gray);
+    font-size: 1.5rem;         /* 24px */
+}

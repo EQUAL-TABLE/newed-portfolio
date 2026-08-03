@@ -1,0 +1,242 @@
+/*
+  Home 전용 스타일 — 홈 페이지에서만 사용하는 섹션들.
+  (.hero / .icons / .products·.product / .banner / .grid / .banner-full)
+
+  참고: .banner / .banner-full 은 Banner 컴포넌트용인데 현재는 홈에서만 쓰입니다.
+  추후 다른 페이지에서도 Banner 를 재사용하게 되면 global.css 로 옮기세요.
+*/
+
+/* hero carousel */
+.hero {
+    position: relative;        /* 화살표 위치 기준 */
+    width: 38.4375rem;         /* 615px */
+    height: 38.4375rem;        /* 615px */
+}
+.hero-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;          /* 옆 슬라이드 숨김 */
+    touch-action: pan-y;       /* 세로 스크롤 허용, 가로 스와이프는 캐러셀이 처리 */
+    user-select: none;
+}
+.hero-track {
+    display: flex;
+    height: 100%;
+    /* transform / transition 은 Hero.jsx 에서 인라인으로 제어 */
+}
+.hero-slide {
+    position: relative;
+    flex: 0 0 100%;            /* 한 화면에 한 장 */
+    height: 100%;
+}
+.hero-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-user-drag: none;   /* 드래그 시 이미지 고스트 방지 */
+}
+
+/* 그림자 + 텍스트 오버레이 (현재 슬라이드 위에 표시, index 변경 시 애니메이션 재생) */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;      /* 드래그/화살표 방해 안 하도록 */
+}
+
+/* 하단 그림자 — 이미지 전환(0.3s) 후 서서히 나타남 */
+.hero-shade-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+    opacity: 0;
+    animation: heroFade 0.3s ease 0.3s forwards;   /* 0.3s 지연 후 fade-in */
+}
+
+@keyframes heroFade {
+    to { opacity: 1; }
+}
+@keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(0.75rem); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 좌하단 텍스트 */
+.hero-text {
+    position: absolute;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    color: #ffffff;
+    opacity: 0;
+    animation: heroFadeUp 0.5s ease 0.9s forwards;   /* 그림자보다 0.1s 늦게 나타남 */
+}
+.hero-en {
+    font-size: 3rem;           /* text: px */
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.hero-ko {
+    font-size: 2rem;        /* 20px` */
+    margin-top: 0.5rem;
+}
+
+/* 좌우 화살표 */
+.hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;             /* 40px */
+    height: 2rem;            /* 40px */
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 20px;           /* text: px */
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-arrow-left { left: 0.5rem; }
+.hero-arrow-right { right: 0.5rem; }
+
+/* icon row */
+.icons {
+    display: flex;
+    gap: 1.25rem;              /* 20px */
+    margin-top: 4rem;        /* 40px */
+}
+
+/* 클릭 가능한 아이콘 아이템 (button 기본 스타일 제거) */
+.icon-item {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 베이지 원형 배경 */
+.icon-circle {
+    width: 12rem;              /* 192px */
+    height: 12rem;             /* 192px */
+    border-radius: 50%;        /* 원형 */
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;         /* 이미지가 원 위로 넘쳐 떠 보이도록 */
+}
+
+/* 원 위에 띄운 이미지 */
+.icon-img {
+    width: 150%;
+    height: auto;
+    object-fit: contain;
+    transform: translateY(-8%);   /* 살짝 위로 띄움 */
+}
+
+.iconDescription{
+    font-size: 14px;           /* text: px */
+    margin-top: 1rem;          /* 16px */
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+}
+
+/* product grid */
+.products {
+    display: grid;
+    grid-template-columns: 18.5625rem 18.5625rem;   /* 297px 297px */
+    gap: 2.5rem 1.25rem;       /* 40px 20px */
+    margin-top: 2.5rem;       /* 40px */
+}
+.product {
+    color: var(--ink);         /* 링크(a)로 감싸도 기본 텍스트 색 유지 */
+    text-decoration: none;     /* 밑줄 제거 */
+}
+.product .thumb {
+    width: 18.5625rem;         /* 297px */
+    height: 18.5625rem;        /* 297px */
+    font-size: 22px;           /* text: px */
+}
+.product .badge {
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 12px;           /* text: px */
+    margin-top: 1.5rem;        /* 10px */
+    letter-spacing: -0.1px;
+}
+.product .name {
+    font-size: 16px;
+    font-weight: 700;          /* text: px */
+    margin-top: 0.25rem;       /* 4px */
+    letter-spacing: -0.5px;
+}
+.product .price {
+    font-size: 12px;           /* text: px */
+    font-weight: 600;
+    margin-top: 0.125rem;      /* 2px */
+}
+
+/* wide banner (inside content) */
+.banner {
+    width: 38.4375rem;         /* 615px */
+    height: 13.125rem;         /* 210px */
+    font-size: 24px;           /* text: px */
+    margin-top: 4rem;        /* 40px */
+}
+
+/* checkerboard grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 12.8125rem);   /* 205px */
+    margin-top: 2.5rem;        /* 40px */
+}
+.grid .box {
+    height: 16rem;             /* 256px */
+    font-size: 20px;           /* text: px */
+    
+}
+.grid .box:nth-child(2),
+.grid .box:nth-child(4),
+.grid .box:nth-child(6) {
+    background: var(--orange);
+}
+
+/* full-width bottom banner */
+.banner-full {
+    width: 41rem;              /* 656px */
+    max-width: 100%;
+    height: 13.125rem;         /* 210px */
+    font-size: 24px;           /* text: px */
+    margin-top: 4rem;          /* 64px */
+}
+
+/* ================================================================
+   단일 브레이크포인트 (400px 이하): 홈의 텍스트(px)만 축소.
+   .hero-en / .hero-ko 는 rem 이라 이미 화면 비율에 따라 자동 축소되므로 제외.
+   레이아웃/이미지(rem)도 이 블록에서 건드리지 않음 → 비율 스케일 유지.
+   ================================================================ */
+@media (max-width: 400px) {
+    .iconDescription { font-size: 12px; }
+
+    .product .thumb { font-size: 18px; }
+    .product .badge { font-size: 10px; }
+    .product .name { font-size: 12px; }
+    .product .price { font-size: 11px; }
+
+    .banner { font-size: 18px; }
+    .grid .box { font-size: 16px; }
+    .banner-full { font-size: 18px; }
+}

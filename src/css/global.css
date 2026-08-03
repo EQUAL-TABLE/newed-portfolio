@@ -1,0 +1,323 @@
+/* 웹폰트: 영문 Mohave / 한글 Pretendard (@import 는 파일 최상단에 위치해야 함) */
+@import url('https://fonts.googleapis.com/css2?family=Mohave:wght@300;400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css');
+
+/*
+  전역(global) 스타일 — 모든 페이지에서 공유됩니다.
+  (변수 / 리셋 / 반응형 루트 / body / .page / .box / 공통 레이아웃 Header·Footer / .content / .section-title)
+
+  크기는 rem, 텍스트(font-size)는 px 로 관리하는 버전입니다.
+  모바일에서는 루트 폰트 크기를 줄여 레이아웃(rem)이 화면 폭에 맞게 비례 축소됩니다.
+*/
+
+:root {
+    --orange: #ec7123;
+    --cream: #fae6aa;
+    --blue: #468fcd;
+    --white: #fafaf8;
+    --gray: #e2e2e2;
+    --ink: #000000;
+    --purple: #683BC5;
+}
+
+/*
+  Responsive strategy:
+  - Desktop: root = 16px  ->  .page = 41rem = 656px (fixed design width).
+  - Mobile (viewport < 656px): shrink the root font-size so 41rem === 100vw,
+    which scales the entire layout proportionally to fit the screen width exactly.
+*/
+html { font-size: 16px; }
+
+@media (max-width: 656px) {
+    html { font-size: calc(100vw / 41); }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #eeeeee;
+    /* 영문 → Mohave, 한글 → Pretendard (글리프별 자동 폴백), 둘 다 실패 시 sans-serif */
+    font-family: 'Mohave', 'Pretendard', sans-serif;
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+}
+
+.page {
+    width: 41rem;              /* 656px on desktop */
+    max-width: 100%;
+    background: #ffffff;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);   /* 2px 8px */
+}
+
+/* placeholder box (image slot) — 여러 페이지/컴포넌트에서 공용으로 사용 */
+.box {
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+/* content 래퍼 (좌우 1.25rem 여백) — 모든 페이지 공용 */
+.content { padding: 0 1.25rem; }   /* 20px */
+
+/* 404 페이지 */
+.notfound {
+    padding-bottom: 4rem;
+}
+.notfound p {
+    margin: 1rem 0 2rem;
+}
+.notfound a {
+    color: var(--orange);
+    font-weight: 700;
+}
+
+/* 섹션 제목 — 모든 페이지 공용 */
+.section-title {
+    font-size: 22px;           /* text: px */
+    font-weight: 700;
+    margin-top: 4rem;        /* 40px */
+}
+
+/* ---------- 공통 레이아웃: Header ---------- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.topbar {
+    height: 60px;              /* 60px */
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.topbar-logo {
+    display: block;           /* 인라인 이미지 하단 여백 제거 */
+    height: 32px;             /* 32px — 60px 바 안에 위아래 여백을 두고 가운데 정렬 */
+    width: auto;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    height: 40px;              /* 40px */
+    padding: 0 2.5rem;         /* 40px */
+    justify-content: space-between;
+    background: #ffffff;
+}
+.nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 16px;           /* text: px */
+    font-weight: 800;
+}
+/* 현재 페이지에 해당하는 메뉴는 주황색 (NavLink 가 자동으로 active 클래스 부여) */
+.nav a.active {
+    color: var(--orange);
+}
+/* hover 시 주황색 피드백 — 외부 링크(제품)처럼 active 가 없는 메뉴에도 상호작용 표시 */
+.nav a:hover {
+    color: var(--orange);
+}
+
+/* ---------- 공통 레이아웃: Footer ---------- */
+.footer {
+    width: 41rem;              /* 656px */
+    max-width: 100%;
+    background: var(--orange);
+    color: #ffffff;
+    padding: 4rem 2.5rem;    /* 128px 40px */
+}
+.footer-copy {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: -0.1px;
+}
+.footer-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    font-size: 12px;
+    font-weight: 300;
+}
+.footer-menu a {
+    color: #ffffff;
+    text-decoration: none;
+}
+/* button 을 링크처럼 (사업자정보 / 개인정보처리방침) */
+.footer-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: #ffffff;
+    cursor: pointer;
+}
+.footer-divider {
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+/* 사업자정보 아코디언 */
+.footer-biz {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+}
+.footer-biz.open {
+    max-height: 12rem;         /* 내용이 다 보일 만큼 충분히 */
+}
+.footer-biz-inner {
+    padding-top: 1.5rem;
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+}
+
+.footer-contact {
+    margin-top: 0.5rem;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.85);
+}
+.footer-contact a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* ---------- 모달 (개인정보처리방침 등 공용) ---------- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);            /* 배경 흐림 */
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    z-index: 1000;                         /* sticky 헤더(100)보다 위 */
+    animation: modalFade 0.25s ease;
+}
+.modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #fafaf8;
+    color: var(--ink);
+    width: 100%;
+    max-width: 48rem;
+    max-height: 100%;
+    border-radius: 0.75rem;
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.35);
+    overflow: hidden;                      /* 헤더/바디 분리, 카드 라운드 유지 */
+    animation: modalPop 0.28s ease;
+}
+@keyframes modalFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes modalPop {
+    from { opacity: 0; transform: translateY(1.5rem) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 헤더: 제목 + 닫기 (스크롤 시 고정) */
+.modal-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.modal-title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+.modal-close {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--ink);
+    transition: color 0.2s ease;
+}
+.modal-close:hover {
+    color: var(--orange);
+}
+
+/* 본문: 스크롤 영역 */
+.modal-body {
+    overflow-y: auto;
+    padding: 1.5rem 2rem 2rem;
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(0, 0, 0, 0.85);
+}
+.modal-body section {
+    margin-top: 1.5rem;
+}
+/* --- 모달 본문 글자 크기: 아래 세 값만 바꾸면 됩니다 --- */
+.modal-body p {
+    font-size: 12px;           /* 일반 문단 */
+    margin-bottom: 0.5rem;
+}
+.modal-body h3 {
+    font-size: 14px;           /* 소제목(h3) */
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+}
+.modal-body ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 0.25rem 0 0.5rem;
+}
+.modal-body li {
+    font-size: 12px;           /* 리스트 항목(list) */
+    margin-bottom: 0.25rem;
+}
+.modal-body a {
+    color: var(--orange);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-all;
+}
+.modal-muted {
+    color: rgba(0, 0, 0, 0.6);
+}
+.modal-note {
+    padding-top: 0.5rem;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 10px;
+}
+
+/* ================================================================
+   단일 브레이크포인트 (400px 이하): 텍스트(px)만 축소.
+   레이아웃/이미지(rem)는 이 블록에서 건드리지 않으므로,
+   기존처럼 화면 폭에 따라 비율 자동 스케일이 유지됩니다.
+   ================================================================ */
+@media (max-width: 400px) {
+    .section-title { font-size: 20px; }
+    .nav a { font-size: 16px; }
+
+    .footer-copy { font-size: 10px; }
+    .footer-menu { font-size: 10px; }
+    .footer-biz-inner { font-size: 9px; }
+    .footer-contact { font-size: 9px; }
+
+    .modal-title { font-size: 15px; }
+    .modal-note { font-size: 10px; }
+    /* 모달 본문(p)/소제목(h3)/리스트(li) 크기는 위 기본 규칙에서 단일 관리 */
+}

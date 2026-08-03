@@ -1,0 +1,82 @@
+/*
+  제품 상세 페이지 전용 스타일.
+  구성: 메인이미지(풀폭) → 제품명 → 설명 → 가격 → 상세이미지(풀폭)
+  이미지는 좌우 여백 없이 꽉 차고, 텍스트 블록만 좌우 패딩을 가집니다.
+*/
+
+.pd-main {
+    display: block;
+    width: 100%;
+    height: auto;              /* 정사각(656x656) 비율 유지 */
+}
+
+/* 텍스트 블록 (좌우 여백) */
+.pd-info {
+    padding: 4rem 1.25rem;     /* 64px 20px */
+}
+
+.pd-name {
+    font-size: 16px;           /* text: px */
+    font-weight: 700;
+}
+
+.pd-desc {
+    margin-top: 1.5rem;
+    font-size: 13px;           /* text: px */
+    line-height: 1.4;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 1);
+}
+
+.pd-price {
+    margin-top: 1.5rem;
+    font-size: 16px;           /* text: px */
+    font-weight: 700;
+}
+
+.pd-detail {
+    display: block;
+    width: 100%;
+    height: auto;              /* 세로로 긴 상세 이미지 */
+}
+
+/* 하단 고정 구매 버튼 바 — 스크롤과 무관하게 항상 화면 바닥에 고정 */
+.pd-buybar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);   /* .page 처럼 가운데 정렬 */
+    width: 100%;
+    max-width: 41rem;              /* 656px — 페이지 폭에 맞춤 */
+    background: #ffffff;
+    padding: 0.75rem 1.25rem;
+    box-shadow: 0 -0.125rem 0.5rem rgba(0, 0, 0, 0.1);  /* 위쪽 그림자로 분리감 */
+    z-index: 200;                  /* sticky 헤더(100)보다 위, 모달(1000)보다 아래 */
+}
+.pd-buy {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: var(--orange);
+    color: #ffffff;
+    text-align: center;
+    font-size: 18px;               /* text: px */
+    font-weight: 800;
+    border-radius: 0.6rem;
+    text-decoration: none;
+}
+
+/* 상세 페이지에서만: 고정 버튼이 푸터 내용을 가리지 않도록 푸터 하단 여백 확보.
+   ( .pd 바로 다음의 .footer = 상세 페이지일 때만 매칭 ) */
+.pd + .footer {
+    padding-bottom: 7rem;
+}
+
+/* 단일 브레이크포인트 (400px 이하): 텍스트(px)만 축소 */
+@media (max-width: 400px) {
+    .pd-name { font-size: 20px; }
+    .pd-desc { font-size: 13px; }
+    .pd-ship { font-size: 11px; }
+    .pd-price { font-size: 17px; }
+    .pd-buy { font-size: 16px; }
+}
