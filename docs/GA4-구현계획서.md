@@ -52,11 +52,11 @@ src/App.jsx                 ← 라우트 변경마다 trackPageView
 
 | 컴포넌트 | 요소 | 호출 |
 |---|---|---|
-| [Header](../src/components/Header.jsx) | 로고/뉴드/브랜드 | `trackMenuClick(name,'header')` |
-| Header | 제품(카카오) | `trackShopClick('menu', url)` |
+| [Header](../src/components/Header.jsx) | 로고/뉴드/브랜드/제품 | `trackMenuClick(name,'header')` (제품 → /products 내부) |
 | Header | 이벤트(인스타) | `trackInstagramClick('header', url)` |
 | [IconList](../src/components/IconList.jsx) | BEST / 카카오 / 인스타 | `trackIconClick` / `trackShopClick('icon')` / `trackInstagramClick('icon')` |
 | [ProductCard](../src/components/ProductCard.jsx) | 제품 카드 | `trackProductClick(name,id,index)` |
+| [ProductSection](../src/components/ProductSection.jsx) | 제품 더 알아보기 CTA | `trackShopClick('product_more', url)` |
 | [Hero](../src/components/Hero.jsx) | 화살표/스와이프 | `trackHeroSlide(dir, index)` |
 | [InstaGrids](../src/components/InstaGrids.jsx) | 피드 포스트 | `trackInstagramClick('feed', url, i)` |
 | [Footer](../src/components/Footer.jsx) | 브랜드소개/사업자정보/인스타/개인정보 | `trackMenuClick('brand','footer')` / `trackAccordionToggle` / `trackInstagramClick('footer')` / `trackModalOpen('privacy')` |

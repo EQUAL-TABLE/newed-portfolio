@@ -57,7 +57,7 @@
 .pd-buy {
     display: block;
     width: 100%;
-    padding: 1rem;
+    padding: 1.25rem;
     background: var(--orange);
     color: #ffffff;
     text-align: center;
@@ -68,9 +68,78 @@
 }
 
 /* 상세 페이지에서만: 고정 버튼이 푸터 내용을 가리지 않도록 푸터 하단 여백 확보.
-   ( .pd 바로 다음의 .footer = 상세 페이지일 때만 매칭 ) */
+   ( .pd 바로 다음의 .footer = 상세 페이지일 때만 매칭 )
+   --pd-buybar-h = 버튼바 실제 측정 높이(ProductDetail.jsx). 측정 전엔 6rem 로 폴백.
+   버튼바 높이 + 여유(1.5rem)만큼 비워 버튼이 푸터 내용을 덮지 않게 함. */
 .pd + .footer {
-    padding-bottom: 7rem;
+    padding-bottom: calc(var(--pd-buybar-h, 6rem) + 1.5rem);
+}
+
+/* 제품 더 알아보기 — 상세 이미지 아래(푸터 위), 현재 제품 외 나머지 제품 */
+.pd-more {
+    padding: 4rem 1.25rem;         /* 좌우 여백은 .pd-info 와 동일 */
+}
+.pd-more-title {
+    font-size: 18px;               /* text: px */
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+.pd-more-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+.pd-more-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--ink);
+}
+.pd-more-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: var(--cream);
+}
+.pd-more-name {
+    margin-top: 1rem;
+    font-size: 14px;               /* text: px */
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: -0.3px;
+}
+
+/* 맨 위로 버튼 — 오른쪽 하단, 구매 버튼바(--pd-buybar-h) 위에 원형으로 띄움 */
+.pd-top {
+    position: fixed;
+    right: 1.25rem;
+    /* 구매 버튼바 높이 + 여유(1rem) 만큼 위로. 측정 전엔 6rem 폴백 */
+    bottom: calc(var(--pd-buybar-h, 6rem) + 1rem);
+    width: 2.75rem;                /* 44px */
+    height: 2.75rem;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+    z-index: 200;                  /* 구매 버튼바와 같은 층, 모달(1000)보다 아래 */
+    /* 기본은 숨김 — 상세 이미지 노출 시 .is-visible 로 서서히 나타남 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.5rem);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+.pd-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 /* 단일 브레이크포인트 (400px 이하): 텍스트(px)만 축소 */

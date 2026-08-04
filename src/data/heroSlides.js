@@ -12,23 +12,27 @@ export const heroSlides = [
     img: slideMain,
     en: '',
     ko: '',
+    to: 'https://gift.kakao.com/brand/20130',
   },
   {
     id: 'slide-2',
     img: slideImg1,
     en: 'FIRST SHIP <br />THAT FEELING',
     ko: '세상에 없던 새로운 드립백',
+    to: '/products/deep',
   },
   {
     id: 'slide-3',
     img: slideImg3,
     en: 'JUST TASTE',
     ko: '입 안에 퍼지는 선명한 즐거움',
+    to: '/products/bright',
   },
   {
     id: 'slide-4',
     img: slideImg4,
     en: 'NEW EDITION',
     ko: '디카페인의 한계를 넘어선 뉴드',
+    to: '/products/decaf',
   },
 ]

@@ -20,7 +20,7 @@ repo 코드의 **전환 이벤트**가 Meta 데이터 세트(Newed, ID `18210691
 
 | dataLayer 이벤트 | 발생 시점(v2) | Meta 표준 |
 |---|---|---|
-| `conversion_shop` | 제품 메뉴·카카오 아이콘·상세 바로구매 버튼 | **Lead** |
+| `conversion_shop` | 카카오 아이콘·제품 더 알아보기 CTA·상세 바로구매 버튼 | **Lead** |
 | `conversion_instagram` | 이벤트 메뉴·인스타 아이콘·Footer 인스타·피드 | **Contact** |
 | `conversion_content` | 제품 카드 클릭·브랜드 페이지 조회 | **ViewContent** |
 
@@ -72,7 +72,7 @@ repo 코드의 **전환 이벤트**가 Meta 데이터 세트(Newed, ID `18210691
 
 - Lead/Contact의 `content_name`은 **`{{dlv.source}}`**(발생 위치). 따라서:
   - Contact: `header`·`icon`·`footer`·`feed`
-  - Lead: `menu`·`icon`·`buybutton_deep`·`buybutton_bright`·`buybutton_decaf` → **상품이 content_name에 그대로 들어옴** → GTM 변경 없이 상품 구분 가능.
+  - Lead: `icon`·`product_more`·`buybutton_deep`·`buybutton_bright`·`buybutton_decaf` → **상품이 content_name에 그대로 들어옴** → GTM 변경 없이 상품 구분 가능.
 - 페이지(홈/브랜드 등) 구분은 Meta가 이벤트 발생 URL을 자동 기록하므로 URL 기준으로 가능.
 
 ---

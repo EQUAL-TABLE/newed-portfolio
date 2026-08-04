@@ -19,6 +19,7 @@
     overflow: hidden;          /* 옆 슬라이드 숨김 */
     touch-action: pan-y;       /* 세로 스크롤 허용, 가로 스와이프는 캐러셀이 처리 */
     user-select: none;
+    cursor: pointer;           /* 클릭 시 해당 슬라이드 화면으로 이동 */
 }
 .hero-track {
     display: flex;

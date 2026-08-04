@@ -7,7 +7,7 @@ import { trackMenuClick, trackShopClick, trackInstagramClick } from '../lib/anal
 // - kind: 외부 링크 추적 분류 — 'shop'(카카오 전환) / 'instagram'(문의 전환)
 const menu = [
   { label: '브랜드', to: '/brand', menuName: 'brand' },
-  { label: '제품', href: 'https://gift.kakao.com/brand/20130', external: true, kind: 'shop' }, // 카카오 선물하기
+  { label: '제품', to: '/products', menuName: 'product' }, // 제품 목록 페이지(내부)
   { label: '이벤트', href: 'https://instagram.com/newed_official', external: true, kind: 'instagram' }, // 인스타그램
 ]
 

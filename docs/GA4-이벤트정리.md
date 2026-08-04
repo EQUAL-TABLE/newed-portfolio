@@ -26,7 +26,7 @@
 | 이벤트 ID | 의미 / 발생 시점 | 발생 위치 |
 |---|---|---|
 | `page_view` | SPA 라우트 변경마다 전송(자동 page_view는 끔) | App(라우트 변경) |
-| `menu_click` | 내부 내비게이션 클릭(로고/홈/브랜드) | Header, Footer |
+| `menu_click` | 내부 내비게이션 클릭(로고/홈/브랜드/제품) | Header, Footer |
 | `outbound_click` | 외부 사이트 이동(카카오/인스타) — **모든 전환성 이탈** | Header·IconList·Footer·InstaGrids·ProductDetail |
 | `product_click` | 제품 카드 클릭 → 상세페이지 진입 | ProductCard |
 | `view_content` | 클릭 없는 콘텐츠 조회(브랜드 페이지 진입) | Brand |
@@ -50,14 +50,14 @@
 ### `menu_click`
 | 파라미터 | 의미 | 값 |
 |---|---|---|
-| `menu_name` | 메뉴 이름 | `logo`, `home`, `brand` |
+| `menu_name` | 메뉴 이름 | `logo`, `home`, `brand`, `product` |
 | `source` | 발생 위치 | `header`, `footer` |
 
 ### `outbound_click`  ← 전환 분석의 핵심
 | 파라미터 | 의미 | 값 |
 |---|---|---|
 | `label` | 이동 종류 | `shop`(카카오), `instagram` |
-| `source` | **발생 위치**(어디서 눌렀나) | shop: `menu`·`icon`·`buybutton_deep`·`buybutton_bright`·`buybutton_decaf` / instagram: `header`·`icon`·`footer`·`feed` |
+| `source` | **발생 위치**(어디서 눌렀나) | shop: `icon`·`product_more`·`buybutton_deep`·`buybutton_bright`·`buybutton_decaf` / instagram: `header`·`icon`·`footer`·`feed` |
 | `product_id` | 상품 | `deep`·`bright`·`decaf` (바로구매 버튼일 때) |
 | `index` | 피드 순번 | `0`~ (instagram `feed`일 때) |
 | `url` | 이동 URL | 목적지 |
@@ -116,7 +116,7 @@ GA4 이벤트와 별개로, 전환 시점에 dataLayer/Naver로도 전송됩니�
 
 | 전환 | 발생 지점 | dataLayer 이벤트 | Meta 표준 | Naver 타입 |
 |---|---|---|---|---|
-| 구매의도 | 제품 메뉴·카카오 아이콘·바로구매 버튼 | `conversion_shop` | Lead | `lead` |
+| 구매의도 | 카카오 아이콘·제품 더 알아보기(`product_more`)·바로구매 버튼 | `conversion_shop` | Lead | `lead` |
 | 문의 | 이벤트 메뉴·인스타 아이콘·Footer 인스타·피드 | `conversion_instagram` | Contact | `custom001` |
 | 콘텐츠조회 | 제품 카드 클릭·브랜드 페이지 조회 | `conversion_content` | ViewContent | `view_content` |
 

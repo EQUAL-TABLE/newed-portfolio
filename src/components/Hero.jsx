@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { heroSlides } from '../data/heroSlides'
 import { trackHeroSlide } from '../lib/analytics'
 
@@ -15,8 +16,16 @@ export default function Hero() {
   const startX = useRef(0)
   const viewportRef = useRef(null)
   const posRef = useRef(pos)                  // visibility 핸들러에서 최신 pos 참조용
+  const navigate = useNavigate()
 
   const logical = (pos - 1 + len) % len       // 오버레이 텍스트용 실제 인덱스
+
+  // 슬라이드의 to 로 이동. 외부 URL 은 새 탭, 내부 라우트는 SPA 이동.
+  const goTo = (to) => {
+    if (!to) return
+    if (/^https?:\/\//i.test(to)) window.open(to, '_blank', 'noopener')
+    else navigate(to)
+  }
 
   // 항상 최신 pos 를 ref 에 보관 (아래 visibilitychange 리스너가 stale 값 잡지 않도록)
   useEffect(() => { posRef.current = pos }, [pos])
@@ -62,6 +71,7 @@ export default function Hero() {
     const threshold = width * 0.2   // 20% 이상 끌면 넘김
     if (dragPx > threshold) goPrev()
     else if (dragPx < -threshold) goNext()
+    else if (Math.abs(dragPx) < 6) goTo(heroSlides[logical].to)   // 거의 안 움직인 탭 → 현재 슬라이드로 이동
     setDragPx(0)
     setDragging(false)
   }

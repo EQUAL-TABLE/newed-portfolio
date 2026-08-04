@@ -15,6 +15,13 @@ export const seoBrand = {
     '마르세유 커피하우스에서 영감받은 뉴드. 첫 모금의 선명한 즐거움을 전하는 스페셜티커피.',
 }
 
+export const seoProductsPage = {
+  path: '/products',
+  title: '뉴드 NEWED | 제품 | 가향 드립백 3종 에디션',
+  description:
+    '뉴드 드립백 딥·브라이트·디카페인 에디션.',
+}
+
 // 상품 상세: products.js 의 id 기준. 새 상품 추가 시 여기 한 줄만 더하면 됩니다.
 export const seoProducts = {
   deep: {
