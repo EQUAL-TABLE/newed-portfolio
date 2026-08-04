@@ -1,12 +1,19 @@
+import { useEffect } from 'react'
 import '../css/brand.css'
 import Seo from '../components/Seo'
 import { seoBrand } from '../data/seo'
+import { trackContentView } from '../lib/analytics'
 import BrandImg1 from '../assets/images/brandImg-1-656-480.png'
 import BrandImg2 from '../assets/images/brandImg-2-615-200.png'
 import BrandImg3 from '../assets/images/brandImg-3-615-200.png'
 
 // 브랜드 소개 페이지
 export default function Brand() {
+  // 페이지 진입 = 콘텐츠조회 전환 (Meta ViewContent / Naver view_content)
+  useEffect(() => {
+    trackContentView('브랜드', 'page')
+  }, [])
+
   return (
     <main className="brand">
       <Seo {...seoBrand} />

@@ -1,12 +1,20 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import ProductDetail from './pages/ProductDetail'
 import Brand from './pages/Brand'
 import Events from './pages/Events'
 import NotFound from './pages/NotFound'
+import { trackPageView } from './lib/analytics'
 
 export default function App() {
+  // SPA 라우트 변경마다 GA4 page_view 전송 (initGA 에서 자동 page_view 는 꺼둠)
+  const location = useLocation()
+  useEffect(() => {
+    trackPageView(location.pathname + location.search)
+  }, [location.pathname, location.search])
+
   return (
     <Routes>
       {/* 공통 레이아웃(Header/Footer) 아래에 각 페이지가 들어갑니다 */}

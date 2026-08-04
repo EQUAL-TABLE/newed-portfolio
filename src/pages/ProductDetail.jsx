@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { products } from '../data/products'
 import Seo from '../components/Seo'
 import { seoProducts } from '../data/seo'
+import { trackShopClick } from '../lib/analytics'
 import '../css/productDetail.css'
 
 // 제품 상세 페이지. URL 의 :id 로 상품을 특정합니다.
@@ -73,6 +74,7 @@ export default function ProductDetail() {
           href={product.to}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackShopClick(`buybutton_${product.id}`, product.to, product.id)}
         >
           바로 구매
         </a>

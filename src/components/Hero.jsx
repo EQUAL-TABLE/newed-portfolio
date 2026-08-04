@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { heroSlides } from '../data/heroSlides'
+import { trackHeroSlide } from '../lib/analytics'
 
 const len = heroSlides.length
 // 무한 루프용: 앞뒤에 클론을 붙임 → [마지막, s0, s1, s2, 첫번째]
@@ -15,8 +16,9 @@ export default function Hero() {
 
   const logical = (pos - 1 + len) % len       // 오버레이 텍스트용 실제 인덱스
 
-  const goPrev = () => { setNoAnim(false); setPos((p) => p - 1) }
-  const goNext = () => { setNoAnim(false); setPos((p) => p + 1) }
+  // 수동 전환(화살표/스와이프)만 추적. 자동재생 타이머는 setPos 를 직접 호출해 추적 제외.
+  const goPrev = () => { trackHeroSlide('prev', logical); setNoAnim(false); setPos((p) => p - 1) }
+  const goNext = () => { trackHeroSlide('next', logical); setNoAnim(false); setPos((p) => p + 1) }
 
   // 슬라이드 전환이 끝나면, 클론 위치일 경우 실제 위치로 순간이동
   const onTransitionEnd = () => {
@@ -56,7 +58,7 @@ export default function Hero() {
   }, [pos, dragging])
 
   return (
-    <div className="hero">
+    <div className="hero" id="hero">
       <div
         className="hero-viewport"
         ref={viewportRef}

@@ -48,6 +48,13 @@ body {
     max-width: 100%;
     background: #ffffff;
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);   /* 2px 8px */
+    /*
+      홈의 아이콘 이미지(.icon-img, width:150%)가 페이지 폭 밖으로 넘쳐
+      모바일에서 가로 드래그 시 오른쪽 여백이 생기는 것을 방지.
+      overflow:hidden 은 스크롤 컨테이너를 만들어 sticky 헤더를 깨므로
+      스크롤 컨테이너를 만들지 않는 clip 을 사용 (세로 넘침은 그대로 유지).
+    */
+    overflow-x: clip;
 }
 
 /* placeholder box (image slot) — 여러 페이지/컴포넌트에서 공용으로 사용 */

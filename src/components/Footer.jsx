@@ -1,34 +1,47 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PrivacyPolicy from './PrivacyPolicy'
+import {
+  trackMenuClick,
+  trackAccordionToggle,
+  trackInstagramClick,
+  trackModalOpen,
+} from '../lib/analytics'
 
 export default function Footer() {
   const [bizOpen, setBizOpen] = useState(false)      // 사업자정보 아코디언
   const [privacyOpen, setPrivacyOpen] = useState(false) // 개인정보처리방침 모달
 
   return (
-    <footer className="footer">
+    <footer className="footer" id="footer">
       <p className="footer-copy">©NEWED.ALL RIGHTSRESERVED</p>
 
       <nav className="footer-menu">
         {/* 브랜드소개 → 브랜드 페이지 이동 */}
-        <Link to="/brand">브랜드소개</Link>
+        <Link to="/brand" onClick={() => trackMenuClick('brand', 'footer')}>브랜드소개</Link>
         <span className="footer-divider">｜</span>
         {/* 사업자정보 → 아코디언 토글 */}
         <button
           type="button"
           className="footer-link"
-          onClick={() => setBizOpen((v) => !v)}
+          onClick={() => {
+            const next = !bizOpen
+            trackAccordionToggle('business_info', next)
+            setBizOpen(next)
+          }}
           aria-expanded={bizOpen}
         >
           사업자정보
         </button>
         <span className="footer-divider">｜</span>
-        {/* 인스타그램 → 외부 링크(새 탭) */}
+        {/* 인스타그램 → 외부 링크(새 탭) = 문의 전환 */}
         <a
           href="https://www.instagram.com/newed_official/"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() =>
+            trackInstagramClick('footer', 'https://www.instagram.com/newed_official/')
+          }
         >
           인스타그램
         </a>
@@ -37,7 +50,10 @@ export default function Footer() {
         <button
           type="button"
           className="footer-link"
-          onClick={() => setPrivacyOpen(true)}
+          onClick={() => {
+            trackModalOpen('privacy')
+            setPrivacyOpen(true)
+          }}
         >
           개인정보처리방침
         </button>
