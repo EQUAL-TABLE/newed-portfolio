@@ -192,6 +192,29 @@
     margin-top: 0.125rem;      /* 2px */
 }
 
+/* 제품 그리드 마지막 칸 CTA (화살표 + "제품 더 알아보기") */
+.product-more {
+    width: 18.5625rem;         /* 297px — 제품 썸네일과 동일 */
+    height: 18.5625rem;        /* 297px — 옆 썸네일과 상단 정렬 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;              /* 화살표와 텍스트 간격 20px */
+    text-decoration: none;     /* 링크 밑줄 제거 */
+    color: var(--ink);
+}
+.product-more-img {
+    width: 55%;                /* 화살표 크기 */
+    height: auto;
+    object-fit: contain;
+}
+.product-more-text {
+    font-size: 12px;           /* text: px — 제품명과 동일 톤 */
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
 /* 프로모션 배너 캐러셀 (615x210, 콘텐츠 폭 안) — 화살표 없이 드래그/스와이프 + 하단 점 */
 .banner-carousel {
     position: relative;        /* 하단 점(absolute) 위치 기준 */
@@ -286,6 +309,6 @@
     .product .badge { font-size: 12px; }
     .product .name { font-size: 14px; }
     .product .price { font-size: 16px; }
-
+    .product-more-text { font-size: 10px; }
     .grid .box { font-size: 16px; }
 }
