@@ -50,7 +50,7 @@
     width: 100%;
     max-width: 41rem;              /* 656px — 페이지 폭에 맞춤 */
     background: #ffffff;
-    padding: 0.75rem 1.25rem;
+    padding: 1.25rem 1.25rem;
     box-shadow: 0 -0.125rem 0.5rem rgba(0, 0, 0, 0.1);  /* 위쪽 그림자로 분리감 */
     z-index: 200;                  /* sticky 헤더(100)보다 위, 모달(1000)보다 아래 */
 }
