@@ -68,20 +68,20 @@
 /* 좌하단 텍스트 */
 .hero-text {
     position: absolute;
-    left: 1.5rem;
-    bottom: 1.5rem;
-    color: #ffffff;
+    left: 2.5rem;
+    bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.85);
     opacity: 0;
     animation: heroFadeUp 0.5s ease 0.9s forwards;   /* 그림자보다 0.1s 늦게 나타남 */
 }
 .hero-en {
-    font-size: 3rem;           /* text: px */
+    font-size: 5rem;           /* text: 80px */
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: -1px;
 }
 .hero-ko {
-    font-size: 2rem;        /* 20px` */
-    margin-top: 0.5rem;
+    font-size: 2rem;        /* 32px */
+    font-weight: 500;
 }
 
 /* 좌우 화살표 */
@@ -147,9 +147,9 @@
 }
 
 .iconDescription{
-    font-size: 14px;           /* text: px */
+    font-size: 16px;           
     margin-top: 1rem;          /* 16px */
-    font-weight: 800;
+    font-weight: 700;
     display: flex;
     justify-content: center;
 }
@@ -168,23 +168,22 @@
 .product .thumb {
     width: 18.5625rem;         /* 297px */
     height: 18.5625rem;        /* 297px */
-    font-size: 22px;           /* text: px */
 }
 .product .badge {
     color: var(--orange);
     font-weight: 700;
-    font-size: 12px;           /* text: px */
+    font-size: 14px;           /* text: px */
     margin-top: 1.5rem;        /* 10px */
     letter-spacing: -0.1px;
 }
 .product .name {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 700;          /* text: px */
     margin-top: 0.25rem;       /* 4px */
     letter-spacing: -0.5px;
 }
 .product .price {
-    font-size: 12px;           /* text: px */
+    font-size: 20px;           /* text: px */
     font-weight: 600;
     margin-top: 0.125rem;      /* 2px */
 }
@@ -234,12 +233,11 @@
    레이아웃/이미지(rem)도 이 블록에서 건드리지 않음 → 비율 스케일 유지.
    ================================================================ */
 @media (max-width: 400px) {
-    .iconDescription { font-size: 12px; }
+    .iconDescription { font-size: 14px; }
 
-    .product .thumb { font-size: 18px; }
-    .product .badge { font-size: 10px; }
-    .product .name { font-size: 12px; }
-    .product .price { font-size: 11px; }
+    .product .badge { font-size: 12px; }
+    .product .name { font-size: 14px; }
+    .product .price { font-size: 16px; }
 
     .banner { font-size: 18px; }
     .grid .box { font-size: 16px; }

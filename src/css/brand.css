@@ -27,19 +27,19 @@
     margin: 5rem 0;
 }
 .brand-en {
-    font-size: 26px;              /* 영문 타이틀 */
+    font-size: 36px;              /* 영문 타이틀 */
     font-weight: 800;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
 }
 .brand-ko {
-    font-size: 18px;              /* 한글 부제 */
+    font-size: 24px;              /* 한글 부제 */
     font-weight: 700;
     margin-top: 0.4rem;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
 }
 .brand-desc {
     margin-top: 1.5rem;
-    font-size: 11px;              /* 설명 */
+    font-size: 14px;              /* 설명 */
     font-weight: 400;
     line-height: 1.4;
     letter-spacing: -0.5px;
@@ -48,7 +48,7 @@
 
 /* 단일 브레이크포인트 (400px 이하): 텍스트(px)만 축소 */
 @media (max-width: 400px) {
-    .brand-en { font-size: 20px; }
-    .brand-ko { font-size: 14px; }
-    .brand-desc { font-size: 9px; }
+    .brand-en { font-size: 30px; }
+    .brand-ko { font-size: 21px; }
+    .brand-desc { font-size: 12px; }
 }

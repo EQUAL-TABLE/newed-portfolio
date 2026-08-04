@@ -35,6 +35,11 @@ export default function ProductDetail() {
   // description 안의 <br> / </br> 를 실제 줄바꿈으로 렌더링
   const lines = product.description.split(/<\/?br\s*\/?>/i)
 
+  // 제품명: 앞 두 단어(뉴드 드립백)는 기본색, 뒤 나머지(에디션명)는 제품별 강조색
+  const nameWords = product.name.split(/\s+/)
+  const nameHead = nameWords.slice(0, 2).join(' ')
+  const nameAccent = nameWords.slice(2).join(' ')
+
   return (
     <main className="pd">
       <Seo path={`/products/${product.id}`} title={seo.title} description={seo.description} />
@@ -43,8 +48,16 @@ export default function ProductDetail() {
       <img className="pd-main" src={product.productImg} alt={product.name} />
 
       <div className="pd-info">
-        {/* 제품명 */}
-        <h1 className="pd-name">{product.name}</h1>
+        {/* 제품명 — 앞 두 단어는 기본색, 뒤 에디션명은 제품별 강조색 */}
+        <h1 className="pd-name">
+          {nameHead}
+          {nameAccent && (
+            <>
+              {' '}
+              <span style={{ color: product.accent }}>{nameAccent}</span>
+            </>
+          )}
+        </h1>
 
         {/* 설명 */}
         <p className="pd-desc">

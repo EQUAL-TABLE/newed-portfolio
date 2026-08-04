@@ -16,13 +16,13 @@
 }
 
 .pd-name {
-    font-size: 16px;           /* text: px */
+    font-size: 24px;           /* text: px */
     font-weight: 700;
 }
 
 .pd-desc {
     margin-top: 1.5rem;
-    font-size: 13px;           /* text: px */
+    font-size: 15px;           /* text: px */
     line-height: 1.4;
     font-weight: 500;
     color: rgba(0, 0, 0, 1);
@@ -30,7 +30,7 @@
 
 .pd-price {
     margin-top: 1.5rem;
-    font-size: 16px;           /* text: px */
+    font-size: 20px;           /* text: px */
     font-weight: 700;
 }
 
