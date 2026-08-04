@@ -110,9 +110,17 @@ export default function Hero() {
 
         {/* 그림자 + 텍스트 오버레이 — logical 이 바뀔 때마다 remount 되어 애니메이션 재생 */}
         <div className="hero-overlay" key={logical}>
-          <div className="hero-shade-bottom" />
+          {/* slide-1 에서는 하단 그림자 이펙트를 표시하지 않음 */}
+          {heroSlides[logical].id !== 'slide-1' && <div className="hero-shade-bottom" />}
           <div className="hero-text">
-            <p className="hero-en">{heroSlides[logical].en}</p>
+            <p className="hero-en">
+              {heroSlides[logical].en.split(/<br\s*\/?>/i).map((part, i, arr) => (
+                <span key={i}>
+                  {part}
+                  {i < arr.length - 1 && <br />}
+                </span>
+              ))}
+            </p>
             <p className="hero-ko">{heroSlides[logical].ko}</p>
           </div>
         </div>

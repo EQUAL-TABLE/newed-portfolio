@@ -122,7 +122,7 @@ header {
     color: var(--ink);
     text-decoration: none;
     font-size: 16px;           /* text: px */
-    font-weight: 800;
+    font-weight: 700;
 }
 /* 현재 페이지에 해당하는 메뉴는 주황색 (NavLink 가 자동으로 active 클래스 부여) */
 .nav a.active {
@@ -190,7 +190,7 @@ header {
 }
 
 .footer-contact {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     font-size: 10px;
     color: rgba(255, 255, 255, 0.85);
 }

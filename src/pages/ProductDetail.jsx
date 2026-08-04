@@ -76,7 +76,17 @@ export default function ProductDetail() {
       {/* 제품 상세 이미지 */}
       <img
         className="pd-detail"
-        src={product.descripImg}
+        src={product.descripImg1}
+        alt={`${product.name} 상세 이미지`}
+      />
+            <img
+        className="pd-detail"
+        src={product.descripImg2}
+        alt={`${product.name} 상세 이미지`}
+      />
+            <img
+        className="pd-detail"
+        src={product.descripImg3}
         alt={`${product.name} 상세 이미지`}
       />
 

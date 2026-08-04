@@ -68,8 +68,8 @@
 /* 좌하단 텍스트 */
 .hero-text {
     position: absolute;
-    left: 2.5rem;
-    bottom: 2.5rem;
+    left: 1.5rem;
+    bottom: 1.5rem;
     color: rgba(255, 255, 255, 0.85);
     opacity: 0;
     animation: heroFadeUp 0.5s ease 0.9s forwards;   /* 그림자보다 0.1s 늦게 나타남 */
@@ -78,6 +78,7 @@
     font-size: 6rem;           /* text: 80px */
     font-weight: 800;
     letter-spacing: -3px;
+    line-height: 0.9;
 }
 .hero-ko {
     font-size: 2rem;        /* 32px */
@@ -148,9 +149,9 @@
 }
 
 .iconDescription{
-    font-size: 16px;           
+    font-size: 12px;           
     margin-top: 1rem;          /* 16px */
-    font-weight: 700;
+    font-weight: 500;
     display: flex;
     justify-content: center;
 }
@@ -171,40 +172,86 @@
     height: 18.5625rem;        /* 297px */
 }
 .product .badge {
+    font-family: 'Pretendard', sans-serif;   /* 영문/숫자까지 Pretendard 강제 (기본 스택은 Mohave 우선) */
     color: var(--orange);
-    font-weight: 700;
-    font-size: 14px;           /* text: px */
+    font-weight: 600;
+    font-size: 12px;           /* text: px */
     margin-top: 1.5rem;        /* 10px */
-    letter-spacing: -0.1px;
+    letter-spacing: -0.4px;
 }
 .product .name {
     font-size: 17px;
-    font-weight: 700;          /* text: px */
+    font-weight: 600;          /* text: px */
     margin-top: 0.25rem;       /* 4px */
     letter-spacing: -0.5px;
 }
 .product .price {
+    font-family: 'Pretendard', sans-serif;   /* 숫자까지 Pretendard 강제 (기본 스택은 Mohave 우선) */
     font-size: 20px;           /* text: px */
     font-weight: 600;
     margin-top: 0.125rem;      /* 2px */
 }
 
-/* wide banner (inside content) */
-.banner {
-    width: 38.4375rem;         /* 615px */
-    height: 13.125rem;         /* 210px */
-    font-size: 24px;           /* text: px */
-    margin-top: 4rem;        /* 40px */
+/* 프로모션 배너 캐러셀 (615x210, 콘텐츠 폭 안) — 화살표 없이 드래그/스와이프 + 하단 점 */
+.banner-carousel {
+    position: relative;        /* 하단 점(absolute) 위치 기준 */
+    margin-top: 4rem;          /* 40px — 기존 .banner 과 동일 */
+    border-radius: 0.5rem;
+    overflow: hidden;          /* 옆 슬라이드/모서리 라운드 클립 */
+}
+.banner-viewport {
+    touch-action: pan-y;       /* 세로 스크롤 허용, 가로 스와이프는 캐러셀이 처리 */
+    user-select: none;
+}
+.banner-track {
+    display: flex;
+    /* transform / transition 은 Banner.jsx 에서 인라인으로 제어 */
+}
+.banner-slide {
+    flex: 0 0 100%;            /* 한 화면에 한 장 */
+}
+.banner-slide img {
+    display: block;
+    width: 100%;
+    height: auto;              /* 615x210 원본 비율 유지 */
+    pointer-events: none;      /* 드래그 시 이미지 선택/고스트 방지 */
+    -webkit-user-drag: none;
+}
+
+/* 하단 점 인디케이터 */
+.banner-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.75rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.banner-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);   /* 비활성(안 보이는) 배너 = 반투명 원 */
+    cursor: pointer;
+}
+.banner-dot.active {
+    background: #ffffff;       /* 활성 배너 = 흰 원 */
 }
 
 /* checkerboard grid */
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 12.8125rem);   /* 205px */
+    grid-template-columns: repeat(3, 1fr);   /* 페이지 폭을 3등분해 가득 채움 */
     margin-top: 2.5rem;        /* 40px */
+    /* .content 좌우 패딩(1.25rem)을 상쇄해 양옆 여백 없이 페이지 폭 전체를 채움 */
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
 }
 .grid .box {
-    height: 16rem;             /* 256px */
+    height: 17.5rem;             /* 256px */
     font-size: 20px;           /* text: px */
     overflow: hidden;          /* 이미지가 셀 밖으로 넘치지 않게 */
 }
@@ -234,12 +281,11 @@
    레이아웃/이미지(rem)도 이 블록에서 건드리지 않음 → 비율 스케일 유지.
    ================================================================ */
 @media (max-width: 400px) {
-    .iconDescription { font-size: 14px; }
+    .iconDescription { font-size: 12px; }
 
     .product .badge { font-size: 12px; }
     .product .name { font-size: 14px; }
     .product .price { font-size: 16px; }
 
-    .banner { font-size: 18px; }
     .grid .box { font-size: 16px; }
 }

@@ -20,16 +20,16 @@ export const seoProducts = {
   deep: {
     title: '뉴드 드립백 딥 에디션 | 뉴드 NEWED',
     description:
-      '오랑주쇼콜라. 크리미넛. 누구나 사랑하는 딥 에디션 드립백.',
+      '누구나 사랑하는 Sweet & Nutty. 오랑주쇼콜라. 크리미넛.',
   },
   bright: {
     title: '뉴드 드립백 브라이트 에디션 | 뉴드 NEWED',
     description:
-      '피치멜바. 리치소르베. 새로운 맛의 모험, 브라이트 에디션 드립백.',
+      '싱그러운 과일 산미의 Fruity. 피치멜바. 리치소르베. ',
   },
   decaf: {
     title: '뉴드 드립백 디카페인 에디션 | 뉴드 NEWED',
     description:
-      '피스타치오가나슈. 애프리콧아뜰리에. 한계를 넘어선 디카페인 에디션 드립백.',
+      '한계를 넘어선 새로운 Decaf. 피스타치오가나슈. 애프리콧아뜰리에.',
   },
 }

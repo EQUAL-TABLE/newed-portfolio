@@ -29,6 +29,7 @@
 }
 
 .pd-price {
+    font-family: 'Pretendard', sans-serif;   /* 숫자까지 Pretendard 강제 (기본 스택은 Mohave 우선) */
     margin-top: 1.5rem;
     font-size: 20px;           /* text: px */
     font-weight: 700;

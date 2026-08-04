@@ -30,7 +30,7 @@ export default function Home() {
         <Hero />
         <IconList />
         <ProductSection />
-        <Banner label="615*210" id="promo_banner" />
+        <Banner id="promo_banner" />
         <InstaGrids />
       </main>
 
