@@ -1,4 +1,7 @@
 import '../css/brand.css'
+import BrandImg1 from '../assets/images/brandImg-1-656-480.png'
+import BrandImg2 from '../assets/images/brandImg-2-615-200.png'
+import BrandImg3 from '../assets/images/brandImg-3-615-200.png'
 
 // 브랜드 소개 페이지
 export default function Brand() {
@@ -7,7 +10,7 @@ export default function Brand() {
       {/* 최상단 이미지: 좌우 여백 없이 꽉 참 */}
       <img
         className="brand-hero"
-        src="https://placehold.co/656x656/468fcd/FFFFFF/png"
+        src={BrandImg1}
         alt="브랜드 대표 이미지"
       />
 
@@ -25,7 +28,7 @@ export default function Brand() {
       {/* 이후 이미지: 좌우 여백 약간 */}
       <img
         className="brand-img"
-        src="https://placehold.co/656x200/468fcd/FFFFFF/png"
+        src={BrandImg2}
         alt=""
       />
 
@@ -42,7 +45,7 @@ export default function Brand() {
 
       <img
         className="brand-img"
-        src="https://placehold.co/656x200/468fcd/FFFFFF/png"
+        src={BrandImg3}
         alt=""
       />
 

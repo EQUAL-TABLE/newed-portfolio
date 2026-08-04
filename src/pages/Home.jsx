@@ -4,6 +4,7 @@ import IconList from '../components/IconList'
 import ProductSection from '../components/ProductSection'
 import Banner from '../components/Banner'
 import InstaGrids from '../components/InstaGrids'
+import mainImage from '../assets/images/main-1-656-480.png'
 
 export default function Home() {
   return (
@@ -16,7 +17,8 @@ export default function Home() {
         <InstaGrids />
       </main>
 
-      <Banner label="656*210" full />
+      {/* 하단 고정 이미지 (배너 아님) — .page 전체 폭(656) */}
+      <img className="main-fixed" src={mainImage} alt="뉴드" />
     </>
   )
 }
