@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+ import { useParams, Link } from 'react-router-dom'
 import { products } from '../data/products'
 import Seo from '../components/Seo'
 import { seoProducts } from '../data/seo'
-import { trackShopClick } from '../lib/analytics'
+import { trackShopClick, trackContentView, trackProductClick } from '../lib/analytics'
 import '../css/productDetail.css'
 
 // 제품 상세 페이지. URL 의 :id 로 상품을 특정합니다.
@@ -19,6 +19,11 @@ export default function ProductDetail() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [id])
+
+  // 상품 상세 도달 = 콘텐츠조회(ViewContent) 1회. 진입 경로(카드/히어로/관련링크/직접 URL) 무관.
+  useEffect(() => {
+    if (product) trackContentView(product.name, 'detail', product.id)
+  }, [product])
 
   // 상세 이미지가 화면에 들어오기 시작하면 '맨 위로' 버튼을 노출한다.
   // (스크롤 최상단에서는 숨김 → 상세 이미지 top 이 뷰포트 안에 들어온 순간부터 표시)
@@ -147,8 +152,13 @@ export default function ProductDetail() {
       <section className="pd-more">
         <h2 className="pd-more-title">제품 더 알아보기</h2>
         <div className="pd-more-list">
-          {others.map((p) => (
-            <Link key={p.id} className="pd-more-item" to={p.innerTo}>
+          {others.map((p, i) => (
+            <Link
+              key={p.id}
+              className="pd-more-item"
+              to={p.innerTo}
+              onClick={() => trackProductClick(p.name, p.id, i)}
+            >
               <img className="pd-more-img" src={p.package} alt={p.name} />
               <span className="pd-more-name">{p.name}</span>
             </Link>

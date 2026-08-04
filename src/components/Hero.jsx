@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { heroSlides } from '../data/heroSlides'
-import { trackHeroSlide } from '../lib/analytics'
+import { trackHeroSlide, trackHeroClick, trackShopClick } from '../lib/analytics'
 
 const len = heroSlides.length
 // 무한 루프용: 앞뒤에 클론을 붙임 → [마지막, s0, s1, s2, 첫번째]
@@ -21,10 +21,16 @@ export default function Hero() {
   const logical = (pos - 1 + len) % len       // 오버레이 텍스트용 실제 인덱스
 
   // 슬라이드의 to 로 이동. 외부 URL 은 새 탭, 내부 라우트는 SPA 이동.
-  const goTo = (to) => {
+  // 추적: 외부(카카오)는 구매의도 전환, 내부는 hero_click 행동 이벤트.
+  const goTo = (to, index) => {
     if (!to) return
-    if (/^https?:\/\//i.test(to)) window.open(to, '_blank', 'noopener')
-    else navigate(to)
+    if (/^https?:\/\//i.test(to)) {
+      trackShopClick('hero', to)
+      window.open(to, '_blank', 'noopener')
+    } else {
+      trackHeroClick(to, index)
+      navigate(to)
+    }
   }
 
   // 항상 최신 pos 를 ref 에 보관 (아래 visibilitychange 리스너가 stale 값 잡지 않도록)
@@ -71,7 +77,7 @@ export default function Hero() {
     const threshold = width * 0.2   // 20% 이상 끌면 넘김
     if (dragPx > threshold) goPrev()
     else if (dragPx < -threshold) goNext()
-    else if (Math.abs(dragPx) < 6) goTo(heroSlides[logical].to)   // 거의 안 움직인 탭 → 현재 슬라이드로 이동
+    else if (Math.abs(dragPx) < 6) goTo(heroSlides[logical].to, logical)   // 거의 안 움직인 탭 → 현재 슬라이드로 이동
     setDragPx(0)
     setDragging(false)
   }

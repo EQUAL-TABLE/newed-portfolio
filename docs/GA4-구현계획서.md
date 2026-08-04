@@ -58,9 +58,12 @@ src/App.jsx                 ← 라우트 변경마다 trackPageView
 | [ProductCard](../src/components/ProductCard.jsx) | 제품 카드 | `trackProductClick(name,id,index)` |
 | [ProductSection](../src/components/ProductSection.jsx) | 제품 더 알아보기 CTA | `trackShopClick('product_more', url)` |
 | [Hero](../src/components/Hero.jsx) | 화살표/스와이프 | `trackHeroSlide(dir, index)` |
+| Hero | 슬라이드 탭 | 외부 `trackShopClick('hero', to)` / 내부 `trackHeroClick(to, index)` |
 | [InstaGrids](../src/components/InstaGrids.jsx) | 피드 포스트 | `trackInstagramClick('feed', url, i)` |
 | [Footer](../src/components/Footer.jsx) | 브랜드소개/사업자정보/인스타/개인정보 | `trackMenuClick('brand','footer')` / `trackAccordionToggle` / `trackInstagramClick('footer')` / `trackModalOpen('privacy')` |
-| [ProductDetail](../src/pages/ProductDetail.jsx) | 바로 구매 | `trackShopClick('buybutton_<id>', url, id)` |
+| [ProductDetail](../src/pages/ProductDetail.jsx) | 페이지 진입 | `trackContentView(name,'detail',id)` (ViewContent, 경로 무관 1회) |
+| ProductDetail | 바로 구매 | `trackShopClick('buybutton_<id>', url, id)` |
+| ProductDetail | 관련상품 링크 | `trackProductClick(name,id,i)` |
 | [Brand](../src/pages/Brand.jsx) | 페이지 진입 | `trackContentView('브랜드','page')` |
 | [Home](../src/pages/Home.jsx) | 7개 섹션 | `useSectionTracking(SECTIONS)` (각 컴포넌트에 `id` 부여) |
 

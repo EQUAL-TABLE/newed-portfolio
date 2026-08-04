@@ -144,20 +144,31 @@ function pushContentConversion(
   trackNaverConversion('content') // Naver view_content(콘텐츠보기)
 }
 
-/** 제품 카드 클릭 → 상세페이지 진입 = 콘텐츠조회. */
+/**
+ * 제품 카드/관련상품/히어로 등에서 상품으로 이동하는 클릭 = GA4 행동 이벤트.
+ * ⚠️ 콘텐츠조회(ViewContent) 전환은 여기서 발화하지 않습니다. 상품 상세 페이지
+ * 진입 시(trackContentView, ProductDetail 마운트)에 진입 경로와 무관하게 1회 집계합니다.
+ */
 export function trackProductClick(
   productName: string,
   productId: string,
   index: number,
 ): void {
   trackEvent('product_click', { product_name: productName, product_id: productId, index })
-  pushContentConversion(productName, { productId, source: 'card' })
 }
 
-/** 브랜드 페이지 조회 등 클릭 없는 콘텐츠조회. */
-export function trackContentView(contentName: string, source: string): void {
-  trackEvent('view_content', { content_name: contentName, source })
-  pushContentConversion(contentName, { source })
+/** 히어로 슬라이드 탭 → 내부 이동(상품 등). 외부 이동은 trackShopClick 사용. */
+export function trackHeroClick(to: string, index: number): void {
+  trackEvent('hero_click', { to, index })
+}
+
+/**
+ * 콘텐츠조회 = 콘텐츠 페이지 도달 1회. (상품 상세 진입 · 브랜드 페이지 진입)
+ * 진입 경로(카드/히어로/관련링크/직접 URL) 무관하게 페이지 마운트 시 호출.
+ */
+export function trackContentView(contentName: string, source: string, productId?: string): void {
+  trackEvent('view_content', { content_name: contentName, source, product_id: productId })
+  pushContentConversion(contentName, { productId, source })
 }
 
 /** IconList 내부 이동 아이콘(BEST 등). 외부 이동 아이콘은 trackShop/Instagram 사용. */

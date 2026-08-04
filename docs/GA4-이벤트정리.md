@@ -27,9 +27,10 @@
 |---|---|---|
 | `page_view` | SPA 라우트 변경마다 전송(자동 page_view는 끔) | App(라우트 변경) |
 | `menu_click` | 내부 내비게이션 클릭(로고/홈/브랜드/제품) | Header, Footer |
-| `outbound_click` | 외부 사이트 이동(카카오/인스타) — **모든 전환성 이탈** | Header·IconList·Footer·InstaGrids·ProductDetail |
-| `product_click` | 제품 카드 클릭 → 상세페이지 진입 | ProductCard |
-| `view_content` | 클릭 없는 콘텐츠 조회(브랜드 페이지 진입) | Brand |
+| `outbound_click` | 외부 사이트 이동(카카오/인스타) — **모든 전환성 이탈** | Header·IconList·Footer·InstaGrids·ProductDetail·Hero(슬라이드) |
+| `product_click` | 제품으로 이동하는 클릭(카드·관련상품) — **행동 이벤트**(ViewContent는 상세 진입 시 별도 집계) | ProductCard·ProductDetail |
+| `hero_click` | 히어로 슬라이드 탭 → 내부 이동 | Hero |
+| `view_content` | 콘텐츠 페이지 도달(상품 상세 진입 · 브랜드 페이지) | ProductDetail·Brand |
 | `icon_click` | IconList 내부 아이콘(BEST) 클릭 | IconList |
 | `hero_slide` | 히어로 슬라이더 수동 전환(화살표/스와이프) — 자동재생 제외 | Hero |
 | `accordion_toggle` | 아코디언 열기/닫기(사업자정보) | Footer |
@@ -57,30 +58,34 @@
 | 파라미터 | 의미 | 값 |
 |---|---|---|
 | `label` | 이동 종류 | `shop`(카카오), `instagram` |
-| `source` | **발생 위치**(어디서 눌렀나) | shop: `icon`·`product_more`·`buybutton_deep`·`buybutton_bright`·`buybutton_decaf` / instagram: `header`·`icon`·`footer`·`feed` |
+| `source` | **발생 위치**(어디서 눌렀나) | shop: `icon`·`product_more`·`hero`·`buybutton_deep`·`buybutton_bright`·`buybutton_decaf` / instagram: `header`·`icon`·`footer`·`feed` |
 | `product_id` | 상품 | `deep`·`bright`·`decaf` (바로구매 버튼일 때) |
 | `index` | 피드 순번 | `0`~ (instagram `feed`일 때) |
 | `url` | 이동 URL | 목적지 |
 
 > **"어디서 → 어디로" 분석**은 `label` × `source` (× `page_path`)로 분해합니다. 예: 홈 상단바 인스타(`label=instagram, source=header, page_path=/`) vs 브랜드 푸터 인스타(`source=footer, page_path=/brand`).
 
-### `product_click`
+### `product_click`  (행동 이벤트 — ViewContent 아님)
 | 파라미터 | 의미 | 값 |
 |---|---|---|
 | `product_name` | 제품명 | 뉴드 드립백 딥 에디션 … |
 | `product_id` | 제품 id | `deep`·`bright`·`decaf` |
 | `index` | 순번 | `0`(딥)·`1`(브라이트)·`2`(디카페인) |
 
-### `view_content`
+### `view_content`  (= ViewContent 전환)
 | 파라미터 | 의미 | 값 |
 |---|---|---|
-| `content_name` | 콘텐츠명 | `브랜드` |
-| `source` | 유형 | `page` |
+| `content_name` | 콘텐츠명 | 제품명(상세) · `브랜드`(브랜드 페이지) |
+| `source` | 유형 | `detail`(상품 상세 진입) · `page`(브랜드) |
+| `product_id` | 제품 id | `deep`·`bright`·`decaf` (상세일 때) |
+
+> ⚠️ ViewContent는 **상품 상세 페이지 마운트 시** 1회 발화(진입 경로 무관). 제품 카드/관련상품/히어로 클릭은 `product_click`/`hero_click`(행동)만 남기고, 조회 집계는 상세 진입이 담당해 **중복 없이 상품당 1건**.
 
 ### 기타
 | 이벤트 | 파라미터 | 값 |
 |---|---|---|
 | `icon_click` | `icon_name` | `best` |
+| `hero_click` | `to`, `index` | 이동 경로(예 `/products/deep`), 슬라이드 인덱스 |
 | `hero_slide` | `direction`, `index` | `prev`/`next`, 슬라이드 인덱스 |
 | `accordion_toggle` | `section`, `state` | `business_info`, `open`/`close` |
 | `modal_open` | `target` | `privacy` |
@@ -116,9 +121,9 @@ GA4 이벤트와 별개로, 전환 시점에 dataLayer/Naver로도 전송됩니�
 
 | 전환 | 발생 지점 | dataLayer 이벤트 | Meta 표준 | Naver 타입 |
 |---|---|---|---|---|
-| 구매의도 | 카카오 아이콘·제품 더 알아보기(`product_more`)·바로구매 버튼 | `conversion_shop` | Lead | `lead` |
+| 구매의도 | 카카오 아이콘·제품 더 알아보기(`product_more`)·히어로 slide-1·바로구매 버튼 | `conversion_shop` | Lead | `lead` |
 | 문의 | 이벤트 메뉴·인스타 아이콘·Footer 인스타·피드 | `conversion_instagram` | Contact | `custom001` |
-| 콘텐츠조회 | 제품 카드 클릭·브랜드 페이지 조회 | `conversion_content` | ViewContent | `view_content` |
+| 콘텐츠조회 | **상품 상세 페이지 진입(경로 무관)**·브랜드 페이지 진입 | `conversion_content` | ViewContent | `view_content` |
 
 dataLayer 전달 파라미터: `source`(위치, 상세버튼은 `buybutton_<id>`), `product_id`, `url`, `content_name`(콘텐츠조회). Meta 태그 매핑·검증은 [Meta-데이터세트-연동가이드](Meta-데이터세트-연동가이드.md) 참조.
 
