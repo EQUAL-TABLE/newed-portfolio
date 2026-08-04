@@ -1,5 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { products } from '../data/products'
+import Seo from '../components/Seo'
+import { seoProducts } from '../data/seo'
 import '../css/productDetail.css'
 
 // 제품 상세 페이지. URL 의 :id 로 상품을 특정합니다.
@@ -11,10 +13,22 @@ export default function ProductDetail() {
   if (!product) {
     return (
       <main className="content notfound">
+        <Seo
+          path={`/products/${id}`}
+          title="상품을 찾을 수 없습니다 — 뉴드 NEWED"
+          description="요청하신 상품을 찾을 수 없습니다."
+          noindex
+        />
         <h2 className="section-title">상품을 찾을 수 없습니다.</h2>
         <Link to="/">홈으로 돌아가기</Link>
       </main>
     )
+  }
+
+  // 경로별 SEO 문구: seo.js 에 정의돼 있으면 사용, 없으면 상품 데이터로 자동 생성
+  const seo = seoProducts[product.id] ?? {
+    title: `${product.name} — ${product.badge} | 뉴드 NEWED`,
+    description: product.description.replace(/<\/?br\s*\/?>/gi, ' ').trim(),
   }
 
   // description 안의 <br> / </br> 를 실제 줄바꿈으로 렌더링
@@ -22,6 +36,8 @@ export default function ProductDetail() {
 
   return (
     <main className="pd">
+      <Seo path={`/products/${product.id}`} title={seo.title} description={seo.description} />
+
       {/* 메인 이미지 */}
       <img className="pd-main" src={product.productImg} alt={product.name} />
 

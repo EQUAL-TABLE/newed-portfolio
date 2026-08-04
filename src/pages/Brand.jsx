@@ -1,4 +1,6 @@
 import '../css/brand.css'
+import Seo from '../components/Seo'
+import { seoBrand } from '../data/seo'
 import BrandImg1 from '../assets/images/brandImg-1-656-480.png'
 import BrandImg2 from '../assets/images/brandImg-2-615-200.png'
 import BrandImg3 from '../assets/images/brandImg-3-615-200.png'
@@ -7,6 +9,7 @@ import BrandImg3 from '../assets/images/brandImg-3-615-200.png'
 export default function Brand() {
   return (
     <main className="brand">
+      <Seo {...seoBrand} />
       {/* 최상단 이미지: 좌우 여백 없이 꽉 참 */}
       <img
         className="brand-hero"

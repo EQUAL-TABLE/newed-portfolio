@@ -4,11 +4,14 @@ import IconList from '../components/IconList'
 import ProductSection from '../components/ProductSection'
 import Banner from '../components/Banner'
 import InstaGrids from '../components/InstaGrids'
+import Seo from '../components/Seo'
+import { seoHome } from '../data/seo'
 import mainImage from '../assets/images/main-1-656-480.png'
 
 export default function Home() {
   return (
     <>
+      <Seo {...seoHome} />
       <main className="content">
         <Hero />
         <IconList />
