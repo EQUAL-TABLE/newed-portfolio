@@ -219,7 +219,6 @@
 .banner-carousel {
     position: relative;        /* 하단 점(absolute) 위치 기준 */
     margin-top: 4rem;          /* 40px — 기존 .banner 과 동일 */
-    border-radius: 0.5rem;
     overflow: hidden;          /* 옆 슬라이드/모서리 라운드 클립 */
 }
 .banner-viewport {
