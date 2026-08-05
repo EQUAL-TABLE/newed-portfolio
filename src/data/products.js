@@ -46,7 +46,7 @@ export const products = [
     price: '14,000원',
     thumbImg: brightThumbImg,
     productImg: brightProductImg,
-    description: '싱그러운 과일의 향을 극대화한 Fruity & Rich<br />라인업 🍋‍🟩<br /><br />🍨 직관적인 청량감, 리치소르베<br />🍑 역사적 서사를 담은 프리미엄 디저트, 피치멜바',
+    description: '싱그러운 과일의 향을 극대화한 Fruity & Rich 라인업 🍋‍🟩<br /><br />🍨 직관적인 청량감, 리치소르베<br />🍑 역사적 서사를 담은 프리미엄 디저트, 피치멜바',
     descripImg1: brightDescripImg1,
     descripImg2: brightDescripImg2,
     descripImg3: brightDescripImg3,

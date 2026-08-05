@@ -71,7 +71,7 @@ export default function Footer() {
       <p className="footer-contact">
         기타 협업 관련 문의는{' '}
         <a href="mailto:info.equaltable@gmail.com">info.equaltable@gmail.com</a>{' '}
-        해당 이메일로 문의바랍니다.
+         로 문의바랍니다.
       </p>
 
       <PrivacyPolicy isOpen={privacyOpen} onClose={() => setPrivacyOpen(false)} />

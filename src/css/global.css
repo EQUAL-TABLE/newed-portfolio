@@ -278,22 +278,22 @@ header {
 /* --- 모달 본문 글자 크기: 아래 세 값만 바꾸면 됩니다 --- */
 .modal-body p {
     font-size: 12px;           /* 일반 문단 */
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 .modal-body h3 {
     font-size: 14px;           /* 소제목(h3) */
     font-weight: 600;
     color: var(--ink);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.1rem;
 }
 .modal-body ul {
     list-style: disc;
     padding-left: 1.25rem;
-    margin: 0.25rem 0 0.5rem;
+    margin: 0.1rem 0 0.25rem;
 }
 .modal-body li {
     font-size: 12px;           /* 리스트 항목(list) */
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.125rem;
 }
 .modal-body a {
     color: var(--orange);
