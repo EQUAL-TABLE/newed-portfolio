@@ -17,7 +17,7 @@ export const heroSlides = [
   {
     id: 'slide-2',
     img: slideImg1,
-    en: 'FIRST SHIP <br />THAT FEELING',
+    en: 'FIRST SIP <br />THAT FEELING',
     ko: '세상에 없던 새로운 드립백',
     to: '/products/deep',
   },
