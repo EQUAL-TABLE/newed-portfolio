@@ -17,7 +17,7 @@ export const seoBrand = {
 
 export const seoProductsPage = {
   path: '/products',
-  title: '뉴드 NEWED | 제품 | 가향 드립백 3종 에디션',
+  title: '뉴드 NEWED | 제품 | 뉴드 드립백 에디션',
   description:
     '뉴드 드립백 딥·브라이트·디카페인 에디션.',
 }
