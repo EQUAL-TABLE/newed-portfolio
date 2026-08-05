@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
 import { useNavigate } from 'react-router-dom'
 import { heroSlides } from '../data/heroSlides'
 import { trackHeroSlide, trackHeroClick, trackShopClick } from '../lib/analytics'
@@ -52,9 +53,23 @@ export default function Hero() {
     return () => document.removeEventListener('visibilitychange', onVisibility)
   }, [])
 
+  // 한 칸 이동. 연타로 transition 이 중단되면 onTransitionEnd 가 안 뛰어
+  // pos 가 클론 범위(0 ~ len+1)를 넘어가 존재하지 않는 슬라이드를 가리키고 빈 화면이 된다.
+  // → 이동 전에 클론 위에 있으면 애니메이션 없이 실제 위치로 먼저 스냅한다.
+  //   클론은 첫/마지막 슬라이드의 복사본이라 스냅은 시각적으로 이음새가 없다.
+  const step = (dir) => {
+    const p = posRef.current
+    if (p >= len + 1 || p <= 0) {
+      const real = p >= len + 1 ? 1 : len
+      flushSync(() => { setNoAnim(true); setPos(real); posRef.current = real })
+    }
+    setNoAnim(false)
+    setPos((cur) => { const next = cur + dir; posRef.current = next; return next })
+  }
+
   // 수동 전환(화살표/스와이프)만 추적. 자동재생 타이머는 setPos 를 직접 호출해 추적 제외.
-  const goPrev = () => { trackHeroSlide('prev', logical); setNoAnim(false); setPos((p) => p - 1) }
-  const goNext = () => { trackHeroSlide('next', logical); setNoAnim(false); setPos((p) => p + 1) }
+  const goPrev = () => { trackHeroSlide('prev', logical); step(-1) }
+  const goNext = () => { trackHeroSlide('next', logical); step(1) }
 
   // 슬라이드 전환이 끝나면, 클론 위치일 경우 실제 위치로 순간이동
   const onTransitionEnd = () => {
