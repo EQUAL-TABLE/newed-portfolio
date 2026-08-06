@@ -57,14 +57,32 @@ export function trackEvent(
 }
 
 /**
+ * 경로 끝의 trailing slash 를 제거해 정규(canonical) 형태로 통일.
+ * 루트("/")는 유지하고, 쿼리스트링(?...)은 보존합니다.
+ * 예) "/products/deep/" → "/products/deep", "/brand/?x=1" → "/brand?x=1", "/" → "/"
+ * GA4 는 trailing slash 제거 필터가 없어, /products/deep 과 /products/deep/ 가
+ * 서로 다른 페이지로 갈라져 집계되므로 전송 시점에 미리 통일합니다.
+ */
+function canonicalPath(path: string): string {
+  const queryIndex = path.indexOf('?')
+  const pathname = queryIndex === -1 ? path : path.slice(0, queryIndex)
+  const query = queryIndex === -1 ? '' : path.slice(queryIndex)
+  const trimmed = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+  return trimmed + query
+}
+
+/**
  * SPA 라우트별 페이지뷰. react-router 이동 시 App 에서 호출.
  * page_location/page_title 을 명시해 "어느 페이지에서 이벤트가 났나" 분석을 정확히 유지.
+ * ⚠️ GA4 의 "페이지 경로" 차원은 page_location 을 파싱해 만들어지므로, page_location 도
+ *    정규화한 경로로 재구성해 trailing slash 로 인한 페이지 분리를 방지합니다.
  */
 export function trackPageView(path: string): void {
   if (typeof window === 'undefined') return
+  const normalizedPath = canonicalPath(path)
   trackEvent('page_view', {
-    page_path: path,
-    page_location: window.location.href,
+    page_path: normalizedPath,
+    page_location: window.location.origin + normalizedPath,
     page_title: document.title,
   })
 }
