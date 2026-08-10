@@ -65,7 +65,7 @@ export const products = [
     descripImg1: decafDescripImg1,
     descripImg2: decafDescripImg2,
     descripImg3: decafDescripImg3,
-    to: 'https://gift.kakao.com/product/14057804',
+    to: 'https://gift.kakao.com/product/14057853',
     innerTo: '/products/decaf',
     package: decafPackage,
   },
