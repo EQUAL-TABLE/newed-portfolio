@@ -12,7 +12,7 @@ export const heroSlides = [
     img: slideMain,
     en: '',
     ko: '',
-    to: 'https://gift.kakao.com/brand/20130',
+    to: 'https://kko.to/Z9DxAN9Lik',
   },
   {
     id: 'slide-2',

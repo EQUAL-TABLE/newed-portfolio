@@ -4,7 +4,7 @@ import { trackShopClick } from '../lib/analytics'
 import orangeArrow from '../assets/images/orange-arrow.png'
 
 // 제품 그리드 마지막 칸 CTA → 카카오 선물하기 브랜드 페이지
-const KAKAO_BRAND_URL = 'https://gift.kakao.com/brand/20130'
+const KAKAO_BRAND_URL = 'https://kko.to/Z9DxAN9Lik'
 
 export default function ProductSection() {
   return (

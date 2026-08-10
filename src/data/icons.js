@@ -6,6 +6,6 @@ import decaf_package from '../assets/images/decaf_package.webp'
 // kind: 추적 분류 — 'best'(내부) / 'shop'(카카오 전환) / 'instagram'(문의 전환)
 export const icons = [
   { id: 'icon-1', description: '베스트', img: deep_package, to:"/products/deep", kind: 'best' },
-  { id: 'icon-2', description: '카카오선물하기', img: bright_package, to:"https://gift.kakao.com/brand/20130", kind: 'shop' },
+  { id: 'icon-2', description: '카카오선물하기', img: bright_package, to:"https://kko.to/Z9DxAN9Lik", kind: 'shop' },
   { id: 'icon-3', description: '인스타그램', img: decaf_package, to:"https://www.instagram.com/newed_official/", kind: 'instagram' },
 ]
