@@ -20,7 +20,9 @@
       "Bash(echo \"aws cli: FOUND $\\(aws --version 2>&1\\)\")",
       "Bash(aws sts *)",
       "Bash(curl -s -o /dev/null -w '/zzz-nope direct:%{http_code} redirect:%{redirect_url}\\\\n' -A Mozilla/5.0 https://main.d31fc1ddmr7c.amplifyapp.com/zzz-nope-__TRACKED_VAR__)",
-      "Bash(curl -s -o /dev/null -w '/foo/bar direct:%{http_code} redirect:%{redirect_url}\\\\n' -A Mozilla/5.0 https://main.d31fc1ddmr7c.amplifyapp.com/foo/bar-__TRACKED_VAR__)"
+      "Bash(curl -s -o /dev/null -w '/foo/bar direct:%{http_code} redirect:%{redirect_url}\\\\n' -A Mozilla/5.0 https://main.d31fc1ddmr7c.amplifyapp.com/foo/bar-__TRACKED_VAR__)",
+      "Bash(gh auth *)",
+      "Bash(gh repo *)"
     ]
   }
 }

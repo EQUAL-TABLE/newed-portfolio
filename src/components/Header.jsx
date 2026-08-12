@@ -8,7 +8,7 @@ import { trackMenuClick, trackShopClick, trackInstagramClick } from '../lib/anal
 const menu = [
   { label: '브랜드', to: '/brand', menuName: 'brand' },
   { label: '제품', to: '/products', menuName: 'product' }, // 제품 목록 페이지(내부)
-  { label: '이벤트', href: 'https://instagram.com/newed_official', external: true, kind: 'instagram' }, // 인스타그램
+  { label: '이벤트', href: 'https://www.instagram.com/p/Db7p70QJIKY/', external: true, kind: 'instagram' }, // 인스타그램
 ]
 
 // 외부 메뉴 클릭 추적: shop → 구매의도 전환 / instagram → 문의 전환
