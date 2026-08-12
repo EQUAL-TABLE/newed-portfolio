@@ -1,7 +1,26 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(npx tsc --noEmit)"
+      "PowerShell(npx tsc --noEmit)",
+      "Bash(curl -s -D - -A \"Mozilla/5.0\" \"https://www.newed.kr/products/\")",
+      "Bash(sed -n '1p;/^[Ss]erver/p;/^[Cc]ontent-[Tt]ype/p')",
+      "Bash(curl -s -A \"Mozilla/5.0\" \"https://www.newed.kr/products/\")",
+      "Bash(curl -s -A \"Mozilla/5.0\" \"https://www.newed.kr/\")",
+      "Bash(curl -s -D - -o /dev/null -A \"Mozilla/5.0\" \"https://www.newed.kr/\")",
+      "Bash(curl -s -D - -o /dev/null -A \"Mozilla/5.0\" \"https://www.newed.kr/products/\")",
+      "Bash(nslookup www.newed.kr)",
+      "Bash(curl -s -D - -o /dev/null -A \"Mozilla/5.0\" \"https://www.newed.kr/products/?cachebust=zzz123\")",
+      "Bash(command -v dig)",
+      "Bash(dig +short CNAME www.newed.kr)",
+      "Bash(dig +short A www.newed.kr)",
+      "Bash(nslookup -type=CNAME www.newed.kr 8.8.8.8)",
+      "Bash(nslookup www.newed.kr 8.8.8.8)",
+      "Bash(command -v aws)",
+      "Bash(aws --version)",
+      "Bash(echo \"aws cli: FOUND $\\(aws --version 2>&1\\)\")",
+      "Bash(aws sts *)",
+      "Bash(curl -s -o /dev/null -w '/zzz-nope direct:%{http_code} redirect:%{redirect_url}\\\\n' -A Mozilla/5.0 https://main.d31fc1ddmr7c.amplifyapp.com/zzz-nope-__TRACKED_VAR__)",
+      "Bash(curl -s -o /dev/null -w '/foo/bar direct:%{http_code} redirect:%{redirect_url}\\\\n' -A Mozilla/5.0 https://main.d31fc1ddmr7c.amplifyapp.com/foo/bar-__TRACKED_VAR__)"
     ]
   }
 }
