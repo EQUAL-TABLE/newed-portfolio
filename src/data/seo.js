@@ -3,7 +3,8 @@
 
 export const seoHome = {
   path: '/',
-  title: '뉴드 NEWED | 한 모금에 선명한 향과 맛. 간편하게 즐기는 스페셜티커피',
+  // 네이버 권장 40자 이내 (제목/og:title 공용). 아래는 35자.
+  title: '뉴드 NEWED | 한 모금에 선명한 향과 맛, 스페셜티 드립백',
   description:
     '한 모금에 선명한 향과 맛. 간편하게 즐기는 스페셜티커피',
 }

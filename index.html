@@ -17,9 +17,10 @@
   <link rel="icon" type="image/x-icon" href="https://www.newed.kr/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light only" />
-  <!-- title / description / canonical / og:title·description·url 은 경로별로
-       react-helmet-async(src/components/Seo.jsx)가 관리합니다.
-       아래 <title> 는 JS 실행 전 노출용 기본값이며, 각 페이지에서 덮어씁니다.
+  <!-- title / description / canonical / og(title·description·url) 관리 방식:
+       1) 빌드 시 scripts/prerender-seo.mjs 가 경로별 index.html 에 정적으로 주입 (크롤러용).
+       2) 클라이언트에서는 react-helmet-async(src/components/Seo.jsx)가 라우트 이동마다 갱신.
+       아래 기본 title 은 JS 실행 전 노출용이며 위 두 단계가 경로별로 덮어씁니다.
        정본 도메인: www.newed.kr (non-www는 Amplify에서 301 리디렉션) -->
   <title>뉴드 NEWED</title>
 
