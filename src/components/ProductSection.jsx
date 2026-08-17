@@ -23,7 +23,7 @@ export default function ProductSection() {
           rel="noopener noreferrer"
           onClick={() => trackShopClick('product_more', KAKAO_BRAND_URL)}
         >
-          <img className="product-more-img" src={orangeArrow} alt="" />
+          <img className="product-more-img" src={orangeArrow} alt="상품 더보기" />
           <span className="product-more-text">제품 더 알아보기</span>
         </a>
       </div>

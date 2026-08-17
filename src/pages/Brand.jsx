@@ -40,7 +40,7 @@ export default function Brand() {
       <img
         className="brand-img"
         src={BrandImg2}
-        alt=""
+        alt="브랜드 이미지2"
       />
 
       <section className="brand-section">
@@ -57,7 +57,7 @@ export default function Brand() {
       <img
         className="brand-img"
         src={BrandImg3}
-        alt=""
+        alt="브랜드 이미지3"
       />
 
       <section className="brand-section">
