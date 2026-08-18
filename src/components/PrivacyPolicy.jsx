@@ -4,14 +4,15 @@ import { useEffect } from 'react'
  * PrivacyPolicy 모달
  *
  * 본 사이트는 로그인·회원가입·결제 기능이 없는 포트폴리오/소개 사이트로,
- * 개인을 직접 식별하는 정보는 수집하지 않으며 GA4의 쿠키 기반 익명 통계정보만 수집합니다.
+ * 개인을 직접 식별하는 정보는 별도 입력받지 않으며, GA4·Meta 픽셀의 쿠키 기반 가명·익명
+ * 정보만 통계 분석과 광고 성과 측정 목적으로 수집합니다.
  * 라우터가 아닌 모달(오버레이) 형태로 열고 닫도록 설계했습니다.
  *
  * 기능: 배경 흐림(blur) / 오버레이 클릭·ESC 로 닫기 / 열려 있는 동안 배경 스크롤 잠금.
  */
 
 // 방침 시행일 (사이트 운영/배포 시점에 맞춰 수정)
-const EFFECTIVE_DATE = '2026년 7월 1일'
+const EFFECTIVE_DATE = '2026년 8월 18일'
 
 export default function PrivacyPolicy({ isOpen, onClose }) {
   // 모달이 열려 있는 동안 배경 스크롤을 잠그고, ESC 키로 닫을 수 있게 처리
@@ -61,9 +62,9 @@ export default function PrivacyPolicy({ isOpen, onClose }) {
           </p>
           <p className="modal-muted">
             본 사이트(NEWED 브랜드 소개 페이지)는 회원가입·로그인·결제 기능을 제공하지
-            않으며, 이용자를 직접 식별할 수 있는 정보(성명, 연락처, 결제정보 등)를 수집하지
-            않습니다. 회사는 웹사이트 이용 행태 분석을 위한 쿠키 기반의 익명 통계정보만을
-            자동으로 수집합니다.
+            않으며, 이용자를 직접 식별할 수 있는 정보(성명, 연락처, 결제정보 등)를 별도로
+            입력받아 수집하지 않습니다. 회사는 웹사이트 이용 행태 분석 및 광고 성과 측정을
+            위하여 쿠키 기반의 가명·익명 정보를 자동으로 수집합니다.
           </p>
 
           <section>
@@ -78,13 +79,21 @@ export default function PrivacyPolicy({ isOpen, onClose }) {
                 페이지 조회·이동 기록, 접속 경로, 기기·브라우저 정보(User-Agent)
               </li>
               <li>
-                <strong>처리 목적</strong> : 웹사이트 이용 행태 통계 분석을 통한 서비스 및
-                콘텐츠 개선
+                <strong>처리 목적</strong> : 웹사이트 이용 행태 통계 분석을 통한 서비스·콘텐츠
+                개선, 광고 성과 측정 및 마케팅 최적화(리마케팅 포함)
               </li>
             </ul>
             <p className="modal-muted">
-              ※ 위 정보는 Google Analytics 4(GA4)를 통해 익명으로 수집되며, 특정 개인을
-              식별하는 용도로 이용되지 않습니다.
+              ※ 위 정보는 Google Analytics 4(GA4) 및 Meta 픽셀(Meta Pixel)을 통해 수집되며,
+              쿠키·유사식별자 기반의 가명정보로서 특정 개인을 직접 식별하는 용도로 이용되지
+              않습니다.
+            </p>
+            <p className="modal-muted">
+              ※ Meta 픽셀의 &lsquo;자동 고급 매칭(Automatic Advanced Matching)&rsquo; 기능이
+              적용될 수 있습니다. 이용자가 웹사이트 입력란에 이메일·전화번호 등을 입력하는 경우,
+              해당 정보는 브라우저에서 <strong>SHA-256 방식으로 암호화(해시)</strong>된 뒤 광고
+              전환 측정 목적으로 Meta에 전송될 수 있으며, 암호화 전 원문은 Meta로 전송되지
+              않습니다. 금융·건강·정부발급 신분증 등 민감정보는 전송 대상에서 제외됩니다.
             </p>
           </section>
 
@@ -99,9 +108,10 @@ export default function PrivacyPolicy({ isOpen, onClose }) {
           <section>
             <h3>제3조 (개인정보의 제3자 제공 및 국외 이전)</h3>
             <p>
-              회사는 통계 분석을 위해 다음과 같이 개인정보 처리를 외부 서비스에 위탁하며, 이
-              과정에서 정보가 국외로 이전될 수 있습니다.
+              회사는 통계 분석 및 광고 성과 측정을 위해 다음과 같이 개인정보 처리를 외부
+              서비스에 위탁하며, 이 과정에서 정보가 국외로 이전될 수 있습니다.
             </p>
+            <p className="modal-muted">① 웹사이트 이용 통계 분석 (Google Analytics 4)</p>
             <ul>
               <li>
                 <strong>이전받는 자</strong> : Google LLC
@@ -129,6 +139,35 @@ export default function PrivacyPolicy({ isOpen, onClose }) {
                 </a>
               </li>
             </ul>
+            <p className="modal-muted">② 광고 전환 측정 및 리마케팅 (Meta 픽셀)</p>
+            <ul>
+              <li>
+                <strong>이전받는 자</strong> : Meta Platforms, Inc. (구 Facebook)
+              </li>
+              <li>
+                <strong>이전 국가 및 일시·방법</strong> : 미국 등 Meta 데이터센터 / 정보 수집
+                시점에 네트워크를 통해 전송
+              </li>
+              <li>
+                <strong>이전 항목</strong> : 제1조의 자동 수집 항목(쿠키·유사식별자, 광고
+                식별값 등) 및 자동 고급 매칭 적용 시 이용자가 입력한 연락처 정보의
+                암호화(해시)값
+              </li>
+              <li>
+                <strong>이전받는 자의 이용 목적 및 보유 기간</strong> : 광고 성과 측정·전환
+                최적화 및 리마케팅 / Meta의 정책에 따른 기간
+              </li>
+              <li>
+                <strong>Meta 개인정보처리방침</strong> :{' '}
+                <a
+                  href="https://www.facebook.com/privacy/policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  facebook.com/privacy/policy
+                </a>
+              </li>
+            </ul>
           </section>
 
           <section>
@@ -152,6 +191,17 @@ export default function PrivacyPolicy({ isOpen, onClose }) {
                 >
                   tools.google.com/dlpage/gaoptout
                 </a>
+              </li>
+              <li>
+                Meta 맞춤 광고 수신 거부 : Meta 계정의 광고 설정(Facebook/Instagram) 또는{' '}
+                <a
+                  href="https://www.youronlinechoices.eu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  youronlinechoices.eu
+                </a>{' '}
+                등 행태정보 기반 맞춤형 광고 거부 페이지 이용
               </li>
             </ul>
             <p className="modal-muted">
