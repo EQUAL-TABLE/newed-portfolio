@@ -22,7 +22,14 @@
       "Bash(curl -s -o /dev/null -w '/zzz-nope direct:%{http_code} redirect:%{redirect_url}\\\\n' -A Mozilla/5.0 https://main.d31fc1ddmr7c.amplifyapp.com/zzz-nope-__TRACKED_VAR__)",
       "Bash(curl -s -o /dev/null -w '/foo/bar direct:%{http_code} redirect:%{redirect_url}\\\\n' -A Mozilla/5.0 https://main.d31fc1ddmr7c.amplifyapp.com/foo/bar-__TRACKED_VAR__)",
       "Bash(gh auth *)",
-      "Bash(gh repo *)"
+      "Bash(gh repo *)",
+      "Bash(curl -s \"https://www.newed.kr/sitemap.xml\")",
+      "Bash(curl -s \"https://www.newed.kr/robots.txt\")",
+      "Bash(curl -sI -A \"Yeti\" \"https://www.newed.kr/products/deep\")",
+      "Bash(curl -sI \"http://newed.kr/products/deep\")",
+      "Bash(curl -sI \"https://newed.kr/products/deep\")",
+      "Bash(curl -s -o /dev/null -w \"code=%{http_code} redirect=%{redirect_url}\\\\n\" \"https://www.newed.kr/product\")",
+      "Bash(curl -s -A \"Yeti\" \"https://www.newed.kr/products/deep\")"
     ]
   }
 }
