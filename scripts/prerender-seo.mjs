@@ -39,20 +39,29 @@ const esc = (s = '') =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
 
-function buildHead({ path, title, description }) {
+function buildHead({ path, title, description, image }) {
   const url = `${SITE_URL}${path === '/' ? '/' : path}`
+  // image 가 있으면 절대경로 og:image 를 주입. index.html 전역 og:image 보다 뒤에 위치해
+  // 크롤러가 경로별 이미지를 대표 이미지로 인식하게 한다. (없으면 전역 OGimage.png 유지)
+  const ogImage = image
+    ? `\n  <meta property="og:image" content="${esc(`${SITE_URL}${image}`)}" />`
+    : ''
   return `<title>${esc(title)}</title>
   <!-- prerender-seo: 경로별 메타 (빌드시 scripts/prerender-seo.mjs 가 주입) -->
   <meta name="description" content="${esc(description)}" />
   <link rel="canonical" href="${esc(url)}" />
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
-  <meta property="og:url" content="${esc(url)}" />`
+  <meta property="og:url" content="${esc(url)}" />${ogImage}`
 }
 
 // 템플릿의 기본 <title>...</title> 을 경로별 head 블록으로 치환.
 // 내용에 '<' 가 없는 실제 <title> 만 매칭 (주석 안의 "<title>" 문구를 잘못 잡지 않도록).
 const TITLE_RE = /<title>[^<]*<\/title>/
+
+// index.html 의 전역 og:image(OGimage.png) 태그. 경로별 image 가 있으면 이 줄을 제거해
+// og:image 가 두 개(전역+경로별)로 중복되지 않게 한다.
+const GLOBAL_OGIMAGE_RE = /\s*<meta property="og:image" content="[^"]*OGimage\.png"[^>]*\/>/
 
 async function run() {
   const template = await readFile(join(DIST, 'index.html'), 'utf8')
@@ -61,7 +70,9 @@ async function run() {
   }
 
   for (const route of ROUTES) {
-    const html = template.replace(TITLE_RE, buildHead(route))
+    let html = template.replace(TITLE_RE, buildHead(route))
+    // 경로별 og:image 가 주입된 경우, 템플릿의 전역 og:image 는 중복이므로 제거
+    if (route.image) html = html.replace(GLOBAL_OGIMAGE_RE, '')
     // '/' → dist/index.html, '/products/deep' → dist/products/deep/index.html
     const outFile =
       route.path === '/'

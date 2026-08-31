@@ -99,7 +99,7 @@ export default function ProductDetail() {
 
   return (
     <main className="pd">
-      <Seo path={`/products/${product.id}`} title={seo.title} description={seo.description} />
+      <Seo path={`/products/${product.id}`} title={seo.title} description={seo.description} image={seo.image} />
 
       {/* 메인 이미지 */}
       <img className="pd-main" src={product.productImg} alt={product.name} />
