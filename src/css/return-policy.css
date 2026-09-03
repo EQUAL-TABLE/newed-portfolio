@@ -1,0 +1,62 @@
+/*
+  반품·환불 정책 페이지 전용 스타일.
+  - 이미지 시안과 동일하게 좌측 정렬 + "-" 대시 목록
+  - 텍스트 크기는 다른 페이지(brand-desc / modal-body) 톤에 맞춰 12~13px
+*/
+
+.return-policy {
+    padding-bottom: 4rem;
+}
+
+/* 제목("환불")과 본문 사이 간격 */
+.return-policy .section-title {
+    margin-bottom: 2rem;
+}
+
+/* 대시("-") 목록: 기본 disc 대신 이미지 시안의 하이픈으로 표시 */
+.return-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.return-list li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+}
+.return-list li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+}
+.return-list a {
+    color: var(--orange);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-all;
+}
+
+/* 하단 연락처 안내 */
+.return-contact {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 13px;
+    line-height: 1.7;
+    letter-spacing: -0.3px;
+    color: var(--ink);
+}
+.return-contact p {
+    margin: 0;
+}
+
+/* 단일 브레이크포인트 (400px 이하): 텍스트(px)만 축소 */
+@media (max-width: 400px) {
+    .return-list li,
+    .return-contact {
+        font-size: 12px;
+    }
+}

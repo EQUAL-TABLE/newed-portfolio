@@ -29,7 +29,8 @@
       "Bash(curl -sI \"http://newed.kr/products/deep\")",
       "Bash(curl -sI \"https://newed.kr/products/deep\")",
       "Bash(curl -s -o /dev/null -w \"code=%{http_code} redirect=%{redirect_url}\\\\n\" \"https://www.newed.kr/product\")",
-      "Bash(curl -s -A \"Yeti\" \"https://www.newed.kr/products/deep\")"
+      "Bash(curl -s -A \"Yeti\" \"https://www.newed.kr/products/deep\")",
+      "WebFetch(domain:support.google.com)"
     ]
   }
 }

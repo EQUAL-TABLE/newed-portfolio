@@ -24,6 +24,13 @@ export const seoProductsPage = {
     '뉴드 드립백 딥·브라이트·디카페인 에디션.',
 }
 
+export const seoReturnPolicy = {
+  path: '/return-policy',
+  title: '뉴드 NEWED | 반품·환불 정책',
+  description:
+    '뉴드 반품·환불 및 교환 안내. 배송·교환·반품 문의 070-7954-3783.',
+}
+
 // 상품 상세: products.js 의 id 기준. 새 상품 추가 시 여기 한 줄만 더하면 됩니다.
 export const seoProducts = {
   deep: {

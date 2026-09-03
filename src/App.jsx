@@ -6,6 +6,7 @@ import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Brand from './pages/Brand'
 import Events from './pages/Events'
+import ReturnPolicy from './pages/ReturnPolicy'
 import NotFound from './pages/NotFound'
 import { trackPageView } from './lib/analytics'
 
@@ -27,6 +28,8 @@ export default function App() {
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/brand" element={<Brand />} />
         <Route path="/events" element={<Events />} />
+        {/* 반품·환불 정책 페이지 */}
+        <Route path="/return-policy" element={<ReturnPolicy />} />
         {/* 그 외 알 수 없는 경로 → 404 페이지 */}
         <Route path="*" element={<NotFound />} />
       </Route>

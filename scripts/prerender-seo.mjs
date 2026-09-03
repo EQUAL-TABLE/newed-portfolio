@@ -15,7 +15,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { seoHome, seoBrand, seoProductsPage, seoProducts } from '../src/data/seo.js'
+import { seoHome, seoBrand, seoProductsPage, seoProducts, seoReturnPolicy } from '../src/data/seo.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = join(__dirname, '..', 'dist')
@@ -29,6 +29,7 @@ const ROUTES = [
   { path: '/products/deep', ...seoProducts.deep },
   { path: '/products/bright', ...seoProducts.bright },
   { path: '/products/decaf', ...seoProducts.decaf },
+  { path: '/return-policy', ...seoReturnPolicy },
 ]
 
 // HTML 속성/텍스트에 안전하게 넣기 위한 이스케이프
