@@ -19,9 +19,9 @@ export default function Footer() {
       <nav className="footer-menu">
         {/* 브랜드소개 → 브랜드 페이지 이동 */}
         <Link to="/brand" onClick={() => trackMenuClick('brand', 'footer')}>브랜드소개</Link>
-        <span className="footer-divider">｜</span>
+        {/* <span className="footer-divider">｜</span> */}
         {/* 반품·환불 정책 → 정책 페이지 이동 */}
-        <Link to="/return-policy" onClick={() => trackMenuClick('return_policy', 'footer')}>반품·환불</Link>
+        {/* <Link to="/return-policy" onClick={() => trackMenuClick('return_policy', 'footer')}>반품·환불</Link> */}
         <span className="footer-divider">｜</span>
         {/* 사업자정보 → 아코디언 토글 */}
         <button
