@@ -57,6 +57,24 @@ body {
     overflow-x: clip;
 }
 
+/*
+  시각적으로만 숨기는 유틸 — 레이아웃에 영향을 주지 않으면서 크롤러/스크린리더에는 노출.
+  display:none / visibility:hidden 은 스크린리더에서도 사라지고 검색엔진이 감점할 수 있어
+  1px 로 클립하는 표준 방식을 사용한다. (SEO용 고정 h1 등에 사용)
+*/
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* placeholder box (image slot) — 여러 페이지/컴포넌트에서 공용으로 사용 */
 .box {
     background: var(--cream);

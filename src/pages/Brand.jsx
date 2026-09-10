@@ -17,6 +17,10 @@ export default function Brand() {
   return (
     <main className="brand">
       <Seo {...seoBrand} />
+      {/* 페이지 대표 제목(h1) — 디자인상 h1 로 쓸 제목이 없어 .sr-only 로 시각적으로만 숨김 */}
+      <h1 className="sr-only">
+        선명하게 느껴지는 즐거움 | 마시는 순간 '맛있다'는 감탄사가 나오는 맛 | 지금 이 순간, 이끌리는 대로 즐겨
+      </h1>
       {/* 최상단 이미지: 좌우 여백 없이 꽉 참 */}
       <img
         className="brand-hero"

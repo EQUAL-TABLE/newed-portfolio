@@ -111,6 +111,7 @@ export default function Hero() {
 
   return (
     <div className="hero" id="hero">
+      <h1 className="sr-only">뉴드 NEWED — 한 모금에 선명한 향과 맛, 스페셜티 드립백</h1>
       <div
         className="hero-viewport"
         ref={viewportRef}
