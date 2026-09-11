@@ -112,6 +112,17 @@ export default function Hero() {
   return (
     <div className="hero" id="hero">
       <h1 className="sr-only">뉴드 NEWED — 한 모금에 선명한 향과 맛, 스페셜티 드립백</h1>
+      {/*
+        홈 소개 문단 — 캐러셀 이미지만으로는 크롤러가 읽을 본문 텍스트가 없어
+        페이지 주제를 설명하는 문단을 .sr-only 로 시각적으로만 숨겨 둔다.
+        (문구는 제품/브랜드 실제 설명과 일치하도록 유지. 키워드 나열은 금지.)
+      */}
+      <p className="sr-only">
+        뉴드(NEWED)는 한 모금에 선명한 향과 맛을 전하는 스페셜티 드립백 커피 브랜드<br />
+        누구나 사랑하는 Sweet & Nutty의 풍미를 담아 고민 없이 선택할 수 있는 라인업, 뉴드 드립백 딥 에디션 <br />
+        싱그러운 과일의 향을 극대화한 Fruity & Rich 라인업, 뉴드 드립백 브라이트 에디션 <br />
+        디카페인의 한계를 넘어선 Chocolate & Tea 라인업, 뉴드 드립백 디카페인 에디션 
+      </p>
       <div
         className="hero-viewport"
         ref={viewportRef}
