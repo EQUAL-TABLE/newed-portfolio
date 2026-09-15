@@ -89,8 +89,11 @@ export default function ProductDetail() {
   // description 안의 <br> / </br> 를 실제 줄바꿈으로 렌더링
   const lines = product.description.split(/<\/?br\s*\/?>/i)
 
-  // 제품명: 앞 두 단어(뉴드 드립백)는 기본색, 뒤 나머지(에디션명)는 제품별 강조색
-  const nameWords = product.name.split(/\s+/)
+  // 제품명(detailName): 앞 두 단어(뉴드 드립백)는 기본색, 뒤 에디션명은 제품별 강조색,
+  // 맨 뒤에 붙는 '커피'는 강조색 없이 기본색(블랙)으로 표시
+  const detailName = product.detailName ?? product.name
+  const nameTail = detailName.endsWith('커피') ? '커피' : ''
+  const nameWords = detailName.slice(0, detailName.length - nameTail.length).trim().split(/\s+/)
   const nameHead = nameWords.slice(0, 2).join(' ')
   const nameAccent = nameWords.slice(2).join(' ')
 
@@ -105,7 +108,7 @@ export default function ProductDetail() {
       <img className="pd-main" src={product.productImg} alt={product.name} />
 
       <div className="pd-info">
-        {/* 제품명 — 앞 두 단어는 기본색, 뒤 에디션명은 제품별 강조색 */}
+        {/* 제품명 — 앞 두 단어는 기본색, 뒤 에디션명은 제품별 강조색, 끝의 '커피'는 기본색 */}
         <h1 className="pd-name">
           {nameHead}
           {nameAccent && (
@@ -114,6 +117,7 @@ export default function ProductDetail() {
               <span style={{ color: product.accent }}>{nameAccent}</span>
             </>
           )}
+          {nameTail && ` ${nameTail}`}
         </h1>
 
         {/* 설명 */}
@@ -125,6 +129,7 @@ export default function ProductDetail() {
             </span>
           ))}
         </p>
+        <p className="sr-only">{product.srOnlyDesc}</p>
 
         {/* 가격 */}
         <p className="pd-price">{product.price}</p>

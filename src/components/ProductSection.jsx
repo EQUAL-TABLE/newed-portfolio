@@ -9,7 +9,7 @@ const KAKAO_BRAND_URL = 'https://kko.to/Z9DxAN9Lik'
 export default function ProductSection() {
   return (
     <section id="products">
-      <h2 className="section-title">처음이 더 즐거워지는 제품</h2>
+      <h2 className="section-title">즐거움을 충전하는 다양한 제품</h2>
       <div className="products">
         {products.map((product, index) => (
           <ProductCard key={product.id} product={product} index={index} />
