@@ -23,7 +23,7 @@ export default function ReturnPolicy() {
         <li>소비자 보호에 관한 법률이 정하는 소비자 청약 철회 제한에 해당하는 경우</li>
         <li>
           상품에 문제가 있는 경우, 교환·반품 사유가 확인 가능한 사진과 함께 7일 이내{' '}
-          <a href="mailto:info.equaltable@gmail.com">info.equaltable@gmail.com</a>으로 문의바랍니다.
+          <a href="mailto:newed@equaltable.net">newed@equaltable.net</a>으로 문의바랍니다.
         </li>
       </ul>
 

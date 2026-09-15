@@ -73,7 +73,7 @@ export default function Footer() {
 
       <p className="footer-contact">
         기타 협업 관련 문의는{' '}
-        <a href="mailto:info.equaltable@gmail.com">info.equaltable@gmail.com</a>{' '}
+        <a href="mailto:newed@equaltable.net">newed@equaltable.net</a>{' '}
          로 문의바랍니다.
       </p>
 
