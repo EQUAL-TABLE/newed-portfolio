@@ -1,25 +1,25 @@
 // deep 이미지 =================
 import deepThumbImg from '../assets/images/deep-thumbImg-300-300.png';
 import deepProductImg from '../assets/images/deep-productImg-656-656.png';
-import deepDescripImg1 from '../assets/images/deep-productDetail-1.png';
-import deepDescripImg2 from '../assets/images/deep-productDetail-2.png';
-import deepDescripImg3 from '../assets/images/deep-productDetail-3.png';
+import deepDescripImg1 from '../assets/images/deep-productDetail-1.webp';
+import deepDescripImg2 from '../assets/images/deep-productDetail-2.webp';
+import deepDescripImg3 from '../assets/images/deep-productDetail-3.webp';
 import deepPackage from '../assets/images/deep_package.webp';
 
 // bright 이미지 =================
 import brightThumbImg from '../assets/images/bright-thumbImg-300-300.png';
 import brightProductImg from '../assets/images/bright-productImg-656-656.png';
-import brightDescripImg1 from '../assets/images/bright-productDetail-1.png';
-import brightDescripImg2 from '../assets/images/bright-productDetail-2.png';
-import brightDescripImg3 from '../assets/images/bright-productDetail-3.png';
+import brightDescripImg1 from '../assets/images/bright-productDetail-1.webp';
+import brightDescripImg2 from '../assets/images/bright-productDetail-2.webp';
+import brightDescripImg3 from '../assets/images/bright-productDetail-3.webp';
 import brightPackage from '../assets/images/bright_package.webp';
 
 // decaf 이미지 =================
 import decafThumbImg from '../assets/images/decaf-thumbImg-300-300.png';
 import decafProductImg from '../assets/images/decaf-productImg-656-656.png';
-import decafDescripImg1 from '../assets/images/decaf-productDetail-1.png';
-import decafDescripImg2 from '../assets/images/decaf-productDetail-2.png';
-import decafDescripImg3 from '../assets/images/decaf-productDetail-3.png';
+import decafDescripImg1 from '../assets/images/decaf-productDetail-1.webp';
+import decafDescripImg2 from '../assets/images/decaf-productDetail-2.webp';
+import decafDescripImg3 from '../assets/images/decaf-productDetail-3.webp';
 import decafPackage from '../assets/images/decaf_package.webp';
 
 // 상품 목록 — 상품이 늘어나면 이 배열에 항목만 추가하면 됩니다.
