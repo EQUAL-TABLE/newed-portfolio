@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
- import { useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { products } from '../data/products'
 import Seo from '../components/Seo'
 import { seoProducts } from '../data/seo'
@@ -108,6 +108,8 @@ export default function ProductDetail() {
       <img className="pd-main" src={product.productImg} alt={product.name} />
 
       <div className="pd-info">
+        <p className="sr-only">{product.srOnlyDesc}</p>
+
         {/* 제품명 — 앞 두 단어는 기본색, 뒤 에디션명은 제품별 강조색, 끝의 '커피'는 기본색 */}
         <h1 className="pd-name">
           {nameHead}
@@ -129,7 +131,6 @@ export default function ProductDetail() {
             </span>
           ))}
         </p>
-        <p className="sr-only">{product.srOnlyDesc}</p>
 
         {/* 가격 */}
         <p className="pd-price">{product.price}</p>
@@ -142,12 +143,12 @@ export default function ProductDetail() {
         src={product.descripImg1}
         alt={`${product.name} 상세 이미지`}
       />
-            <img
+      <img
         className="pd-detail"
         src={product.descripImg2}
         alt={`${product.name} 상세 이미지`}
       />
-            <img
+      <img
         className="pd-detail"
         src={product.descripImg3}
         alt={`${product.name} 상세 이미지`}

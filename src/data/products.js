@@ -50,7 +50,7 @@ export const products = [
     thumbImg: brightThumbImg,
     productImg: brightProductImg,
     description: '싱그러운 과일의 향을 극대화한 Fruity & Rich 라인업 🍋‍🟩<br /><br />🍨 직관적인 청량감, 리치소르베<br />🍑 역사적 서사를 담은 프리미엄 디저트, 피치멜바',
-    srOnlyDesc: '직관적인 청량함을 느끼는 리치향의 리치소르베와 로맨틱한 분위기의 복숭아,라즈베리 향의 피치멜바로 세상에 없던 새로운 드립백을 만나보세요.',
+    srOnlyDesc: '직관적인 청량함을 느끼는 리치향의 리치소르베와 로맨틱한 분위기의 복숭아, 라즈베리 향의 피치멜바로 세상에 없던 새로운 드립백을 만나보세요.',
     descripImg1: brightDescripImg1,
     descripImg2: brightDescripImg2,
     descripImg3: brightDescripImg3,
