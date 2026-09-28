@@ -31,7 +31,7 @@ const productById = (id) => productsCore.find((p) => p.id === id)
 // (JS 를 실행하지 않는 크롤러는 런타임 주입분을 못 보므로, 여기가 실제 크롤러 노출 경로)
 const ROUTES = [
   { path: '/', ...seoHome, jsonLd: [organizationJsonLd(), websiteJsonLd()] },
-  { path: '/brand', ...seoBrand, jsonLd: [aboutPageJsonLd(seoBrand), organizationJsonLd()] },
+  { path: '/brand', ...seoBrand, jsonLd: aboutPageJsonLd(seoBrand) },
   { path: '/products', ...seoProductsPage, jsonLd: itemListJsonLd() },
   { path: '/products/deep', ...seoProducts.deep, jsonLd: productJsonLd(productById('deep'), seoProducts.deep.image) },
   { path: '/products/bright', ...seoProducts.bright, jsonLd: productJsonLd(productById('bright'), seoProducts.bright.image) },
