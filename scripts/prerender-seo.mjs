@@ -16,19 +16,26 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { seoHome, seoBrand, seoProductsPage, seoProducts, seoReturnPolicy } from '../src/data/seo.js'
+import { organizationJsonLd, websiteJsonLd, productJsonLd } from '../src/data/jsonld.js'
+import { productsCore } from '../src/data/productsCore.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = join(__dirname, '..', 'dist')
 const SITE_URL = 'https://www.newed.kr' // 정본 도메인 (Seo.jsx 와 동일)
 
+// productsCore.js 는 이미지 import 가 없는 순수 데이터라 Vite 없이(node 로 직접) 안전하게 로드된다.
+const productById = (id) => productsCore.find((p) => p.id === id)
+
 // 경로 → 메타. Seo.jsx 와 동일하게 og:title=title, og:description=description 로 맞춥니다.
+// jsonLd: Seo.jsx 가 런타임에 주입하는 것과 동일한 구조화 데이터를 정적 HTML 에도 굽는다.
+// (JS 를 실행하지 않는 크롤러는 런타임 주입분을 못 보므로, 여기가 실제 크롤러 노출 경로)
 const ROUTES = [
-  { path: '/', ...seoHome },
+  { path: '/', ...seoHome, jsonLd: [organizationJsonLd(), websiteJsonLd()] },
   { path: '/brand', ...seoBrand },
   { path: '/products', ...seoProductsPage },
-  { path: '/products/deep', ...seoProducts.deep },
-  { path: '/products/bright', ...seoProducts.bright },
-  { path: '/products/decaf', ...seoProducts.decaf },
+  { path: '/products/deep', ...seoProducts.deep, jsonLd: productJsonLd(productById('deep'), seoProducts.deep.image) },
+  { path: '/products/bright', ...seoProducts.bright, jsonLd: productJsonLd(productById('bright'), seoProducts.bright.image) },
+  { path: '/products/decaf', ...seoProducts.decaf, jsonLd: productJsonLd(productById('decaf'), seoProducts.decaf.image) },
   { path: '/return-policy', ...seoReturnPolicy },
 ]
 
@@ -40,20 +47,29 @@ const esc = (s = '') =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
 
-function buildHead({ path, title, description, image }) {
+function buildHead({ path, title, description, image, jsonLd }) {
   const url = `${SITE_URL}${path === '/' ? '/' : path}`
   // image 가 있으면 절대경로 og:image 를 주입. index.html 전역 og:image 보다 뒤에 위치해
   // 크롤러가 경로별 이미지를 대표 이미지로 인식하게 한다. (없으면 전역 OGimage.png 유지)
   const ogImage = image
     ? `\n  <meta property="og:image" content="${esc(`${SITE_URL}${image}`)}" />`
     : ''
+  // jsonLd: Seo.jsx 와 동일한 구조화 데이터를 <script> 로 정적 HTML 에 굽는다.
+  // JSON.stringify 값 안의 '</' 는 </script> 로 오인되어 태그가 조기 종료될 수 있으므로 이스케이프.
+  const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []
+  const jsonLdBlock = jsonLdList
+    .map(
+      (data) =>
+        `\n  <script type="application/ld+json">${JSON.stringify(data).replace(/<\//g, '<\\/')}</script>`
+    )
+    .join('')
   return `<title>${esc(title)}</title>
   <!-- prerender-seo: 경로별 메타 (빌드시 scripts/prerender-seo.mjs 가 주입) -->
   <meta name="description" content="${esc(description)}" />
   <link rel="canonical" href="${esc(url)}" />
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
-  <meta property="og:url" content="${esc(url)}" />${ogImage}`
+  <meta property="og:url" content="${esc(url)}" />${ogImage}${jsonLdBlock}`
 }
 
 // 템플릿의 기본 <title>...</title> 을 경로별 head 블록으로 치환.

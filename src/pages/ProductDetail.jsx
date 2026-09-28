@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { products } from '../data/products'
 import Seo from '../components/Seo'
 import { seoProducts } from '../data/seo'
+import { productJsonLd } from '../data/jsonld'
 import { trackShopClick, trackContentView, trackProductClick } from '../lib/analytics'
 import '../css/productDetail.css'
 
@@ -102,7 +103,13 @@ export default function ProductDetail() {
 
   return (
     <main className="pd">
-      <Seo path={`/products/${product.id}`} title={seo.title} description={seo.description} image={seo.image} />
+      <Seo
+        path={`/products/${product.id}`}
+        title={seo.title}
+        description={seo.description}
+        image={seo.image}
+        jsonLd={productJsonLd(product, seo.image)}
+      />
 
       {/* 메인 이미지 */}
       <img className="pd-main" src={product.productImg} alt={product.name} />

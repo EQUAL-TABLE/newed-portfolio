@@ -6,6 +6,7 @@ import Banner from '../components/Banner'
 import InstaGrids from '../components/InstaGrids'
 import Seo from '../components/Seo'
 import { seoHome } from '../data/seo'
+import { organizationJsonLd, websiteJsonLd } from '../data/jsonld'
 import { useSectionTracking } from '../hooks/useSectionTracking'
 import mainImage from '../assets/images/main-1-656-480.png'
 
@@ -25,7 +26,7 @@ export default function Home() {
 
   return (
     <>
-      <Seo {...seoHome} />
+      <Seo {...seoHome} jsonLd={[organizationJsonLd(), websiteJsonLd()]} />
       <main className="content">
         <Hero />
         <IconList />
