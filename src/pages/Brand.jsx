@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import '../css/brand.css'
 import Seo from '../components/Seo'
 import { seoBrand } from '../data/seo'
+import { aboutPageJsonLd, organizationJsonLd } from '../data/jsonld'
 import { trackContentView } from '../lib/analytics'
 import BrandImg1 from '../assets/images/brandImg-1-656-480.png'
 import BrandImg2 from '../assets/images/brandImg-2-615-200.png'
@@ -16,7 +17,7 @@ export default function Brand() {
 
   return (
     <main className="brand">
-      <Seo {...seoBrand} />
+      <Seo {...seoBrand} jsonLd={[aboutPageJsonLd(seoBrand), organizationJsonLd()]} />
       <h1 className="sr-only">
         선명하게 느껴지는 즐거움, 마시는 순간 '맛있다'는 감탄사가 나오는 맛, 지금 이 순간, 이끌리는 대로 즐겨
       </h1>

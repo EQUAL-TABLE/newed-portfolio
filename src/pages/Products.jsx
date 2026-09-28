@@ -1,6 +1,7 @@
 import ProductSection from '../components/ProductSection'
 import Seo from '../components/Seo'
 import { seoProductsPage } from '../data/seo'
+import { itemListJsonLd } from '../data/jsonld'
 import IconList from '../components/IconList'
 
 
@@ -8,7 +9,7 @@ import IconList from '../components/IconList'
 export default function Products() {
   return (
     <main className="content">
-      <Seo {...seoProductsPage} />
+      <Seo {...seoProductsPage} jsonLd={itemListJsonLd()} />
       <h1 className="sr-only">뉴드 드립백 커피 3종 세트 — 뻔한 선물 말고 받는 순간 기분이 좋아지는 유니크한 선물을 하세요.</h1>
       <p className='sr-only'>누구나 좋아하는 호불호 없는 딥 에디션으로 모두가 좋아하는 생일선물
         & 싱그러운 과일향의 브라이트 에디션으로 일상의 기분을 전환시키는 가벼운 선물

@@ -1,9 +1,12 @@
 // JSON-LD(구조화 데이터) 객체 생성 — Seo.jsx(런타임)와 scripts/prerender-seo.mjs(정적 빌드) 양쪽에서 공유합니다.
 // 순수 데이터 변환 함수만 두고 React/Node 전용 코드는 넣지 않아야 두 곳에서 동일하게 import 됩니다.
 
+import { productsCore } from './productsCore.js'
+
 const SITE_URL = 'https://www.newed.kr'
 
-// 홈: 회사(Organization) — Footer.jsx 의 사업자정보와 동일한 값을 사용합니다.
+// 홈/브랜드: 회사(Organization) — Footer.jsx 의 사업자정보와 동일한 값을 사용합니다.
+// 대표자명(문준석)은 의도적으로 제외 — 개인정보라 구조화 데이터에는 넣지 않습니다.
 export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',
@@ -13,6 +16,31 @@ export function organizationJsonLd() {
     url: SITE_URL,
     logo: `${SITE_URL}/OGimage.png`,
     sameAs: ['https://www.instagram.com/newed_official/'],
+  }
+}
+
+// 브랜드 소개 페이지: AboutPage. seo.js 의 seoBrand(path/title/description)를 그대로 받아 조립합니다.
+export function aboutPageJsonLd({ path, title, description }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    url: `${SITE_URL}${path}`,
+    name: title,
+    description,
+  }
+}
+
+// 상품 목록 페이지: ItemList. productsCore 순서 그대로 위치(position)를 매깁니다.
+export function itemListJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: productsCore.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${SITE_URL}${p.innerTo}`,
+      name: p.name,
+    })),
   }
 }
 

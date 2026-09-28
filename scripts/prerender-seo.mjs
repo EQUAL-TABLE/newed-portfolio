@@ -16,7 +16,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { seoHome, seoBrand, seoProductsPage, seoProducts, seoReturnPolicy } from '../src/data/seo.js'
-import { organizationJsonLd, websiteJsonLd, productJsonLd } from '../src/data/jsonld.js'
+import { organizationJsonLd, websiteJsonLd, productJsonLd, aboutPageJsonLd, itemListJsonLd } from '../src/data/jsonld.js'
 import { productsCore } from '../src/data/productsCore.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -31,8 +31,8 @@ const productById = (id) => productsCore.find((p) => p.id === id)
 // (JS 를 실행하지 않는 크롤러는 런타임 주입분을 못 보므로, 여기가 실제 크롤러 노출 경로)
 const ROUTES = [
   { path: '/', ...seoHome, jsonLd: [organizationJsonLd(), websiteJsonLd()] },
-  { path: '/brand', ...seoBrand },
-  { path: '/products', ...seoProductsPage },
+  { path: '/brand', ...seoBrand, jsonLd: [aboutPageJsonLd(seoBrand), organizationJsonLd()] },
+  { path: '/products', ...seoProductsPage, jsonLd: itemListJsonLd() },
   { path: '/products/deep', ...seoProducts.deep, jsonLd: productJsonLd(productById('deep'), seoProducts.deep.image) },
   { path: '/products/bright', ...seoProducts.bright, jsonLd: productJsonLd(productById('bright'), seoProducts.bright.image) },
   { path: '/products/decaf', ...seoProducts.decaf, jsonLd: productJsonLd(productById('decaf'), seoProducts.decaf.image) },
