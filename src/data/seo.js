@@ -8,6 +8,7 @@ export const seoHome = {
   title: '뉴드 NEWED | 즐거운 순간엔 선명하게 맛있는 스페셜티 드립백 커피',
   description:
     '즐거운 순간엔 선명하게 맛있는 뉴드 NEWED, 한 모금에 바로 리프레쉬 되는 세상에 없던 새로운 커피',
+  image: '/OGimage.png',
 }
 
 export const seoBrand = {
