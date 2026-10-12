@@ -71,6 +71,26 @@ export function productJsonLd(product, seoImage) {
       priceCurrency: 'KRW',
       price: String(product.price).replace(/[^\d]/g, ''),
       availability: 'https://schema.org/InStock',
+      // 전국 무료배송(제주·도서산간 배송 불가), 출고 1~2일+배송 1~2일 — 실제 운영 기준(사용자 확인, 2026-10-12)
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'KRW' },
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'KR' },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2, unitCode: 'DAY' },
+          transitTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2, unitCode: 'DAY' },
+        },
+      },
+      // 반품: ReturnPolicy.jsx 정책(단순변심 불가, 하자 상품만 7일 이내)을 구조화 데이터로 반영
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        url: `${SITE_URL}/return-policy`,
+        applicableCountry: 'KR',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 7,
+        returnMethod: 'https://schema.org/ReturnByMail',
+      },
     },
   }
 }
