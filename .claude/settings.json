@@ -31,7 +31,8 @@
       "Bash(curl -s -o /dev/null -w \"code=%{http_code} redirect=%{redirect_url}\\\\n\" \"https://www.newed.kr/product\")",
       "Bash(curl -s -A \"Yeti\" \"https://www.newed.kr/products/deep\")",
       "WebFetch(domain:support.google.com)",
-      "Bash(pkill -f \"vite\")"
+      "Bash(pkill -f \"vite\")",
+      "Bash(curl -s \"https://www.newed.kr/products/$\\(node -e \"const {productsCore}=require\\('./src/data/productsCore.js'\\); console.log\\(productsCore[0].id\\)\" || echo ''\\)\" -A \"Mozilla/5.0\")"
     ]
   }
 }
