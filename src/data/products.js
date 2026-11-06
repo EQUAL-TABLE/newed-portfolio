@@ -22,6 +22,14 @@ import decafDescripImg2 from '../assets/images/decaf-productDetail-2.webp';
 import decafDescripImg3 from '../assets/images/decaf-productDetail-3.webp';
 import decafPackage from '../assets/images/decaf_package.webp';
 
+// daily 이미지 =================
+import dailyThumbImg from '../assets/images/daily-thumbImg-300-300.png';
+import dailyProductImg from '../assets/images/daily-productImg-656-656.png';
+import dailyDescripImg1 from '../assets/images/daily-productDetail-1.webp';
+import dailyDescripImg2 from '../assets/images/daily-productDetail-2.webp';
+import dailyDescripImg3 from '../assets/images/daily-productDetail-3.webp';
+import dailyPackage from '../assets/images/daily_package.webp';
+
 import { productsCore } from './productsCore';
 
 const images = {
@@ -48,6 +56,14 @@ const images = {
     descripImg2: decafDescripImg2,
     descripImg3: decafDescripImg3,
     package: decafPackage,
+  },
+  daily: {
+    thumbImg: dailyThumbImg,
+    productImg: dailyProductImg,
+    descripImg1: dailyDescripImg1,
+    descripImg2: dailyDescripImg2,
+    descripImg3: dailyDescripImg3,
+    package: dailyPackage,
   },
 };
 

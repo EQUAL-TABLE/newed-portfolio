@@ -36,6 +36,7 @@ const ROUTES = [
   { path: '/products/deep', ...seoProducts.deep, jsonLd: productJsonLd(productById('deep'), seoProducts.deep.image) },
   { path: '/products/bright', ...seoProducts.bright, jsonLd: productJsonLd(productById('bright'), seoProducts.bright.image) },
   { path: '/products/decaf', ...seoProducts.decaf, jsonLd: productJsonLd(productById('decaf'), seoProducts.decaf.image) },
+  { path: '/products/daily', ...seoProducts.daily, jsonLd: productJsonLd(productById('daily'), seoProducts.daily.image) },
   { path: '/return-policy', ...seoReturnPolicy },
 ]
 

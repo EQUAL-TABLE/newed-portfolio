@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import banner1 from '../assets/images/banner-1-615-210.png'
 import banner2 from '../assets/images/banner-2-615-210.png'
 import banner3 from '../assets/images/banner-3-615-210.png'
+import banner4 from '../assets/images/banner-4-615-210.png'
 
 // 프로모션 배너 캐러셀 — 화살표 없이 드래그/스와이프로 넘기고, 하단 점으로 현재 위치 표시.
-const banners = [banner1, banner2, banner3]
+const banners = [banner4, banner1, banner2, banner3]
 
 // id: 섹션 추적(useSectionTracking)용 앵커
 export default function Banner({ id }) {

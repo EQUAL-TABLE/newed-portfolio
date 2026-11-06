@@ -16,7 +16,7 @@ export default function ProductSection() {
         ))}
 
         {/* 마지막 칸: 카카오 브랜드 페이지로 이동(구매의도 전환) */}
-        <a
+        {/* <a
           className="product-more"
           href={KAKAO_BRAND_URL}
           target="_blank"
@@ -25,7 +25,7 @@ export default function ProductSection() {
         >
           <img className="product-more-img" src={orangeArrow} alt="상품 더보기" />
           <span className="product-more-text">제품 더 알아보기</span>
-        </a>
+        </a> */}
       </div>
     </section>
   )

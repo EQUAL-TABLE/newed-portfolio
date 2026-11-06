@@ -45,4 +45,18 @@ export const productsCore = [
     to: 'https://kko.to/CC1C1xYfhF',
     innerTo: '/products/decaf',
   },
+  {
+    id: 'daily',
+    badge: '6가지 맛을 한번에 즐기는 Collection',
+    name: '뉴드 드립백 데일리 컬렉션',
+    detailName: '뉴드 드립백 데일리 컬렉션 커피',
+    accent: 'var(--daily)',
+    price: '36,000원',
+    description:
+      '다양한 6가지 맛을 한번에 즐길 수 있는 컬렉션💕<br /><br />주는 순간의 설렘과 받는 순간의 기쁨이 가득한 선물로<br />한 해 동안 전하지 못했던 고마운 마음을 건네보세요 🎁',
+    srOnlyDesc:
+      '다양한 6가지 맛을 한번에 즐길 수 있는 컬렉션, 주는 순간의 설렘과 받는 순간의 기쁨이 가득한 선물로, 한 해 동안 전하지 못했던 고마운 마음을 건네보세요',
+    to: 'https://kko.to/aS8-0ouLNY',
+    innerTo: '/products/daily',
+  },
 ]
