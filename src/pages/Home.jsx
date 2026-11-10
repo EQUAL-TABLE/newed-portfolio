@@ -8,7 +8,7 @@ import Seo from '../components/Seo'
 import { seoHome } from '../data/seo'
 import { organizationJsonLd, websiteJsonLd } from '../data/jsonld'
 import { useSectionTracking } from '../hooks/useSectionTracking'
-import mainImage from '../assets/images/main-1-656-480.png'
+import mainImage from '../assets/images/main-2-656-480.png'
 
 // 섹션 노출/체류 추적 대상 (DOM id ↔ GA4 섹션 이름). 참조 안정화를 위해 컴포넌트 밖에 둠.
 const SECTIONS = [
