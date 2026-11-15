@@ -53,7 +53,7 @@ export const seoProducts = {
     image: '/og-decaf.png',
   },
   daily: {
-    title: '뉴드 NEWED | 데일리에디션 | 다양한 6가지 맛을 한번에 즐길 수 있는 데일리 에디션 드립백 커피',
+    title: '뉴드 NEWED | 데일리컬렉션 | 다양한 6가지 맛을 한번에 즐길 수 있는 데일리 컬렉션 드립백 커피',
     description:
       '다양한 6가지 맛을 한번에 즐길 수 있는 컬렉션, 주는 순간의 설렘과 받는 순간의 기쁨이 가득한 선물로, 한 해 동안 전하지 못했던 고마운 마음을 건네보세요',
     image: '/og-daily.png',
